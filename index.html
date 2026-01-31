@@ -3,57 +3,67 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>VL Ventas - Catálogo</title>
-  <meta name="description" content="Catálogo VL Ventas. Armá tu pedido y enviá todo por WhatsApp." />
+  <title>Valentín Lourido - Catálogo</title>
+  <meta name="description" content="Catálogo de productos. Armá tu pedido y enviá todo por WhatsApp." />
+
   <style>
     :root{--card:#fff;--text:#111;--muted:#6b7280;--shadow:0 10px 26px rgba(0,0,0,.08);--r:16px;}
     *{box-sizing:border-box}
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;background:#f6f7fb;color:var(--text);}
-    header{color:#fff;position:sticky;top:0;z-index:10;
-      background:linear-gradient(180deg,rgba(0,0,0,.68),rgba(0,0,0,.78)),url('bg.png') center/cover no-repeat;
-      padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);}
+
+    header{
+      color:#fff;position:sticky;top:0;z-index:10;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.80)),
+        url('header.jpg') center/cover no-repeat;
+      padding:55px 0;border-bottom:1px solid rgba(255,255,255,.15);
+    }
+
     .wrap{max-width:980px;margin:0 auto;padding:0 16px;}
-    .top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;}
-    .brand{font-weight:900;font-size:22px;letter-spacing:.4px;}
-    .sub{opacity:.86;font-size:14px;margin-top:4px;line-height:1.2;}
-    .pill{background:rgba(255,255,255,.12);padding:8px 10px;border-radius:999px;font-size:13px;}
-    main{padding:16px 0 110px;}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;}
-    .card{background:var(--card);border-radius:var(--r);padding:12px;box-shadow:var(--shadow);
-      display:flex;flex-direction:column;gap:10px;}
-    .media{width:100%;height:160px;border-radius:14px;overflow:hidden;background:#eee;}
-    .media img,.media video{width:100%;height:100%;object-fit:cover;}
+    .brand{font-weight:900;font-size:26px;letter-spacing:.6px;text-align:center;}
+    .sub{opacity:.90;font-size:14px;margin-top:6px;line-height:1.2;text-align:center;}
+    .pill{background:rgba(255,255,255,.15);padding:8px 12px;border-radius:999px;font-size:13px;display:inline-block;margin-top:12px;}
+
+    main{padding:20px 0 120px;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+    .card{background:var(--card);border-radius:var(--r);padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;}
+
+    .media{width:100%;height:240px;border-radius:14px;overflow:visible;background:#fff;}
+    .media img,.media video{width:100%;height:100%;object-fit:contain;background:#fff;display:block;}
+
     .name{font-weight:900;line-height:1.15;}
     .price{margin:0;font-weight:900;}
     .note{margin:0;font-size:12px;color:var(--muted);}
+    .tag{margin:0;font-size:12px;color:#111;background:#f1f1f1;border-radius:999px;padding:6px 10px;display:inline-block;width:max-content;}
+
     .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;}
     .qty{display:flex;align-items:center;gap:8px;}
     .qty button{width:38px;height:38px;border:0;border-radius:12px;background:#eee;font-size:18px;}
-    .btn{border:0;border-radius:14px;padding:10px 12px;background:#111;color:#fff;font-weight:900;}
+    .btn{border:0;border-radius:14px;padding:10px 14px;background:#111;color:#fff;font-weight:900;}
+
     .cart{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #eee;}
-    .cartbar{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;}
-    .inputs{flex:1;display:flex;gap:10px;}
+    .cartbar{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 0;}
+
+    .inputs{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
     .inputs input{padding:10px 12px;border-radius:14px;border:1px solid #ddd;width:100%;}
     .tot{min-width:160px;text-align:right;}
     .tot strong{display:block;}
+
     @media(max-width:720px){
-      .cartbar{flex-direction:column}
-      .inputs{flex-direction:column}
-      .tot{text-align:left}
+      .cartbar{flex-direction:column;}
+      .inputs{grid-template-columns:1fr 1fr;}
+      .tot{text-align:left;}
     }
   </style>
 </head>
+
 <body>
 
 <header>
   <div class="wrap">
-    <div class="top">
-      <div>
-        <div class="brand">VL VENTAS</div>
-        <div class="sub">Elegí productos y enviá el pedido por WhatsApp</div>
-      </div>
-      <div class="pill" id="itemsCount">0 items</div>
-    </div>
+    <div class="brand">Valentín Lourido</div>
+    <div class="sub">Catálogo de productos · Pedidos por WhatsApp</div>
+    <div class="pill" id="itemsCount">0 items</div>
   </div>
 </header>
 
@@ -67,10 +77,10 @@
   <div class="wrap">
     <div class="cartbar">
       <div class="inputs">
-        <input id="name" placeholder="Nombre *" required>
-<input id="lastname" placeholder="Apellido *" required>
-<input id="province" placeholder="Provincia *" required>
-<input id="cp" placeholder="Código Postal *" required>
+        <input id="name" placeholder="Nombre *">
+        <input id="lastname" placeholder="Apellido *">
+        <input id="province" placeholder="Provincia *">
+        <input id="cp" placeholder="Código Postal *">
       </div>
       <div class="tot">
         <strong id="total">$0</strong>
@@ -83,42 +93,128 @@
 <script>
 const WHATSAPP_NUMBER = "5491165292907";
 
+/*
+  bulkUnit: aplica precio unitario por umbral (qty >= min)
+  bulkTotalExact: aplica un total fijo SOLO si qty == qty (ej: 2 por $13.500)
+*/
 const PRODUCTS = [
-  {id:"tv",name:"TV Stick + Xuper instalado",price:40000,img:"tv.jpg"},
-  {id:"airpodspro",name:"AirPods Pro 2 (sello ANC)",price:25000,img:"airpods-pro2.jpg"},
-  {id:"airpodstws",name:"AirPods genéricos TWS",price:16000,img:"airpods-tws.jpg"},
-  {id:"jbl",name:"JBL GO3",price:30000,img:"jbl-go3.jpg"},
-  {id:"fundas",name:"Fundas iPhone Silicone Case",price:15000,img:"fundas.jpg",note:"5=$12.000 | 10=$9.000"},
-  {id:"adaptador",name:"Adaptador USB-C 20W + Cable",price:10000,img:"adaptador.jpg"},
-  {id:"cable",name:"Cable 3 en 1",price:9000,img:"cable3en1.jpg"},
-  {id:"billetera",name:"Billeteras magnéticas",price:10000,img:"billeteras.jpg"},
-  {id:"elfbar",name:"Elfbar Ice King 40K",price:28000,img:"elfbar.jpg"},
-  {id:"freidora",name:"Freidora de aire Boumen 5L",price:65000,img:"freidora.jpg"}
+  {
+    id:"tv", name:"TV Stick + Xuper instalado", img:"tv.jpg",
+    price:40000,
+    bulkUnit:[
+      {min:2, unit:38000},
+      {min:3, unit:36000},
+      {min:5, unit:34500}
+    ],
+    note:"Mayorista: 2=$38.000 | 3=$36.000 | 5=$34.500"
+  },
+  {
+    id:"airpodspro", name:"AirPods Pro 2 (sello ANC)", img:"airpods-pro2.jpg",
+    price:25000,
+    bulkUnit:[
+      {min:3, unit:22000},
+      {min:5, unit:19500}
+    ],
+    note:"Mayorista: 3=$22.000 | 5=$19.500"
+  },
+  {
+    id:"airpodstws", name:"AirPods genéricos TWS", img:"airpods-tws.jpg",
+    price:16000,
+    bulkUnit:[
+      {min:2, unit:15000},
+      {min:3, unit:14000}
+    ],
+    note:"Mayorista: 2=$15.000 | 3=$14.000"
+  },
+  {
+    id:"jbl", name:"JBL GO3", img:"jbl-go3.jpg",
+    price:30000,
+    bulkUnit:[
+      {min:3, unit:28000},
+      {min:5, unit:26500}
+    ],
+    note:"Mayorista: 3=$28.000 | 5=$26.500"
+  },
+  {
+    id:"fundas", name:"Fundas iPhone Silicone Case", img:"fundas.jpg",
+    price:15000,
+    bulkUnit:[
+      {min:5, unit:12000},
+      {min:10, unit:9000}
+    ],
+    note:"Mayorista: 5=$12.000 | 10=$9.000"
+  },
+  { id:"adaptador", name:"Adaptador USB-C 20W + Cable", price:10000, img:"adaptador.jpg" },
+
+  {
+    id:"cable", name:"Cable 3 en 1", img:"cable3en1.jpg",
+    price:9000,
+    bulkTotalExact:[
+      {qty:2, total:13500}
+    ],
+    note:"Promo: 2 por $13.500"
+  },
+
+  { id:"billetera", name:"Billeteras magnéticas", price:12000, img:"billeteras.jpg" },
+  { id:"elfbar", name:"Elfbar Ice King 40K", price:28000, img:"elfbar.jpg" },
+  { id:"freidora", name:"Freidora de aire Boumen 5L", price:60000, img:"freidora.jpg" }
 ];
 
-const cart=new Map();
-const $products=document.getElementById("products");
-const $total=document.getElementById("total");
-const $items=document.getElementById("itemsCount");
+const cart = new Map();
+const $products = document.getElementById("products");
+const $total = document.getElementById("total");
+const $items = document.getElementById("itemsCount");
 
-function money(n){return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});}
+function money(n){
+  return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
+}
+
+function getPricing(p, qty){
+  // total fijo exacto (ej 2 por 13500)
+  if(p.bulkTotalExact && qty > 0){
+    const exact = p.bulkTotalExact.find(x => x.qty === qty);
+    if(exact){
+      return { unit: exact.total / qty, subtotal: exact.total, tag: "Mayorista aplicado" };
+    }
+  }
+
+  // escalas por unitario (qty >= min)
+  let unit = p.price;
+  let applied = false;
+  if(p.bulkUnit && qty > 0){
+    p.bulkUnit.forEach(t=>{
+      if(qty >= t.min){
+        unit = t.unit;
+        applied = true;
+      }
+    });
+  }
+
+  return { unit, subtotal: unit * qty, tag: applied ? "Mayorista aplicado" : "" };
+}
 
 function render(){
-  $products.innerHTML="";
-  let items=0,total=0;
+  $products.innerHTML = "";
+  let items = 0;
+  let total = 0;
+
   PRODUCTS.forEach(p=>{
-    const q=cart.get(p.id)||0;
-    items+=q; total+=q*p.price;
-    const media=p.video
-      ? `<video src="${p.video}" muted controls playsinline></video>`
-      : `<img src="${p.img}">`;
-    const el=document.createElement("div");
-    el.className="card";
-    el.innerHTML=`
-      <div class="media">${media}</div>
+    const q = cart.get(p.id) || 0;
+    items += q;
+
+    const pricing = getPricing(p, q);
+    total += pricing.subtotal;
+
+    const tagHtml = pricing.tag ? `<p class="tag">${pricing.tag}</p>` : "";
+
+    const el = document.createElement("div");
+    el.className = "card";
+    el.innerHTML = `
+      <div class="media"><img src="${p.img}" alt="${p.name}"></div>
       <div class="name">${p.name}</div>
-      <p class="price">${money(p.price)}</p>
-      ${p.note?`<p class="note">${p.note}</p>`:""}
+      <p class="price">${money(pricing.unit)} <span style="font-weight:700;color:#6b7280;font-size:12px;">c/u</span></p>
+      ${tagHtml}
+      ${p.note ? `<p class="note">${p.note}</p>` : ""}
       <div class="row">
         <div class="qty">
           <button onclick="chg('${p.id}',-1)">−</button>
@@ -126,47 +222,60 @@ function render(){
           <button onclick="chg('${p.id}',1)">+</button>
         </div>
         <button class="btn" onclick="chg('${p.id}',1)">Agregar</button>
-      </div>`;
+      </div>
+    `;
     $products.appendChild(el);
   });
-  $items.textContent=items+" items";
-  $total.textContent=money(total);
+
+  $items.textContent = items + " items";
+  $total.textContent = money(total);
 }
 
-function chg(id,d){
-  const q=(cart.get(id)||0)+d;
-  if(q<=0) cart.delete(id); else cart.set(id,q);
+function chg(id, d){
+  const q = (cart.get(id) || 0) + d;
+  if(q <= 0) cart.delete(id); else cart.set(id, q);
   render();
 }
 
-document.getElementById("sendBtn").onclick=()=>{
-  if(cart.size===0) return alert("Agregá un producto");
-  let msg="Hola! Quiero hacer este pedido:%0A%0A";
-  let tot=0;
+document.getElementById("sendBtn").onclick = ()=>{
+  if(cart.size === 0) return alert("Agregá un producto");
+
+  const name = document.getElementById("name").value.trim();
+  const lastname = document.getElementById("lastname").value.trim();
+  const province = document.getElementById("province").value.trim();
+  const cp = document.getElementById("cp").value.trim();
+
+  if(!name || !lastname || !province || !cp){
+    alert("Completá nombre, apellido, provincia y código postal.");
+    return;
+  }
+
+  let msg = "Hola! Quiero hacer este pedido:%0A%0A";
+  let tot = 0;
+
   PRODUCTS.forEach(p=>{
-    const q=cart.get(p.id)||0;
-    if(q){msg+=`• ${p.name} x${q} (${money(p.price)} c/u)%0A`; tot+=q*p.price;}
+    const q = cart.get(p.id) || 0;
+    if(q){
+      const pricing = getPricing(p, q);
+      tot += pricing.subtotal;
+
+      msg += `• ${p.name} x${q}%0A`;
+      msg += `  Unit: ${money(pricing.unit)} | Subtotal: ${money(pricing.subtotal)}%0A`;
+      if(pricing.tag) msg += `  (${pricing.tag})%0A`;
+    }
   });
-  msg+=`%0ATotal estimado: ${money(tot)}%0A`;
-const name = document.getElementById("name").value.trim();
-const lastname = document.getElementById("lastname").value.trim();
-const province = document.getElementById("province").value.trim();
-const cp = document.getElementById("cp").value.trim();
 
-if(!name || !lastname || !province || !cp){
-  alert("Por favor completá: Nombre, Apellido, Provincia y Código Postal.");
-  return;
-}
+  msg += `%0ATotal estimado: ${money(tot)}%0A`;
+  msg += `Nombre: ${name} ${lastname}%0A`;
+  msg += `Provincia: ${province}%0A`;
+  msg += `CP: ${cp}%0A`;
+  msg += "%0A¿Me confirmás stock y envío?";
 
-msg+=`Nombre: ${name} ${lastname}%0A`;
-msg+=`Provincia: ${province}%0A`;
-msg+=`CP: ${cp}%0A`;
-
-  msg+="%0A¿Me confirmás stock y envío?";
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`,"_blank");
 };
 
 render();
 </script>
+
 </body>
 </html>
