@@ -29,32 +29,22 @@
       background:
         linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
         url('header.jpg') center/cover no-repeat;
-      padding:28px 0;
+      padding:22px 0;
     }
     .wrap{max-width:980px;margin:0 auto;padding:0 16px;}
-    .brand{
-      font-weight:900;
-      font-size:24px;
-      text-align:center;
-      letter-spacing:.5px;
-    }
-    .sub{
-      text-align:center;
-      opacity:.9;
-      font-size:14px;
-      margin-top:6px;
-    }
+    .brand{font-weight:900;font-size:24px;text-align:center;letter-spacing:.5px;}
+    .sub{text-align:center;opacity:.9;font-size:13px;margin-top:6px;}
     .pill{
-      margin:12px auto 0;
+      margin:10px auto 0;
       background:rgba(255,255,255,.15);
       padding:6px 12px;
       border-radius:999px;
-      font-size:13px;
+      font-size:12px;
       width:max-content;
     }
 
     /* ===== GRID ===== */
-    main{padding:18px 0 130px;}
+    main{padding:18px 0 150px;}
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
@@ -69,18 +59,26 @@
       flex-direction:column;
       gap:10px;
     }
+
+    /* MÁS ALTO para que NO se corte (freidora, etc.) */
     .media{
       width:100%;
-      height:240px;
+      height:300px;
       border-radius:14px;
       background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
     }
     .media img{
       width:100%;
       height:100%;
-      object-fit:contain;
+      object-fit:contain; /* muestra completa */
       display:block;
+      background:#fff;
     }
+
     .name{font-weight:900;}
     .price{margin:0;font-weight:900;}
     .note{margin:0;font-size:12px;color:var(--muted);}
@@ -132,41 +130,45 @@
     }
     .cartbar{
       display:flex;
-      gap:12px;
+      gap:10px;
       align-items:center;
       justify-content:space-between;
       padding:10px 0;
     }
 
+    /* ✅ LO QUE VOS PEDÍS: 2 FILAS (cada fila 2 columnas) */
     .inputs{
       flex:1;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .line{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns: 1fr 1fr; /* MISMA LÍNEA */
       gap:8px;
     }
     .inputs input{
       min-width:0;
       width:100%;
-      padding:7px 9px;
+      padding:8px 10px;
       border-radius:12px;
       border:1px solid #ddd;
       font-size:13px;
     }
 
-    .tot{
-      min-width:140px;
-      text-align:right;
-    }
+    .tot{min-width:140px;text-align:right;}
     .tot strong{display:block;}
 
-    /* ===== RESPONSIVE ===== */
+    /* Responsive */
     @media (max-width:720px){
       .cartbar{flex-direction:column;}
       .tot{text-align:left;}
-      .inputs{grid-template-columns:1fr 1fr;}
+      .media{height:320px;} /* un toque más en celu */
     }
-    @media (max-width:380px){
-      .inputs{grid-template-columns:1fr;}
+    @media (max-width:360px){
+      /* si el celu es MUY chico, cada fila pasa a 1 columna */
+      .line{grid-template-columns:1fr;}
     }
   </style>
 </head>
@@ -191,10 +193,14 @@
   <div class="wrap">
     <div class="cartbar">
       <div class="inputs">
-        <input id="name" placeholder="Nombre *">
-        <input id="lastname" placeholder="Apellido *">
-        <input id="province" placeholder="Provincia *">
-        <input id="cp" placeholder="Código Postal *">
+        <div class="line">
+          <input id="name" placeholder="Nombre *">
+          <input id="lastname" placeholder="Apellido *">
+        </div>
+        <div class="line">
+          <input id="province" placeholder="Provincia *">
+          <input id="cp" placeholder="Código Postal *">
+        </div>
       </div>
       <div class="tot">
         <strong id="total">$0</strong>
@@ -235,6 +241,11 @@ const $products = document.getElementById("products");
 const $total = document.getElementById("total");
 const $items = document.getElementById("itemsCount");
 
+const nameEl=document.getElementById("name");
+const lastnameEl=document.getElementById("lastname");
+const provinceEl=document.getElementById("province");
+const cpEl=document.getElementById("cp");
+
 function money(n){
   return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
 }
@@ -253,17 +264,20 @@ function render(){
 
   PRODUCTS.forEach(p=>{
     const q = cart.get(p.id)||0;
-    items+=q;
+    items += q;
+
     const unit = getUnit(p,q);
     total += unit*q;
+
+    const mayoristaAplicado = (p.bulk && q>0 && unit !== p.price);
 
     const el=document.createElement("div");
     el.className="card";
     el.innerHTML=`
-      <div class="media"><img src="${p.img}"></div>
+      <div class="media"><img src="${p.img}" alt="${p.name}"></div>
       <div class="name">${p.name}</div>
       <p class="price">${money(unit)} c/u</p>
-      ${q>0 && p.bulk ? `<div class="tag">Mayorista aplicado</div>`:""}
+      ${mayoristaAplicado ? `<div class="tag">Mayorista aplicado</div>`:""}
       ${p.note?`<p class="note">${p.note}</p>`:""}
       <div class="row">
         <div class="qty">
@@ -289,12 +303,12 @@ function chg(id,d){
 document.getElementById("sendBtn").onclick=()=>{
   if(cart.size===0) return alert("Agregá un producto");
 
-  const name=nameEl.value.trim(),
-        lastname=lastnameEl.value.trim(),
-        province=provinceEl.value.trim(),
-        cp=cpEl.value.trim();
+  const name=nameEl.value.trim();
+  const lastname=lastnameEl.value.trim();
+  const province=provinceEl.value.trim();
+  const cp=cpEl.value.trim();
 
-  if(!name||!lastname||!province||!cp){
+  if(!name || !lastname || !province || !cp){
     alert("Completá nombre, apellido, provincia y código postal.");
     return;
   }
@@ -312,16 +326,13 @@ document.getElementById("sendBtn").onclick=()=>{
   });
 
   msg+=`%0ATotal: ${money(tot)}%0A`;
-  msg+=`Nombre: ${name} ${lastname}%0AProvincia: ${province}%0ACP: ${cp}%0A`;
+  msg+=`Nombre: ${name} ${lastname}%0A`;
+  msg+=`Provincia: ${province}%0A`;
+  msg+=`CP: ${cp}%0A`;
   msg+="%0A¿Me confirmás stock y envío?";
 
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`,"_blank");
 };
-
-const nameEl=document.getElementById("name");
-const lastnameEl=document.getElementById("lastname");
-const provinceEl=document.getElementById("province");
-const cpEl=document.getElementById("cp");
 
 render();
 </script>
