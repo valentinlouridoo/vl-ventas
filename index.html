@@ -8,23 +8,24 @@
 
   <style>
     :root{
-      --bg:#f6f7fb;
+      --bg1:#f8fafc;          /* más “vivo” */
+      --bg2:#eef2ff;
       --card:#ffffff;
       --text:#0f172a;
       --muted:#64748b;
-      --shadow:0 10px 28px rgba(2,6,23,.10);
+      --shadow:0 12px 30px rgba(2,6,23,.10);
       --r:18px;
       --accent:#111827;
       --line:#e5e7eb;
       --pill:rgba(255,255,255,.14);
     }
-
     *{box-sizing:border-box}
     body{
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
       margin:0;
-      background:linear-gradient(180deg, #f8fafc, var(--bg));
       color:var(--text);
+      background:radial-gradient(900px 400px at 20% 0%, var(--bg2), transparent 70%),
+                 linear-gradient(180deg, var(--bg1), #f6f7fb 60%);
     }
     .wrap{max-width:980px;margin:0 auto;padding:0 16px;}
 
@@ -38,32 +39,19 @@
       padding:18px 0 16px;
       border-bottom:1px solid rgba(255,255,255,.14);
     }
-    .brand{
-      font-weight:1000;
-      font-size:24px;
-      letter-spacing:.4px;
-      text-align:center;
-      text-shadow:0 8px 28px rgba(0,0,0,.35);
-    }
-    .sub{
-      text-align:center;
-      opacity:.92;
-      font-size:13px;
-      margin-top:6px;
-      text-shadow:0 8px 28px rgba(0,0,0,.35);
-    }
+    .brand{font-weight:1000;font-size:24px;letter-spacing:.4px;text-align:center;text-shadow:0 8px 28px rgba(0,0,0,.35);}
+    .sub{text-align:center;opacity:.92;font-size:13px;margin-top:6px;text-shadow:0 8px 28px rgba(0,0,0,.35);}
     .pill{
       margin:10px auto 0;
       width:max-content;
       background:var(--pill);
       border:1px solid rgba(255,255,255,.18);
-      padding:7px 12px;
-      border-radius:999px;
-      font-size:12px;
+      padding:7px 12px;border-radius:999px;font-size:12px;
     }
 
+    main{padding:18px 0 120px;}
+
     /* ===== INTRO ===== */
-    main{padding:18px 0 185px;}
     .intro{
       background:var(--card);
       border:1px solid rgba(2,6,23,.06);
@@ -73,72 +61,39 @@
       margin-bottom:14px;
       text-align:center;
     }
-    .intro h2{
-      margin:0;
-      font-size:18px;
-      font-weight:1000;
-      letter-spacing:.2px;
-    }
-    .intro p{
-      margin:10px auto 0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.45;
-      max-width:740px;
-    }
-    .badges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      justify-content:center;
-      margin-top:12px;
-    }
-    .badge{
-      font-size:12px;
-      background:#f1f5f9;
-      border:1px solid #e2e8f0;
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:900;
-      color:#0f172a;
-    }
+    .intro h2{margin:0;font-size:18px;font-weight:1000;letter-spacing:.2px;}
+    .intro p{margin:10px auto 0;color:var(--muted);font-size:13px;line-height:1.45;max-width:740px;}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;}
+    .badge{font-size:12px;background:#f1f5f9;border:1px solid #e2e8f0;padding:6px 10px;border-radius:999px;font-weight:900;color:#0f172a;}
 
     /* ===== GRID ===== */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-      gap:14px;
-    }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
     .card{
       background:var(--card);
       border-radius:var(--r);
       padding:12px;
       box-shadow:var(--shadow);
       border:1px solid rgba(2,6,23,.06);
-      display:flex; flex-direction:column; gap:10px;
+      display:flex;flex-direction:column;gap:10px;
     }
 
-    /* SIN RECORTE */
     .media{
       width:100%;
       height:320px;
       border-radius:16px;
       background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      display:flex;align-items:center;justify-content:center;
       overflow:hidden;
+      border:1px solid rgba(2,6,23,.06);
     }
     .media img, .media video{
-      width:100%;
-      height:100%;
+      width:100%;height:100%;
       object-fit:contain;
-      display:block;
-      background:#fff;
+      display:block;background:#fff;
     }
 
-    .name{font-weight:950; line-height:1.15;}
-    .price{margin:0; font-weight:950; font-size:18px;}
+    .name{font-weight:950;line-height:1.15;}
+    .price{margin:0;font-weight:950;font-size:18px;}
     .price small{font-weight:700;color:var(--muted);font-size:12px;}
     .note{margin:0;font-size:12px;color:var(--muted);}
 
@@ -147,124 +102,131 @@
       background:#eff6ff;
       color:#1d4ed8;
       border:1px solid #dbeafe;
-      padding:5px 10px;
-      border-radius:999px;
-      width:max-content;
-      font-weight:900;
+      padding:5px 10px;border-radius:999px;width:max-content;font-weight:900;
     }
 
-    /* Opciones (color/modelo) */
     .opts{display:flex;flex-direction:column;gap:8px;padding-top:2px;}
-    .optrow{
-      display:grid;
-      grid-template-columns: 110px 1fr;
-      gap:8px;
-      align-items:center;
-    }
-    .optrow label{
-      font-size:12px;
-      color:var(--muted);
-      font-weight:900;
-    }
-    .optrow select, .optrow input{
-      width:100%;
-      min-width:0;
-      padding:8px 10px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      font-size:13px;
-      outline:none;
-      background:#fff;
+    .optrow{display:grid;grid-template-columns:110px 1fr;gap:8px;align-items:center;}
+    .optrow label{font-size:12px;color:var(--muted);font-weight:900;}
+    .optrow select,.optrow input{
+      width:100%;min-width:0;
+      padding:8px 10px;border-radius:12px;border:1px solid var(--line);
+      font-size:13px;outline:none;background:#fff;
     }
     .optHint{font-size:12px;color:var(--muted);margin:-2px 0 0;}
 
     .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;}
     .qty{display:flex;align-items:center;gap:8px;}
-    .qty button{
-      width:36px;height:36px;border:0;border-radius:12px;
-      background:#eef2f7;font-size:18px;font-weight:900;color:#0f172a;
-    }
-
-    .btn{
-      border:0;
-      border-radius:14px;
-      padding:10px 14px;
-      background:var(--accent);
-      color:#fff;
-      font-weight:950;
-      box-shadow:0 10px 18px rgba(2,6,23,.18);
-      cursor:pointer;
-    }
+    .qty button{width:36px;height:36px;border:0;border-radius:12px;background:#eef2f7;font-size:18px;font-weight:900;color:#0f172a;}
+    .btn{border:0;border-radius:14px;padding:10px 14px;background:var(--accent);color:#fff;font-weight:950;box-shadow:0 10px 18px rgba(2,6,23,.18);cursor:pointer;}
     .btn:active{transform:translateY(1px);}
 
-    /* ===== CART ===== */
-    .cart{
-      position:fixed; left:0; right:0; bottom:0;
+    /* ===== CART MINI BAR (SIEMPRE) ===== */
+    .cartMini{
+      position:fixed;left:0;right:0;bottom:0;
       background:#fff;
       border-top:1px solid var(--line);
       box-shadow:0 -12px 30px rgba(2,6,23,.10);
+      z-index:20;
     }
-    .cartbar{
-      display:flex; gap:10px; align-items:flex-start; justify-content:space-between;
+    .miniRow{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
       padding:10px 0;
     }
+    .miniLeft{display:flex;flex-direction:column;gap:2px;}
+    .miniLeft .t1{font-weight:950;}
+    .miniLeft .t2{font-size:12px;color:var(--muted);}
+    .miniBtns{display:flex;gap:8px;align-items:center;}
+    .miniBtn{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:950;
+      cursor:pointer;
+    }
+    .miniBtn.primary{
+      border:0;
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 10px 18px rgba(2,6,23,.18);
+    }
 
-    /* 2 filas: Nombre+Apellido / Provincia+CP */
-    .inputs{flex:1;display:flex;flex-direction:column;gap:8px;}
+    /* ===== PANEL (SE ABRE) ===== */
+    .drawerBackdrop{
+      position:fixed;inset:0;
+      background:rgba(2,6,23,.45);
+      z-index:30;
+      display:none;
+    }
+    .drawer{
+      position:fixed;left:0;right:0;bottom:0;
+      background:#fff;
+      border-top-left-radius:18px;
+      border-top-right-radius:18px;
+      box-shadow:0 -18px 45px rgba(2,6,23,.22);
+      z-index:31;
+      transform:translateY(105%);
+      transition:transform .22s ease;
+      max-height:78vh;
+      overflow:auto;
+    }
+    .drawer.open{transform:translateY(0);}
+    .drawerHead{
+      padding:10px 16px;
+      border-bottom:1px solid var(--line);
+      display:flex;align-items:center;justify-content:space-between;
+      position:sticky;top:0;background:#fff;z-index:1;
+    }
+    .grab{
+      width:44px;height:5px;border-radius:999px;background:#e5e7eb;margin:4px auto 0;
+    }
+    .drawerTitle{font-weight:1000;}
+    .xbtn{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:12px;
+      padding:8px 10px;
+      font-weight:950;
+      cursor:pointer;
+    }
+    .drawerBody{padding:12px 16px 16px;}
+
+    .inputs{display:flex;flex-direction:column;gap:10px;}
     .line{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
     .inputs input{
       min-width:0;width:100%;
-      padding:8px 10px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      font-size:13px;
+      padding:10px 12px;border-radius:12px;border:1px solid var(--line);
+      font-size:14px;
     }
 
-    /* Envío */
-    .shipbox{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:8px;
-      margin-top:2px;
+    .shipbox{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    .field{display:flex;flex-direction:column;gap:6px;}
+    .field label{font-size:12px;color:var(--muted);font-weight:950;}
+    .field select{
+      width:100%;min-width:0;
+      padding:10px 12px;border-radius:12px;border:1px solid var(--line);
+      font-size:14px;outline:none;background:#fff;
     }
-    .shipbox .field{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-    .shipbox label{
-      font-size:12px;
-      color:var(--muted);
-      font-weight:900;
-    }
-    .shipbox select{
-      width:100%;
-      min-width:0;
-      padding:8px 10px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      font-size:13px;
-      outline:none;
-      background:#fff;
-    }
-    .shipnote{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:6px;
-      line-height:1.3;
-    }
+    .shipnote{font-size:12px;color:var(--muted);line-height:1.3;}
 
-    .tot{min-width:160px;text-align:right;}
-    .tot strong{display:block;font-size:18px;}
-
-    @media (max-width:720px){
-      .cartbar{flex-direction:column; align-items:stretch;}
-      .tot{text-align:left;}
-      .media{height:360px;}
+    .drawerFooter{
+      position:sticky;bottom:0;background:#fff;
+      padding:10px 0 2px;
+      border-top:1px solid var(--line);
+      margin-top:12px;
     }
+    .drawerFooter .sum{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:10px 16px 12px;
+    }
+    .drawerFooter strong{font-size:18px;}
+    .drawerFooter .btn{width:100%;padding:12px 14px;border-radius:16px;}
+
     @media (max-width:360px){
       .line{grid-template-columns:1fr;}
       .shipbox{grid-template-columns:1fr;}
+      .media{height:360px;}
     }
   </style>
 </head>
@@ -281,14 +243,11 @@
 
 <main>
   <div class="wrap">
-
-    <!-- PRESENTACIÓN -->
     <section class="intro">
-      <h2>Hola 👋 Soy Valentín Lourido</h2>
+      <h2>Holaa soy Valentín Lourido</h2>
       <p>
-        Trabajo con productos tecnológicos y artículos de uso diario. Empecé hace poco con esto,
-        primero con un grupo de amigos, y con el tiempo decidí seguir por mi cuenta porque me re apasiona.
-        Mi idea es simple: vender claro, rápido y con buena atención.
+       Trabajo con productos tecnológicos y artículos de uso diario. Empecé con esto primero con un grupo de amigos, y con el tiempo decidí seguir por mi cuenta porque me apasiona mucho este mundo de las ventas. 
+        Mi idea es simple: vender claro, rápido y con buena atención
       </p>
       <div class="badges">
         <div class="badge">+150 clientes satisfechos</div>
@@ -297,7 +256,7 @@
         <div class="badge">Retiro en Hurlingham</div>
       </div>
       <p style="margin-top:10px;">
-        Armás el carrito, completás tus datos y tocás <b>“Enviar pedido”</b> ✅
+        Elegí productos, armá tu carrito y tocá <b>“Enviar pedido”</b> ✅
         Te confirmo stock, precio final y envío.
       </p>
     </section>
@@ -306,48 +265,75 @@
   </div>
 </main>
 
-<div class="cart">
+<!-- MINI BAR -->
+<div class="cartMini">
   <div class="wrap">
-    <div class="cartbar">
-      <div class="inputs">
-        <div class="line">
-          <input id="name" placeholder="Nombre *">
-          <input id="lastname" placeholder="Apellido *">
-        </div>
-        <div class="line">
-          <input id="province" placeholder="Provincia *">
-          <input id="cp" placeholder="Código Postal *">
+    <div class="miniRow">
+      <div class="miniLeft">
+        <div class="t1" id="miniTotal">$0</div>
+        <div class="t2"><span id="miniItems">0</span> items</div>
+      </div>
+      <div class="miniBtns">
+        <button class="miniBtn" id="openCart">Ver carrito</button>
+        <button class="miniBtn primary" id="openCheckout">Finalizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawerBackdrop" id="backdrop"></div>
+<div class="drawer" id="drawer">
+  <div class="drawerHead">
+    <div>
+      <div class="grab"></div>
+      <div class="drawerTitle">Finalizar pedido</div>
+    </div>
+    <button class="xbtn" id="closeDrawer">Cerrar</button>
+  </div>
+
+  <div class="drawerBody">
+    <div class="inputs">
+      <div class="line">
+        <input id="name" placeholder="Nombre *">
+        <input id="lastname" placeholder="Apellido *">
+      </div>
+      <div class="line">
+        <input id="province" placeholder="Provincia *">
+        <input id="cp" placeholder="Código Postal *">
+      </div>
+
+      <div class="shipbox">
+        <div class="field">
+          <label>Entrega *</label>
+          <select id="delivery">
+            <option value="">Elegir...</option>
+            <option value="Retiro en oficina (Hurlingham)">Retiro en Hurlingham</option>
+            <option value="Envío a domicilio (Correo Argentino)">Envío a domicilio</option>
+            <option value="Envío a sucursal (Correo Argentino)">Envío a sucursal</option>
+          </select>
         </div>
 
-        <!-- ENTREGA / ENVÍO -->
-        <div class="shipbox">
-          <div class="field">
-            <label>Entrega *</label>
-            <select id="delivery">
-              <option value="">Elegir...</option>
-              <option value="Retiro en oficina (Hurlingham)">Retiro en Hurlingham</option>
-              <option value="Envío a domicilio (Correo Argentino)">Envío a domicilio</option>
-              <option value="Envío a sucursal (Correo Argentino)">Envío a sucursal</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Tipo de envío *</label>
-            <select id="shipType">
-              <option value="">Elegir...</option>
-              <option value="Clásico (2 a 5 días hábiles)">Clásico (2 a 5 días)</option>
-              <option value="Expreso (1 a 3 días hábiles)">Expreso (1 a 3 días)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="shipnote" id="shipNote">
-          *El costo del envío se confirma al finalizar según tu CP (clásico o expreso).*
+        <div class="field">
+          <label>Tipo de envío *</label>
+          <select id="shipType">
+            <option value="">Elegir...</option>
+            <option value="Clásico (2 a 5 días hábiles)">Clásico (2 a 5 días)</option>
+            <option value="Expreso (1 a 3 días hábiles)">Expreso (1 a 3 días)</option>
+          </select>
         </div>
       </div>
 
-      <div class="tot">
-        <strong id="total">$0</strong>
+      <div class="shipnote" id="shipNote">
+        *El costo del envío se confirma al finalizar según tu CP (clásico o expreso).*
+      </div>
+    </div>
+
+    <div class="drawerFooter">
+      <div class="sum">
+        <strong id="drawerTotal">$0</strong>
+      </div>
+      <div style="padding:0 16px 14px;">
         <button class="btn" id="sendBtn">Enviar pedido</button>
       </div>
     </div>
@@ -357,91 +343,40 @@
 <script>
 const WHATSAPP_NUMBER = "5491165292907";
 
-/*
-  bulk: [{min, unit}]  -> precio unitario cuando qty >= min
-  fields: [{key,label,type,required,choices?,placeholder?,hint?}]
-*/
+/* Productos */
 const PRODUCTS = [
-  {
-    id:"tv",
-    name:"TV Stick + Xuper instalado",
-    img:"tv.jpg",
-    price:40000,
+  { id:"tv", name:"TV Stick + Xuper instalado", img:"tv.jpg", price:40000,
     bulk:[{min:2,unit:38000},{min:3,unit:36000},{min:5,unit:34500}],
     note:"Mayorista: 2=$38.000 | 3=$36.000 | 5=$34.500"
   },
-
-  {
-    id:"airpodspro",
-    name:"AirPods Pro 2 (sello ANC)",
-    img:"airpods-pro2.jpg",
-    price:25000,
-    bulk:[
-      {min:3,unit:22000},
-      {min:5,unit:19500},
-      {min:10,unit:18000}
-    ],
+  { id:"airpodspro", name:"AirPods Pro 2 (sello ANC)", img:"airpods-pro2.jpg", price:25000,
+    bulk:[{min:3,unit:22000},{min:5,unit:19500},{min:10,unit:18000}],
     note:"Mayorista: 3=$22.000 | 5=$19.500 | 10=$18.000"
   },
-
-  {
-    id:"airpodstws",
-    name:"AirPods genéricos TWS",
-    img:"airpods-tws.jpg",
-    price:16000,
+  { id:"airpodstws", name:"AirPods genéricos TWS", img:"airpods-tws.jpg", price:16000,
     bulk:[{min:2,unit:15000},{min:3,unit:14000}],
     note:"Mayorista: 2=$15.000 | 3=$14.000"
   },
-
-  {
-    id:"jbl_go3",
-    name:"JBL GO3",
-    img:"jbl-go3.jpg",
-    price:30000,
+  { id:"jbl_go3", name:"JBL GO3", img:"jbl-go3.jpg", price:30000,
     bulk:[{min:3,unit:28000},{min:5,unit:26500}],
     note:"Mayorista: 3=$28.000 | 5=$26.500",
-    fields:[
-      { key:"color", label:"Color", type:"select", required:true,
-        choices:["Azul camuflado","Verde agua"]
-      }
-    ]
+    fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Azul camuflado","Verde agua"] }]
   },
-
-  {
-    id:"jbl_go4pro",
-    name:"JBL Go 4 Pro RGB",
-    img:"jbl-go4pro-rgb.jpg",
-    price:35000,
+  { id:"jbl_go4pro", name:"JBL Go 4 Pro RGB", img:"jbl-go4pro-rgb.jpg", price:35000,
     bulk:[{min:3,unit:33000},{min:5,unit:31000}],
     note:"Mayorista: 3=$33.000 | 5=$31.000",
-    fields:[
-      { key:"color", label:"Color", type:"select", required:true,
-        choices:["Rojo","Verde camuflado","Azul","Negro"]
-      }
-    ]
+    fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Verde camuflado","Azul","Negro"] }]
   },
-
-  {
-    id:"fundas",
-    name:"Fundas iPhone Silicone Case",
-    img:"fundas.jpg",
-    price:15000,
+  { id:"fundas", name:"Fundas iPhone Silicone Case", img:"fundas.jpg", price:15000,
     bulk:[{min:5,unit:12000},{min:10,unit:9000}],
     note:"Mayorista: 5=$12.000 | 10=$9.000",
     fields:[
-      { key:"modelo", label:"Modelo", type:"text", required:true,
-        placeholder:"Ej: iPhone 13 / 14 Pro Max"
-      },
-      { key:"colores", label:"Colores", type:"text", required:true,
-        placeholder:"Ej: 1, 7, 12",
-        hint:"Elegí por números según la foto (separados por coma)."
-      }
+      { key:"modelo", label:"Modelo", type:"text", required:true, placeholder:"Ej: iPhone 13 / 14 Pro Max" },
+      { key:"colores", label:"Colores", type:"text", required:true, placeholder:"Ej: 1, 7, 12", hint:"Elegí por números según la foto (separados por coma)." }
     ]
   },
-
   { id:"adaptador", name:"Adaptador USB-C 20W + Cable", img:"adaptador.jpg", price:10000 },
   { id:"cable", name:"Cable 3 en 1", img:"cable3en1.jpg", price:9000 },
-
   { id:"billetera", name:"Billeteras magnéticas", img:"billeteras.jpg", price:12000 },
   { id:"elfbar", name:"Elfbar Ice King 40K", img:"elfbar.jpg", price:28000 },
   { id:"freidora", name:"Freidora de aire Boumen 5L", img:"freidora.jpg", price:60000 }
@@ -449,15 +384,24 @@ const PRODUCTS = [
 
 const cart = new Map();   // id -> qty
 const meta = new Map();   // id -> {fieldKey:value}
+
 const $products = document.getElementById("products");
-const $total = document.getElementById("total");
 const $items = document.getElementById("itemsCount");
+
+const miniItems = document.getElementById("miniItems");
+const miniTotal = document.getElementById("miniTotal");
+const drawerTotal = document.getElementById("drawerTotal");
+
+const backdrop = document.getElementById("backdrop");
+const drawer = document.getElementById("drawer");
+const openCart = document.getElementById("openCart");
+const openCheckout = document.getElementById("openCheckout");
+const closeDrawer = document.getElementById("closeDrawer");
 
 const nameEl=document.getElementById("name");
 const lastnameEl=document.getElementById("lastname");
 const provinceEl=document.getElementById("province");
 const cpEl=document.getElementById("cp");
-
 const deliveryEl=document.getElementById("delivery");
 const shipTypeEl=document.getElementById("shipType");
 const shipNoteEl=document.getElementById("shipNote");
@@ -465,15 +409,11 @@ const shipNoteEl=document.getElementById("shipNote");
 function money(n){
   return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
 }
-
 function getUnit(p, q){
   let unit = p.price;
-  if(p.bulk){
-    p.bulk.forEach(b=>{ if(q>=b.min) unit=b.unit; });
-  }
+  if(p.bulk) p.bulk.forEach(b=>{ if(q>=b.min) unit=b.unit; });
   return unit;
 }
-
 function setMeta(id,key,value){
   const current = meta.get(id) || {};
   current[key] = value;
@@ -494,7 +434,6 @@ function renderFields(p){
         const sel = (val===c) ? "selected" : "";
         return `<option value="${c}" ${sel}>${c}</option>`;
       }).join("");
-
       html += `
         <div class="optrow">
           <label>${f.label}${f.required?" *":""}</label>
@@ -516,9 +455,7 @@ function renderFields(p){
         </div>
       `;
     }
-    if(f.hint){
-      html += `<div class="optHint">${f.hint}</div>`;
-    }
+    if(f.hint) html += `<div class="optHint">${f.hint}</div>`;
   });
   html += `</div>`;
   return html;
@@ -559,7 +496,9 @@ function render(){
   });
 
   $items.textContent = items+" items";
-  $total.textContent = money(total);
+  miniItems.textContent = items;
+  miniTotal.textContent = money(total);
+  drawerTotal.textContent = money(total);
 }
 
 function chg(id,d){
@@ -569,8 +508,24 @@ function chg(id,d){
   render();
 }
 
+/* Drawer */
+function openDrawer(){
+  backdrop.style.display="block";
+  drawer.classList.add("open");
+}
+function closeDrawerFn(){
+  drawer.classList.remove("open");
+  backdrop.style.display="none";
+}
+openCart.onclick = openDrawer;
+openCheckout.onclick = () => {
+  if(cart.size===0) return alert("Agregá un producto");
+  openDrawer();
+};
+closeDrawer.onclick = closeDrawerFn;
+backdrop.onclick = closeDrawerFn;
+
 function deliveryRules(){
-  // Si elige retiro en Hurlingham, el tipo de envío no aplica
   const del = deliveryEl.value;
   const isPickup = del.startsWith("Retiro");
   shipTypeEl.disabled = isPickup;
@@ -582,10 +537,9 @@ function deliveryRules(){
     shipNoteEl.textContent = "*El costo del envío se confirma al finalizar según tu CP (clásico o expreso).*";
   }
 }
-
 deliveryEl.addEventListener("change", deliveryRules);
 
-function validateRequiredFields(){
+function validateAll(){
   const name=nameEl.value.trim();
   const lastname=lastnameEl.value.trim();
   const province=provinceEl.value.trim();
@@ -601,13 +555,11 @@ function validateRequiredFields(){
     alert("Elegí la forma de entrega (retiro / domicilio / sucursal).");
     return false;
   }
-  // Si NO es retiro, debe elegir tipo de envío
   if(!delivery.startsWith("Retiro") && !shipType){
     alert("Elegí el tipo de envío: Clásico o Expreso.");
     return false;
   }
 
-  // Validar campos requeridos por producto si está en carrito
   for(const p of PRODUCTS){
     const q = cart.get(p.id)||0;
     if(q>0 && p.fields){
@@ -628,7 +580,7 @@ function validateRequiredFields(){
 
 document.getElementById("sendBtn").onclick=()=>{
   if(cart.size===0) return alert("Agregá un producto");
-  if(!validateRequiredFields()) return;
+  if(!validateAll()) return;
 
   const name=nameEl.value.trim();
   const lastname=lastnameEl.value.trim();
