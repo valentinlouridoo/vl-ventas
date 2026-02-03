@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Valentín Lourido - Catálogo</title>
-  <meta name="description" content="Catálogo de productos · Pedidos por WhatsApp" />
+  <meta name="description" content="Catálogo de productos · Armá tu pedido y enviá todo por WhatsApp" />
 
   <style>
     :root{
@@ -15,8 +15,8 @@
       --shadow:0 10px 28px rgba(2,6,23,.10);
       --r:18px;
       --accent:#111827;
-      --accent2:#0ea5e9;
       --line:#e5e7eb;
+      --pill:rgba(255,255,255,.14);
     }
 
     *{box-sizing:border-box}
@@ -28,6 +28,7 @@
     }
     .wrap{max-width:980px;margin:0 auto;padding:0 16px;}
 
+    /* ===== HEADER ===== */
     header{
       color:#fff;
       position:sticky; top:0; z-index:10;
@@ -54,20 +55,60 @@
     .pill{
       margin:10px auto 0;
       width:max-content;
-      background:rgba(255,255,255,.14);
+      background:var(--pill);
       border:1px solid rgba(255,255,255,.18);
       padding:7px 12px;
       border-radius:999px;
       font-size:12px;
     }
 
-    main{padding:18px 0 165px;}
+    /* ===== INTRO ===== */
+    main{padding:18px 0 185px;}
+    .intro{
+      background:var(--card);
+      border:1px solid rgba(2,6,23,.06);
+      box-shadow:var(--shadow);
+      border-radius:var(--r);
+      padding:16px;
+      margin-bottom:14px;
+      text-align:center;
+    }
+    .intro h2{
+      margin:0;
+      font-size:18px;
+      font-weight:1000;
+      letter-spacing:.2px;
+    }
+    .intro p{
+      margin:10px auto 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+      max-width:740px;
+    }
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:center;
+      margin-top:12px;
+    }
+    .badge{
+      font-size:12px;
+      background:#f1f5f9;
+      border:1px solid #e2e8f0;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:900;
+      color:#0f172a;
+    }
+
+    /* ===== GRID ===== */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
       gap:14px;
     }
-
     .card{
       background:var(--card);
       border-radius:var(--r);
@@ -103,15 +144,16 @@
 
     .tag{
       font-size:12px;
-      background:rgba(14,165,233,.10);
-      color:#0369a1;
-      border:1px solid rgba(14,165,233,.18);
+      background:#eff6ff;
+      color:#1d4ed8;
+      border:1px solid #dbeafe;
       padding:5px 10px;
       border-radius:999px;
       width:max-content;
-      font-weight:800;
+      font-weight:900;
     }
 
+    /* Opciones (color/modelo) */
     .opts{display:flex;flex-direction:column;gap:8px;padding-top:2px;}
     .optrow{
       display:grid;
@@ -122,7 +164,7 @@
     .optrow label{
       font-size:12px;
       color:var(--muted);
-      font-weight:800;
+      font-weight:900;
     }
     .optrow select, .optrow input{
       width:100%;
@@ -151,9 +193,11 @@
       color:#fff;
       font-weight:950;
       box-shadow:0 10px 18px rgba(2,6,23,.18);
+      cursor:pointer;
     }
     .btn:active{transform:translateY(1px);}
 
+    /* ===== CART ===== */
     .cart{
       position:fixed; left:0; right:0; bottom:0;
       background:#fff;
@@ -161,7 +205,7 @@
       box-shadow:0 -12px 30px rgba(2,6,23,.10);
     }
     .cartbar{
-      display:flex; gap:10px; align-items:center; justify-content:space-between;
+      display:flex; gap:10px; align-items:flex-start; justify-content:space-between;
       padding:10px 0;
     }
 
@@ -176,7 +220,41 @@
       font-size:13px;
     }
 
-    .tot{min-width:150px;text-align:right;}
+    /* Envío */
+    .shipbox{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:8px;
+      margin-top:2px;
+    }
+    .shipbox .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .shipbox label{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .shipbox select{
+      width:100%;
+      min-width:0;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      font-size:13px;
+      outline:none;
+      background:#fff;
+    }
+    .shipnote{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:6px;
+      line-height:1.3;
+    }
+
+    .tot{min-width:160px;text-align:right;}
     .tot strong{display:block;font-size:18px;}
 
     @media (max-width:720px){
@@ -186,6 +264,7 @@
     }
     @media (max-width:360px){
       .line{grid-template-columns:1fr;}
+      .shipbox{grid-template-columns:1fr;}
     }
   </style>
 </head>
@@ -202,6 +281,27 @@
 
 <main>
   <div class="wrap">
+
+    <!-- PRESENTACIÓN -->
+    <section class="intro">
+      <h2>Hola 👋 Soy Valentín Lourido</h2>
+      <p>
+        Trabajo con productos tecnológicos y artículos de uso diario. Empecé hace poco con esto,
+        primero con un grupo de amigos, y con el tiempo decidí seguir por mi cuenta porque me re apasiona.
+        Mi idea es simple: vender claro, rápido y con buena atención.
+      </p>
+      <div class="badges">
+        <div class="badge">+150 clientes satisfechos</div>
+        <div class="badge">Pedidos por WhatsApp</div>
+        <div class="badge">Envíos a todo el país</div>
+        <div class="badge">Retiro en Hurlingham</div>
+      </div>
+      <p style="margin-top:10px;">
+        Armás el carrito, completás tus datos y tocás <b>“Enviar pedido”</b> ✅
+        Te confirmo stock, precio final y envío.
+      </p>
+    </section>
+
     <div class="grid" id="products"></div>
   </div>
 </main>
@@ -218,7 +318,34 @@
           <input id="province" placeholder="Provincia *">
           <input id="cp" placeholder="Código Postal *">
         </div>
+
+        <!-- ENTREGA / ENVÍO -->
+        <div class="shipbox">
+          <div class="field">
+            <label>Entrega *</label>
+            <select id="delivery">
+              <option value="">Elegir...</option>
+              <option value="Retiro en oficina (Hurlingham)">Retiro en Hurlingham</option>
+              <option value="Envío a domicilio (Correo Argentino)">Envío a domicilio</option>
+              <option value="Envío a sucursal (Correo Argentino)">Envío a sucursal</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Tipo de envío *</label>
+            <select id="shipType">
+              <option value="">Elegir...</option>
+              <option value="Clásico (2 a 5 días hábiles)">Clásico (2 a 5 días)</option>
+              <option value="Expreso (1 a 3 días hábiles)">Expreso (1 a 3 días)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="shipnote" id="shipNote">
+          *El costo del envío se confirma al finalizar según tu CP (clásico o expreso).*
+        </div>
       </div>
+
       <div class="tot">
         <strong id="total">$0</strong>
         <button class="btn" id="sendBtn">Enviar pedido</button>
@@ -331,6 +458,10 @@ const lastnameEl=document.getElementById("lastname");
 const provinceEl=document.getElementById("province");
 const cpEl=document.getElementById("cp");
 
+const deliveryEl=document.getElementById("delivery");
+const shipTypeEl=document.getElementById("shipType");
+const shipNoteEl=document.getElementById("shipNote");
+
 function money(n){
   return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
 }
@@ -409,20 +540,12 @@ function render(){
     const el=document.createElement("div");
     el.className="card";
     el.innerHTML=`
-      <div class="media">
-        <img src="${p.img}" alt="${p.name}">
-      </div>
-
+      <div class="media"><img src="${p.img}" alt="${p.name}"></div>
       <div class="name">${p.name}</div>
-
       <p class="price">${money(unit)} <small>c/u</small></p>
-
       ${mayoristaAplicado ? `<div class="tag">Mayorista aplicado</div>` : ""}
-
       ${p.note ? `<p class="note">${p.note}</p>` : ""}
-
       ${renderFields(p)}
-
       <div class="row">
         <div class="qty">
           <button onclick="chg('${p.id}',-1)">−</button>
@@ -446,17 +569,45 @@ function chg(id,d){
   render();
 }
 
+function deliveryRules(){
+  // Si elige retiro en Hurlingham, el tipo de envío no aplica
+  const del = deliveryEl.value;
+  const isPickup = del.startsWith("Retiro");
+  shipTypeEl.disabled = isPickup;
+
+  if(isPickup){
+    shipTypeEl.value = "";
+    shipNoteEl.textContent = "Retiro en Hurlingham: coordinamos día y horario por WhatsApp.";
+  } else {
+    shipNoteEl.textContent = "*El costo del envío se confirma al finalizar según tu CP (clásico o expreso).*";
+  }
+}
+
+deliveryEl.addEventListener("change", deliveryRules);
+
 function validateRequiredFields(){
   const name=nameEl.value.trim();
   const lastname=lastnameEl.value.trim();
   const province=provinceEl.value.trim();
   const cp=cpEl.value.trim();
+  const delivery=deliveryEl.value.trim();
+  const shipType=shipTypeEl.value.trim();
 
   if(!name || !lastname || !province || !cp){
     alert("Completá nombre, apellido, provincia y código postal.");
     return false;
   }
+  if(!delivery){
+    alert("Elegí la forma de entrega (retiro / domicilio / sucursal).");
+    return false;
+  }
+  // Si NO es retiro, debe elegir tipo de envío
+  if(!delivery.startsWith("Retiro") && !shipType){
+    alert("Elegí el tipo de envío: Clásico o Expreso.");
+    return false;
+  }
 
+  // Validar campos requeridos por producto si está en carrito
   for(const p of PRODUCTS){
     const q = cart.get(p.id)||0;
     if(q>0 && p.fields){
@@ -483,6 +634,8 @@ document.getElementById("sendBtn").onclick=()=>{
   const lastname=lastnameEl.value.trim();
   const province=provinceEl.value.trim();
   const cp=cpEl.value.trim();
+  const delivery=deliveryEl.value.trim();
+  const shipType=shipTypeEl.value.trim();
 
   let msg="Hola! Quiero hacer este pedido:%0A%0A";
   let tot=0;
@@ -494,29 +647,35 @@ document.getElementById("sendBtn").onclick=()=>{
       const sub=unit*q;
       tot+=sub;
 
-      msg += `• ${p.name} x${q}%0A`;
-      msg += `  ${money(unit)} c/u | Subtotal: ${money(sub)}%0A`;
+      msg += `• ${encodeURIComponent(p.name)} x${q}%0A`;
+      msg += `  ${encodeURIComponent(money(unit))} c/u | Subtotal: ${encodeURIComponent(money(sub))}%0A`;
 
       const m = getMeta(p.id);
       if(p.fields && Object.keys(m).length){
         for(const f of p.fields){
           const v = String(m[f.key] ?? "").trim();
-          if(v) msg += `  ${f.label}: ${encodeURIComponent(v)}%0A`;
+          if(v) msg += `  ${encodeURIComponent(f.label)}: ${encodeURIComponent(v)}%0A`;
         }
       }
       msg += `%0A`;
     }
   });
 
-  msg += `Total: ${money(tot)}%0A`;
+  msg += `Total: ${encodeURIComponent(money(tot))}%0A`;
   msg += `Nombre: ${encodeURIComponent(name+" "+lastname)}%0A`;
   msg += `Provincia: ${encodeURIComponent(province)}%0A`;
-  msg += `CP: ${encodeURIComponent(cp)}%0A`;
+  msg += `CP: ${encodeURIComponent(cp)}%0A%0A`;
+
+  msg += `Entrega: ${encodeURIComponent(delivery)}%0A`;
+  if(!delivery.startsWith("Retiro")){
+    msg += `Envío: ${encodeURIComponent(shipType)}%0A`;
+  }
   msg += `%0A¿Me confirmás stock y envío?`;
 
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`,"_blank");
 };
 
+deliveryRules();
 render();
 </script>
 
