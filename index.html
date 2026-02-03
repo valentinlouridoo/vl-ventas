@@ -8,8 +8,8 @@
 
   <style>
     :root{
-      --bg1:#f8fafc;          /* más “vivo” */
-      --bg2:#eef2ff;
+      --bg1:#f1f5f9;          /* gris suave */
+      --bg2:#e0e7ff;          /* lila suave */
       --card:#ffffff;
       --text:#0f172a;
       --muted:#64748b;
@@ -17,15 +17,17 @@
       --r:18px;
       --accent:#111827;
       --line:#e5e7eb;
-      --pill:rgba(255,255,255,.14);
+      --pill:rgba(255,255,255,.16);
     }
     *{box-sizing:border-box}
     body{
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
       margin:0;
       color:var(--text);
-      background:radial-gradient(900px 400px at 20% 0%, var(--bg2), transparent 70%),
-                 linear-gradient(180deg, var(--bg1), #f6f7fb 60%);
+      background:
+        radial-gradient(900px 520px at 20% 0%, rgba(224,231,255,.90), transparent 62%),
+        radial-gradient(900px 520px at 85% 18%, rgba(186,230,253,.65), transparent 60%),
+        linear-gradient(180deg, var(--bg1), #ffffff 55%);
     }
     .wrap{max-width:980px;margin:0 auto;padding:0 16px;}
 
@@ -34,37 +36,74 @@
       color:#fff;
       position:sticky; top:0; z-index:10;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.40)),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.28)),
         url('header.jpg') center/cover no-repeat;
       padding:18px 0 16px;
       border-bottom:1px solid rgba(255,255,255,.14);
     }
-    .brand{font-weight:1000;font-size:24px;letter-spacing:.4px;text-align:center;text-shadow:0 8px 28px rgba(0,0,0,.35);}
-    .sub{text-align:center;opacity:.92;font-size:13px;margin-top:6px;text-shadow:0 8px 28px rgba(0,0,0,.35);}
+    .brand{
+      font-weight:1000;
+      font-size:24px;
+      letter-spacing:.4px;
+      text-align:center;
+      text-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    .sub{
+      text-align:center;
+      opacity:.92;
+      font-size:13px;
+      margin-top:6px;
+      text-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
     .pill{
       margin:10px auto 0;
       width:max-content;
       background:var(--pill);
-      border:1px solid rgba(255,255,255,.18);
-      padding:7px 12px;border-radius:999px;font-size:12px;
+      border:1px solid rgba(255,255,255,.20);
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
     main{padding:18px 0 120px;}
 
     /* ===== INTRO ===== */
     .intro{
-      background:var(--card);
+      background:rgba(255,255,255,.78);
       border:1px solid rgba(2,6,23,.06);
       box-shadow:var(--shadow);
-      border-radius:var(--r);
+      border-radius:22px;
       padding:16px;
       margin-bottom:14px;
       text-align:center;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .intro h2{margin:0;font-size:18px;font-weight:1000;letter-spacing:.2px;}
-    .intro p{margin:10px auto 0;color:var(--muted);font-size:13px;line-height:1.45;max-width:740px;}
+    .intro p{margin:10px auto 0;color:var(--muted);font-size:13px;line-height:1.45;max-width:760px;}
     .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;}
-    .badge{font-size:12px;background:#f1f5f9;border:1px solid #e2e8f0;padding:6px 10px;border-radius:999px;font-weight:900;color:#0f172a;}
+    .badge{
+      font-size:12px;
+      background:#f1f5f9;
+      border:1px solid #e2e8f0;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:900;
+      color:#0f172a;
+    }
+
+    /* ===== PRODUCTS PANEL (para que el fondo se note) ===== */
+    .productsPanel{
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(2,6,23,.06);
+      border-radius: 22px;
+      padding: 14px;
+      box-shadow: 0 18px 45px rgba(2,6,23,.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
 
     /* ===== GRID ===== */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
@@ -82,14 +121,18 @@
       height:320px;
       border-radius:16px;
       background:#fff;
-      display:flex;align-items:center;justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       overflow:hidden;
       border:1px solid rgba(2,6,23,.06);
     }
     .media img, .media video{
-      width:100%;height:100%;
+      width:100%;
+      height:100%;
       object-fit:contain;
-      display:block;background:#fff;
+      display:block;
+      background:#fff;
     }
 
     .name{font-weight:950;line-height:1.15;}
@@ -102,9 +145,13 @@
       background:#eff6ff;
       color:#1d4ed8;
       border:1px solid #dbeafe;
-      padding:5px 10px;border-radius:999px;width:max-content;font-weight:900;
+      padding:5px 10px;
+      border-radius:999px;
+      width:max-content;
+      font-weight:900;
     }
 
+    /* ===== options per product ===== */
     .opts{display:flex;flex-direction:column;gap:8px;padding-top:2px;}
     .optrow{display:grid;grid-template-columns:110px 1fr;gap:8px;align-items:center;}
     .optrow label{font-size:12px;color:var(--muted);font-weight:900;}
@@ -117,8 +164,17 @@
 
     .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;}
     .qty{display:flex;align-items:center;gap:8px;}
-    .qty button{width:36px;height:36px;border:0;border-radius:12px;background:#eef2f7;font-size:18px;font-weight:900;color:#0f172a;}
-    .btn{border:0;border-radius:14px;padding:10px 14px;background:var(--accent);color:#fff;font-weight:950;box-shadow:0 10px 18px rgba(2,6,23,.18);cursor:pointer;}
+    .qty button{
+      width:36px;height:36px;border:0;border-radius:12px;
+      background:#eef2f7;font-size:18px;font-weight:900;color:#0f172a;
+      cursor:pointer;
+    }
+    .btn{
+      border:0;border-radius:14px;padding:10px 14px;
+      background:var(--accent);color:#fff;font-weight:950;
+      box-shadow:0 10px 18px rgba(2,6,23,.18);
+      cursor:pointer;
+    }
     .btn:active{transform:translateY(1px);}
 
     /* ===== CART MINI BAR (SIEMPRE) ===== */
@@ -152,7 +208,7 @@
       box-shadow:0 10px 18px rgba(2,6,23,.18);
     }
 
-    /* ===== PANEL (SE ABRE) ===== */
+    /* ===== DRAWER ===== */
     .drawerBackdrop{
       position:fixed;inset:0;
       background:rgba(2,6,23,.45);
@@ -178,9 +234,7 @@
       display:flex;align-items:center;justify-content:space-between;
       position:sticky;top:0;background:#fff;z-index:1;
     }
-    .grab{
-      width:44px;height:5px;border-radius:999px;background:#e5e7eb;margin:4px auto 0;
-    }
+    .grab{width:44px;height:5px;border-radius:999px;background:#e5e7eb;margin:4px auto 0;}
     .drawerTitle{font-weight:1000;}
     .xbtn{
       border:1px solid var(--line);
@@ -244,10 +298,10 @@
 <main>
   <div class="wrap">
     <section class="intro">
-      <h2>Holaa soy Valentín Lourido</h2>
+      <h2>Holaa, soy Valentín Lourido 👋</h2>
       <p>
-       Trabajo con productos tecnológicos y artículos de uso diario. Empecé con esto primero con un grupo de amigos, y con el tiempo decidí seguir por mi cuenta porque me apasiona mucho este mundo de las ventas. 
-        Mi idea es simple: vender claro, rápido y con buena atención
+        Trabajo con productos tecnológicos y artículos de uso diario. Empecé con esto con un grupo de amigos y con el tiempo decidí seguir por mi cuenta
+        porque me apasiona este mundo. Mi idea es simple: vender claro, rápido y con buena atención.
       </p>
       <div class="badges">
         <div class="badge">+150 clientes satisfechos</div>
@@ -256,12 +310,14 @@
         <div class="badge">Retiro en Hurlingham</div>
       </div>
       <p style="margin-top:10px;">
-        Elegí productos, armá tu carrito y tocá <b>“Enviar pedido”</b> ✅
+        Elegí productos, armá tu carrito y tocá <b>“Finalizar”</b> ✅
         Te confirmo stock, precio final y envío.
       </p>
     </section>
 
-    <div class="grid" id="products"></div>
+    <div class="productsPanel">
+      <div class="grid" id="products"></div>
+    </div>
   </div>
 </main>
 
@@ -343,7 +399,10 @@
 <script>
 const WHATSAPP_NUMBER = "5491165292907";
 
-/* Productos */
+/*
+  bulk: [{min, unit}] => aplica unitario por umbral (q >= min)
+  fields: opciones obligatorias por producto (color / modelo etc)
+*/
 const PRODUCTS = [
   { id:"tv", name:"TV Stick + Xuper instalado", img:"tv.jpg", price:40000,
     bulk:[{min:2,unit:38000},{min:3,unit:36000},{min:5,unit:34500}],
@@ -357,16 +416,19 @@ const PRODUCTS = [
     bulk:[{min:2,unit:15000},{min:3,unit:14000}],
     note:"Mayorista: 2=$15.000 | 3=$14.000"
   },
-  { id:"jbl_go3", name:"JBL GO3", img:"jbl-go3.jpg", price:30000,
+
+  { id:"jbl-go3", name:"JBL GO3", img:"jbl-go3.jpg", price:30000,
     bulk:[{min:3,unit:28000},{min:5,unit:26500}],
     note:"Mayorista: 3=$28.000 | 5=$26.500",
     fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Azul camuflado","Verde agua"] }]
   },
-  { id:"jbl_go4pro", name:"JBL Go 4 Pro RGB", img:"jbl-go4pro-rgb.jpg", price:35000,
+
+  { id:"jbl-go4pro", name:"JBL Go 4 Pro RGB", img:"jbl-go4pro-rgb.jpg", price:35000,
     bulk:[{min:3,unit:33000},{min:5,unit:31000}],
     note:"Mayorista: 3=$33.000 | 5=$31.000",
     fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Verde camuflado","Azul","Negro"] }]
   },
+
   { id:"fundas", name:"Fundas iPhone Silicone Case", img:"fundas.jpg", price:15000,
     bulk:[{min:5,unit:12000},{min:10,unit:9000}],
     note:"Mayorista: 5=$12.000 | 10=$9.000",
@@ -375,9 +437,10 @@ const PRODUCTS = [
       { key:"colores", label:"Colores", type:"text", required:true, placeholder:"Ej: 1, 7, 12", hint:"Elegí por números según la foto (separados por coma)." }
     ]
   },
+
   { id:"adaptador", name:"Adaptador USB-C 20W + Cable", img:"adaptador.jpg", price:10000 },
-  { id:"cable", name:"Cable 3 en 1", img:"cable3en1.jpg", price:9000 },
-  { id:"billetera", name:"Billeteras magnéticas", img:"billeteras.jpg", price:12000 },
+  { id:"cable3en1", name:"Cable 3 en 1", img:"cable3en1.jpg", price:9000 },
+  { id:"billeteras", name:"Billeteras magnéticas", img:"billeteras.jpg", price:12000 },
   { id:"elfbar", name:"Elfbar Ice King 40K", img:"elfbar.jpg", price:28000 },
   { id:"freidora", name:"Freidora de aire Boumen 5L", img:"freidora.jpg", price:60000 }
 ];
@@ -414,6 +477,7 @@ function getUnit(p, q){
   if(p.bulk) p.bulk.forEach(b=>{ if(q>=b.min) unit=b.unit; });
   return unit;
 }
+
 function setMeta(id,key,value){
   const current = meta.get(id) || {};
   current[key] = value;
@@ -421,6 +485,10 @@ function setMeta(id,key,value){
 }
 function getMeta(id){ return meta.get(id) || {}; }
 window.onField = (id,key,val) => setMeta(id,key,val);
+
+function escHtml(s){
+  return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
+}
 
 function renderFields(p){
   if(!p.fields || p.fields.length===0) return "";
@@ -432,11 +500,11 @@ function renderFields(p){
     if(f.type==="select"){
       const options = (f.choices||[]).map(c => {
         const sel = (val===c) ? "selected" : "";
-        return `<option value="${c}" ${sel}>${c}</option>`;
+        return `<option value="${escHtml(c)}" ${sel}>${escHtml(c)}</option>`;
       }).join("");
       html += `
         <div class="optrow">
-          <label>${f.label}${f.required?" *":""}</label>
+          <label>${escHtml(f.label)}${f.required?" *":""}</label>
           <select onchange="onField('${p.id}','${f.key}',this.value)">
             <option value="">Elegir...</option>
             ${options}
@@ -446,16 +514,16 @@ function renderFields(p){
     } else {
       html += `
         <div class="optrow">
-          <label>${f.label}${f.required?" *":""}</label>
+          <label>${escHtml(f.label)}${f.required?" *":""}</label>
           <input
-            value="${String(val).replaceAll('"','&quot;')}"
-            placeholder="${f.placeholder||""}"
+            value="${escHtml(val)}"
+            placeholder="${escHtml(f.placeholder||"")}"
             oninput="onField('${p.id}','${f.key}',this.value)"
           />
         </div>
       `;
     }
-    if(f.hint) html += `<div class="optHint">${f.hint}</div>`;
+    if(f.hint) html += `<div class="optHint">${escHtml(f.hint)}</div>`;
   });
   html += `</div>`;
   return html;
@@ -477,11 +545,11 @@ function render(){
     const el=document.createElement("div");
     el.className="card";
     el.innerHTML=`
-      <div class="media"><img src="${p.img}" alt="${p.name}"></div>
-      <div class="name">${p.name}</div>
+      <div class="media"><img src="${p.img}" alt="${escHtml(p.name)}"></div>
+      <div class="name">${escHtml(p.name)}</div>
       <p class="price">${money(unit)} <small>c/u</small></p>
       ${mayoristaAplicado ? `<div class="tag">Mayorista aplicado</div>` : ""}
-      ${p.note ? `<p class="note">${p.note}</p>` : ""}
+      ${p.note ? `<p class="note">${escHtml(p.note)}</p>` : ""}
       ${renderFields(p)}
       <div class="row">
         <div class="qty">
@@ -633,4 +701,3 @@ render();
 
 </body>
 </html>
-
