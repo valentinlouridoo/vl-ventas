@@ -8,166 +8,183 @@
 
   <style>
     :root{
-      --card:#fff;
-      --text:#111;
-      --muted:#6b7280;
-      --shadow:0 10px 26px rgba(0,0,0,.08);
-      --r:16px;
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --shadow:0 10px 28px rgba(2,6,23,.10);
+      --r:18px;
+      --accent:#111827;
+      --accent2:#0ea5e9;
+      --line:#e5e7eb;
     }
+
     *{box-sizing:border-box}
     body{
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
       margin:0;
-      background:#f6f7fb;
+      background:linear-gradient(180deg, #f8fafc, var(--bg));
       color:var(--text);
     }
+    .wrap{max-width:980px;margin:0 auto;padding:0 16px;}
 
-    /* ===== HEADER ===== */
     header{
       color:#fff;
-      position:relative;
+      position:sticky; top:0; z-index:10;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.40)),
         url('header.jpg') center/cover no-repeat;
-      padding:22px 0;
+      padding:18px 0 16px;
+      border-bottom:1px solid rgba(255,255,255,.14);
     }
-    .wrap{max-width:980px;margin:0 auto;padding:0 16px;}
-    .brand{font-weight:900;font-size:24px;text-align:center;letter-spacing:.5px;}
-    .sub{text-align:center;opacity:.9;font-size:13px;margin-top:6px;}
+    .brand{
+      font-weight:1000;
+      font-size:24px;
+      letter-spacing:.4px;
+      text-align:center;
+      text-shadow:0 8px 28px rgba(0,0,0,.35);
+    }
+    .sub{
+      text-align:center;
+      opacity:.92;
+      font-size:13px;
+      margin-top:6px;
+      text-shadow:0 8px 28px rgba(0,0,0,.35);
+    }
     .pill{
       margin:10px auto 0;
-      background:rgba(255,255,255,.15);
-      padding:6px 12px;
+      width:max-content;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.18);
+      padding:7px 12px;
       border-radius:999px;
       font-size:12px;
-      width:max-content;
     }
 
-    /* ===== GRID ===== */
-    main{padding:18px 0 150px;}
+    main{padding:18px 0 165px;}
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
       gap:14px;
     }
+
     .card{
       background:var(--card);
       border-radius:var(--r);
       padding:12px;
       box-shadow:var(--shadow);
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      border:1px solid rgba(2,6,23,.06);
+      display:flex; flex-direction:column; gap:10px;
     }
 
-    /* MÁS ALTO para que NO se corte (freidora, etc.) */
+    /* SIN RECORTE */
     .media{
       width:100%;
-      height:300px;
-      border-radius:14px;
+      height:320px;
+      border-radius:16px;
       background:#fff;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
     }
-    .media img{
+    .media img, .media video{
       width:100%;
       height:100%;
-      object-fit:contain; /* muestra completa */
+      object-fit:contain;
       display:block;
       background:#fff;
     }
 
-    .name{font-weight:900;}
-    .price{margin:0;font-weight:900;}
+    .name{font-weight:950; line-height:1.15;}
+    .price{margin:0; font-weight:950; font-size:18px;}
+    .price small{font-weight:700;color:var(--muted);font-size:12px;}
     .note{margin:0;font-size:12px;color:var(--muted);}
+
     .tag{
       font-size:12px;
-      background:#f1f1f1;
+      background:rgba(14,165,233,.10);
+      color:#0369a1;
+      border:1px solid rgba(14,165,233,.18);
       padding:5px 10px;
       border-radius:999px;
       width:max-content;
+      font-weight:800;
     }
 
-    .row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-top:auto;
+    .opts{display:flex;flex-direction:column;gap:8px;padding-top:2px;}
+    .optrow{
+      display:grid;
+      grid-template-columns: 110px 1fr;
       gap:8px;
-    }
-    .qty{
-      display:flex;
       align-items:center;
-      gap:8px;
     }
+    .optrow label{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:800;
+    }
+    .optrow select, .optrow input{
+      width:100%;
+      min-width:0;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      font-size:13px;
+      outline:none;
+      background:#fff;
+    }
+    .optHint{font-size:12px;color:var(--muted);margin:-2px 0 0;}
+
+    .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;}
+    .qty{display:flex;align-items:center;gap:8px;}
     .qty button{
-      width:36px;
-      height:36px;
-      border:0;
-      border-radius:10px;
-      background:#eee;
-      font-size:18px;
+      width:36px;height:36px;border:0;border-radius:12px;
+      background:#eef2f7;font-size:18px;font-weight:900;color:#0f172a;
     }
+
     .btn{
       border:0;
       border-radius:14px;
       padding:10px 14px;
-      background:#111;
+      background:var(--accent);
       color:#fff;
-      font-weight:900;
+      font-weight:950;
+      box-shadow:0 10px 18px rgba(2,6,23,.18);
     }
+    .btn:active{transform:translateY(1px);}
 
-    /* ===== CART ===== */
     .cart{
-      position:fixed;
-      left:0;
-      right:0;
-      bottom:0;
+      position:fixed; left:0; right:0; bottom:0;
       background:#fff;
-      border-top:1px solid #eee;
+      border-top:1px solid var(--line);
+      box-shadow:0 -12px 30px rgba(2,6,23,.10);
     }
     .cartbar{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
+      display:flex; gap:10px; align-items:center; justify-content:space-between;
       padding:10px 0;
     }
 
-    /* ✅ LO QUE VOS PEDÍS: 2 FILAS (cada fila 2 columnas) */
-    .inputs{
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .line{
-      display:grid;
-      grid-template-columns: 1fr 1fr; /* MISMA LÍNEA */
-      gap:8px;
-    }
+    /* 2 filas: Nombre+Apellido / Provincia+CP */
+    .inputs{flex:1;display:flex;flex-direction:column;gap:8px;}
+    .line{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
     .inputs input{
-      min-width:0;
-      width:100%;
+      min-width:0;width:100%;
       padding:8px 10px;
       border-radius:12px;
-      border:1px solid #ddd;
+      border:1px solid var(--line);
       font-size:13px;
     }
 
-    .tot{min-width:140px;text-align:right;}
-    .tot strong{display:block;}
+    .tot{min-width:150px;text-align:right;}
+    .tot strong{display:block;font-size:18px;}
 
-    /* Responsive */
     @media (max-width:720px){
-      .cartbar{flex-direction:column;}
+      .cartbar{flex-direction:column; align-items:stretch;}
       .tot{text-align:left;}
-      .media{height:320px;} /* un toque más en celu */
+      .media{height:360px;}
     }
     @media (max-width:360px){
-      /* si el celu es MUY chico, cada fila pasa a 1 columna */
       .line{grid-template-columns:1fr;}
     }
   </style>
@@ -213,30 +230,98 @@
 <script>
 const WHATSAPP_NUMBER = "5491165292907";
 
+/*
+  bulk: [{min, unit}]  -> precio unitario cuando qty >= min
+  fields: [{key,label,type,required,choices?,placeholder?,hint?}]
+*/
 const PRODUCTS = [
-  {id:"tv",name:"TV Stick + Xuper instalado",img:"tv.jpg",price:40000,
-   bulk:[{min:2,unit:38000},{min:3,unit:36000},{min:5,unit:34500}],
-   note:"Mayorista: 2=$38.000 | 3=$36.000 | 5=$34.500"},
-  {id:"airpodspro",name:"AirPods Pro 2 (sello ANC)",img:"airpods-pro2.jpg",price:25000,
-   bulk:[{min:3,unit:22000},{min:5,unit:19500}],
-   note:"Mayorista: 3=$22.000 | 5=$19.500"},
-  {id:"airpodstws",name:"AirPods genéricos TWS",img:"airpods-tws.jpg",price:16000,
-   bulk:[{min:2,unit:15000},{min:3,unit:14000}],
-   note:"Mayorista: 2=$15.000 | 3=$14.000"},
-  {id:"jbl",name:"JBL GO3",img:"jbl-go3.jpg",price:30000,
-   bulk:[{min:3,unit:28000},{min:5,unit:26500}],
-   note:"Mayorista: 3=$28.000 | 5=$26.500"},
-  {id:"fundas",name:"Fundas iPhone Silicone Case",img:"fundas.jpg",price:15000,
-   bulk:[{min:5,unit:12000},{min:10,unit:9000}],
-   note:"Mayorista: 5=$12.000 | 10=$9.000"},
-  {id:"adaptador",name:"Adaptador USB-C 20W + Cable",img:"adaptador.jpg",price:10000},
-  {id:"cable",name:"Cable 3 en 1",img:"cable3en1.jpg",price:9000},
-  {id:"billetera",name:"Billeteras magnéticas",img:"billeteras.jpg",price:12000},
-  {id:"elfbar",name:"Elfbar Ice King 40K",img:"elfbar.jpg",price:28000},
-  {id:"freidora",name:"Freidora de aire Boumen 5L",img:"freidora.jpg",price:60000}
+  {
+    id:"tv",
+    name:"TV Stick + Xuper instalado",
+    img:"tv.jpg",
+    price:40000,
+    bulk:[{min:2,unit:38000},{min:3,unit:36000},{min:5,unit:34500}],
+    note:"Mayorista: 2=$38.000 | 3=$36.000 | 5=$34.500"
+  },
+
+  {
+    id:"airpodspro",
+    name:"AirPods Pro 2 (sello ANC)",
+    img:"airpods-pro2.jpg",
+    price:25000,
+    bulk:[
+      {min:3,unit:22000},
+      {min:5,unit:19500},
+      {min:10,unit:18000}
+    ],
+    note:"Mayorista: 3=$22.000 | 5=$19.500 | 10=$18.000"
+  },
+
+  {
+    id:"airpodstws",
+    name:"AirPods genéricos TWS",
+    img:"airpods-tws.jpg",
+    price:16000,
+    bulk:[{min:2,unit:15000},{min:3,unit:14000}],
+    note:"Mayorista: 2=$15.000 | 3=$14.000"
+  },
+
+  {
+    id:"jbl_go3",
+    name:"JBL GO3",
+    img:"jbl-go3.jpg",
+    price:30000,
+    bulk:[{min:3,unit:28000},{min:5,unit:26500}],
+    note:"Mayorista: 3=$28.000 | 5=$26.500",
+    fields:[
+      { key:"color", label:"Color", type:"select", required:true,
+        choices:["Azul camuflado","Verde agua"]
+      }
+    ]
+  },
+
+  {
+    id:"jbl_go4pro",
+    name:"JBL Go 4 Pro RGB",
+    img:"jbl-go4pro-rgb.jpg",
+    price:35000,
+    bulk:[{min:3,unit:33000},{min:5,unit:31000}],
+    note:"Mayorista: 3=$33.000 | 5=$31.000",
+    fields:[
+      { key:"color", label:"Color", type:"select", required:true,
+        choices:["Rojo","Verde camuflado","Azul","Negro"]
+      }
+    ]
+  },
+
+  {
+    id:"fundas",
+    name:"Fundas iPhone Silicone Case",
+    img:"fundas.jpg",
+    price:15000,
+    bulk:[{min:5,unit:12000},{min:10,unit:9000}],
+    note:"Mayorista: 5=$12.000 | 10=$9.000",
+    fields:[
+      { key:"modelo", label:"Modelo", type:"text", required:true,
+        placeholder:"Ej: iPhone 13 / 14 Pro Max"
+      },
+      { key:"colores", label:"Colores", type:"text", required:true,
+        placeholder:"Ej: 1, 7, 12",
+        hint:"Elegí por números según la foto (separados por coma)."
+      }
+    ]
+  },
+
+  { id:"adaptador", name:"Adaptador USB-C 20W + Cable", img:"adaptador.jpg", price:10000 },
+  { id:"cable", name:"Cable 3 en 1", img:"cable3en1.jpg", price:9000 },
+
+  { id:"billetera", name:"Billeteras magnéticas", img:"billeteras.jpg", price:12000 },
+  { id:"elfbar", name:"Elfbar Ice King 40K", img:"elfbar.jpg", price:28000 },
+  { id:"freidora", name:"Freidora de aire Boumen 5L", img:"freidora.jpg", price:60000 }
 ];
 
-const cart = new Map();
+const cart = new Map();   // id -> qty
+const meta = new Map();   // id -> {fieldKey:value}
 const $products = document.getElementById("products");
 const $total = document.getElementById("total");
 const $items = document.getElementById("itemsCount");
@@ -258,6 +343,56 @@ function getUnit(p, q){
   return unit;
 }
 
+function setMeta(id,key,value){
+  const current = meta.get(id) || {};
+  current[key] = value;
+  meta.set(id, current);
+}
+function getMeta(id){ return meta.get(id) || {}; }
+window.onField = (id,key,val) => setMeta(id,key,val);
+
+function renderFields(p){
+  if(!p.fields || p.fields.length===0) return "";
+  const m = getMeta(p.id);
+
+  let html = `<div class="opts">`;
+  p.fields.forEach(f=>{
+    const val = (m[f.key] ?? "");
+    if(f.type==="select"){
+      const options = (f.choices||[]).map(c => {
+        const sel = (val===c) ? "selected" : "";
+        return `<option value="${c}" ${sel}>${c}</option>`;
+      }).join("");
+
+      html += `
+        <div class="optrow">
+          <label>${f.label}${f.required?" *":""}</label>
+          <select onchange="onField('${p.id}','${f.key}',this.value)">
+            <option value="">Elegir...</option>
+            ${options}
+          </select>
+        </div>
+      `;
+    } else {
+      html += `
+        <div class="optrow">
+          <label>${f.label}${f.required?" *":""}</label>
+          <input
+            value="${String(val).replaceAll('"','&quot;')}"
+            placeholder="${f.placeholder||""}"
+            oninput="onField('${p.id}','${f.key}',this.value)"
+          />
+        </div>
+      `;
+    }
+    if(f.hint){
+      html += `<div class="optHint">${f.hint}</div>`;
+    }
+  });
+  html += `</div>`;
+  return html;
+}
+
 function render(){
   $products.innerHTML="";
   let items=0, total=0;
@@ -274,11 +409,20 @@ function render(){
     const el=document.createElement("div");
     el.className="card";
     el.innerHTML=`
-      <div class="media"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="media">
+        <img src="${p.img}" alt="${p.name}">
+      </div>
+
       <div class="name">${p.name}</div>
-      <p class="price">${money(unit)} c/u</p>
-      ${mayoristaAplicado ? `<div class="tag">Mayorista aplicado</div>`:""}
-      ${p.note?`<p class="note">${p.note}</p>`:""}
+
+      <p class="price">${money(unit)} <small>c/u</small></p>
+
+      ${mayoristaAplicado ? `<div class="tag">Mayorista aplicado</div>` : ""}
+
+      ${p.note ? `<p class="note">${p.note}</p>` : ""}
+
+      ${renderFields(p)}
+
       <div class="row">
         <div class="qty">
           <button onclick="chg('${p.id}',-1)">−</button>
@@ -286,7 +430,8 @@ function render(){
           <button onclick="chg('${p.id}',1)">+</button>
         </div>
         <button class="btn" onclick="chg('${p.id}',1)">Agregar</button>
-      </div>`;
+      </div>
+    `;
     $products.appendChild(el);
   });
 
@@ -296,13 +441,12 @@ function render(){
 
 function chg(id,d){
   const q=(cart.get(id)||0)+d;
-  if(q<=0) cart.delete(id); else cart.set(id,q);
+  if(q<=0){ cart.delete(id); }
+  else{ cart.set(id,q); }
   render();
 }
 
-document.getElementById("sendBtn").onclick=()=>{
-  if(cart.size===0) return alert("Agregá un producto");
-
+function validateRequiredFields(){
   const name=nameEl.value.trim();
   const lastname=lastnameEl.value.trim();
   const province=provinceEl.value.trim();
@@ -310,8 +454,35 @@ document.getElementById("sendBtn").onclick=()=>{
 
   if(!name || !lastname || !province || !cp){
     alert("Completá nombre, apellido, provincia y código postal.");
-    return;
+    return false;
   }
+
+  for(const p of PRODUCTS){
+    const q = cart.get(p.id)||0;
+    if(q>0 && p.fields){
+      const m = getMeta(p.id);
+      for(const f of p.fields){
+        if(f.required){
+          const v = String(m[f.key] ?? "").trim();
+          if(!v){
+            alert(`Falta completar: "${f.label}" en ${p.name}`);
+            return false;
+          }
+        }
+      }
+    }
+  }
+  return true;
+}
+
+document.getElementById("sendBtn").onclick=()=>{
+  if(cart.size===0) return alert("Agregá un producto");
+  if(!validateRequiredFields()) return;
+
+  const name=nameEl.value.trim();
+  const lastname=lastnameEl.value.trim();
+  const province=provinceEl.value.trim();
+  const cp=cpEl.value.trim();
 
   let msg="Hola! Quiero hacer este pedido:%0A%0A";
   let tot=0;
@@ -319,17 +490,29 @@ document.getElementById("sendBtn").onclick=()=>{
   PRODUCTS.forEach(p=>{
     const q=cart.get(p.id)||0;
     if(q){
-      const u=getUnit(p,q);
-      tot+=u*q;
-      msg+=`• ${p.name} x${q} (${money(u)} c/u)%0A`;
+      const unit=getUnit(p,q);
+      const sub=unit*q;
+      tot+=sub;
+
+      msg += `• ${p.name} x${q}%0A`;
+      msg += `  ${money(unit)} c/u | Subtotal: ${money(sub)}%0A`;
+
+      const m = getMeta(p.id);
+      if(p.fields && Object.keys(m).length){
+        for(const f of p.fields){
+          const v = String(m[f.key] ?? "").trim();
+          if(v) msg += `  ${f.label}: ${encodeURIComponent(v)}%0A`;
+        }
+      }
+      msg += `%0A`;
     }
   });
 
-  msg+=`%0ATotal: ${money(tot)}%0A`;
-  msg+=`Nombre: ${name} ${lastname}%0A`;
-  msg+=`Provincia: ${province}%0A`;
-  msg+=`CP: ${cp}%0A`;
-  msg+="%0A¿Me confirmás stock y envío?";
+  msg += `Total: ${money(tot)}%0A`;
+  msg += `Nombre: ${encodeURIComponent(name+" "+lastname)}%0A`;
+  msg += `Provincia: ${encodeURIComponent(province)}%0A`;
+  msg += `CP: ${encodeURIComponent(cp)}%0A`;
+  msg += `%0A¿Me confirmás stock y envío?`;
 
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`,"_blank");
 };
