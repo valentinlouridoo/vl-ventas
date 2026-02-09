@@ -8,75 +8,85 @@
 
 <style>
 :root{
-  --bg:#f2f2ee;
-  --panel:#f8f8f6;
+  --bg:#efece6;
+  --panel:#f6f5f2;
   --card:#ffffff;
-  --text:#0f172a;
-  --muted:#64748b;
+  --text:#111827;
+  --muted:#6b7280;
   --accent:#111827;
   --line:#e5e7eb;
-  --shadow:0 18px 45px rgba(0,0,0,.08);
-  --r:20px;
+  --shadow:0 20px 50px rgba(0,0,0,.10);
+  --r:22px;
 }
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  background:linear-gradient(180deg,var(--bg),#fff);
+  background:var(--bg);
   color:var(--text);
 }
-.wrap{max-width:980px;margin:auto;padding:0 16px}
+.wrap{max-width:1050px;margin:auto;padding:0 16px}
 
 /* HEADER */
 header{
-  background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.35)),url('header.jpg') center/cover no-repeat;
+  background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.38)),url('header.jpg') center/cover no-repeat;
   color:#fff;
-  padding:22px 0;
+  padding:28px 0;
   text-align:center;
 }
-header h1{margin:0;font-size:26px;font-weight:1000}
-header p{margin:6px 0 0;font-size:13px;opacity:.95}
+header h1{margin:0;font-size:28px;font-weight:1000}
+header p{margin-top:6px;font-size:14px;opacity:.95}
 
-/* INTRO */
+/* PRESENTACIÓN */
 .intro{
   background:var(--panel);
-  margin-top:-14px;
-  border-radius:24px;
-  padding:18px;
+  margin-top:-18px;
+  border-radius:28px;
+  padding:22px;
   box-shadow:var(--shadow);
   text-align:center;
 }
-.intro p{font-size:13px;color:var(--muted);line-height:1.45}
-.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.intro p{
+  font-size:14px;
+  line-height:1.55;
+  color:#374151;
+}
+.badges{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
 .badge{
-  background:#eef2f7;
+  background:#e9eef5;
   border-radius:999px;
-  padding:6px 10px;
+  padding:8px 14px;
   font-size:12px;
   font-weight:900;
 }
 
-/* GRID */
+/* PANEL PRODUCTOS */
 .productsPanel{
+  margin-top:18px;
   background:var(--panel);
-  margin-top:14px;
-  border-radius:24px;
-  padding:14px;
+  border-radius:28px;
+  padding:18px;
   box-shadow:var(--shadow);
 }
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:16px;
 }
 .card{
   background:var(--card);
   border-radius:var(--r);
-  padding:14px;
-  box-shadow:0 12px 30px rgba(0,0,0,.08);
+  padding:16px;
+  box-shadow:0 14px 34px rgba(0,0,0,.08);
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:12px;
 }
 .media{
   height:260px;
@@ -89,7 +99,7 @@ header p{margin:6px 0 0;font-size:13px;opacity:.95}
   max-height:100%;
   object-fit:contain;
 }
-.name{font-weight:1000}
+.name{font-weight:1000;font-size:16px}
 .price{font-weight:1000;font-size:18px}
 .note{font-size:12px;color:var(--muted)}
 .tag{
@@ -97,48 +107,68 @@ header p{margin:6px 0 0;font-size:13px;opacity:.95}
   color:#0369a1;
   font-size:12px;
   font-weight:900;
-  padding:6px 10px;
+  padding:6px 12px;
   border-radius:999px;
   width:max-content;
 }
-.opts{display:flex;flex-direction:column;gap:6px}
-.opts input,.opts select{
+
+/* OPCIONES */
+.opts{display:flex;flex-direction:column;gap:8px}
+.unitBox{
+  background:#f1f5f9;
+  border-radius:16px;
+  padding:10px;
+  border:1px solid #e5e7eb;
+}
+.unitTitle{
+  font-weight:900;
+  font-size:13px;
+  margin-bottom:6px;
+}
+.unitBox input, .opts select{
+  width:100%;
   padding:8px 10px;
   border-radius:12px;
   border:1px solid var(--line);
   font-size:13px;
+  margin-bottom:6px;
 }
+
+/* CANTIDAD */
 .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
 .qty{display:flex;gap:8px;align-items:center}
 .qty button{
-  width:36px;height:36px;border-radius:12px;border:0;
-  background:#eef2f7;font-weight:900;font-size:18px;
+  width:38px;height:38px;
+  border-radius:12px;border:0;
+  background:#e5e7eb;
+  font-size:18px;font-weight:900;
 }
 .btn{
   background:var(--accent);
   color:#fff;
   border:0;
-  border-radius:14px;
-  padding:10px 14px;
+  border-radius:16px;
+  padding:10px 16px;
   font-weight:1000;
   cursor:pointer;
 }
 
-/* CART BAR */
+/* BARRA */
 .cartBar{
   position:fixed;bottom:0;left:0;right:0;
   background:#fff;
   border-top:1px solid var(--line);
-  box-shadow:0 -12px 30px rgba(0,0,0,.12);
+  box-shadow:0 -14px 40px rgba(0,0,0,.15);
 }
 .cartRow{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:10px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 0;
 }
-.cartRow strong{font-size:18px}
 
 /* DRAWER */
-.drawerBg{
+.bg{
   position:fixed;inset:0;
   background:rgba(0,0,0,.45);
   display:none;
@@ -146,21 +176,19 @@ header p{margin:6px 0 0;font-size:13px;opacity:.95}
 .drawer{
   position:fixed;left:0;right:0;bottom:0;
   background:#fff;
-  border-radius:24px 24px 0 0;
-  transform:translateY(110%);
+  border-radius:28px 28px 0 0;
+  transform:translateY(120%);
   transition:.25s;
-  max-height:80vh;
-  overflow:auto;
 }
 .drawer.open{transform:translateY(0)}
-.drawer .wrap{padding:16px}
+.drawer .wrap{padding:18px}
 .inputs .line{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-bottom:8px;
+  gap:10px;
+  margin-bottom:10px;
 }
-.inputs input, .inputs select{
+.inputs input{
   padding:10px;
   border-radius:12px;
   border:1px solid var(--line);
@@ -173,20 +201,22 @@ header p{margin:6px 0 0;font-size:13px;opacity:.95}
 
 <header>
   <h1>Valentín Lourido</h1>
-  <p>Catálogo · Pedidos por WhatsApp</p>
+  <p>Catálogo de productos · Pedidos por WhatsApp</p>
 </header>
 
 <div class="wrap">
 <section class="intro">
   <p>
     Trabajo con productos tecnológicos y artículos de uso diario.  
-    El catálogo es solo para armar tu pedido 👉 <b>no se paga nada acá</b>.
+    Arranqué con amigos y decidí seguir solo porque me apasiona este rubro.
+    <br><br>
+    👉 <b>No se paga nada en la web</b>. El catálogo es solo para armar el pedido y coordinar por WhatsApp.
   </p>
   <div class="badges">
     <div class="badge">+150 clientes</div>
     <div class="badge">Envíos a todo el país</div>
     <div class="badge">Retiro en Hurlingham</div>
-    <div class="badge">WhatsApp directo</div>
+    <div class="badge">Atención directa</div>
   </div>
 </section>
 
@@ -198,15 +228,14 @@ header p{margin:6px 0 0;font-size:13px;opacity:.95}
 <div class="cartBar">
   <div class="wrap cartRow">
     <strong id="total">$0</strong>
-    <button class="btn" onclick="openDrawer()">Finalizar</button>
+    <button class="btn" onclick="openDrawer()">Finalizar pedido</button>
   </div>
 </div>
 
-<div class="drawerBg" id="bg" onclick="closeDrawer()"></div>
+<div class="bg" id="bg" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
   <div class="wrap">
     <h3>Finalizar pedido</h3>
-
     <div class="inputs">
       <div class="line">
         <input id="name" placeholder="Nombre *">
@@ -217,11 +246,7 @@ header p{margin:6px 0 0;font-size:13px;opacity:.95}
         <input id="cp" placeholder="Código Postal *">
       </div>
     </div>
-
-    <p class="small">
-      📌 No se paga nada acá. El pedido se envía por WhatsApp.
-    </p>
-
+    <p class="small">📌 No se paga nada acá. El pedido se envía por WhatsApp.</p>
     <button class="btn" style="width:100%" onclick="send()">Enviar pedido</button>
   </div>
 </div>
@@ -231,18 +256,27 @@ const WA="5491165292907";
 
 const PRODUCTS=[
  {id:"fundas",name:"Fundas iPhone Silicone Case",img:"fundas.jpg",price:15000,
-  note:"🎨 Los colores son ilustrativos y pueden variar.",
-  fields:["Modelo de iPhone","Color elegido"]},
+  note:"🎨 Los colores son ilustrativos. Elegí color y modelo para cada funda.",
+  perUnit:true},
 
  {id:"cargador",name:"Adaptador + Cable",img:"adaptador.jpg",price:15000,
-  fields:["Tipo de cable (USB-C a Lightning / USB-C a USB-C)"]},
+  fields:["USB-C a Lightning","USB-C a USB-C"]},
 
  {id:"templado",name:"Vidrio templado 9D",img:"templado.png",price:5000,
-  fields:["Modelo de iPhone"]},
+  perUnit:true},
+
+ {id:"tv",name:"TV Stick + Xuper",img:"tv.jpg",price:40000},
+ {id:"airpodspro",name:"AirPods Pro 2",img:"airpods-pro2.jpg",price:25000},
+ {id:"airpodstws",name:"AirPods TWS",img:"airpods-tws.jpg",price:16000},
+ {id:"jbl3",name:"JBL GO 3",img:"jbl-go3.jpg",price:30000},
+ {id:"jbl4",name:"JBL GO 4 Pro RGB",img:"jbl-go4pro-rgb.jpg",price:35000},
+ {id:"billetera",name:"Billeteras magnéticas",img:"billeteras.jpg",price:12000},
+ {id:"elfbar",name:"Elfbar Ice King 40K",img:"elfbar.jpg",price:28000},
+ {id:"freidora",name:"Freidora de aire 5L",img:"freidora.jpg",price:60000}
 ];
 
-const cart=new Map(),meta=new Map();
-const grid=document.getElementById("products"),totalEl=document.getElementById("total");
+const cart=new Map(), meta=new Map();
+const grid=document.getElementById("products"), totalEl=document.getElementById("total");
 
 function money(n){return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0})}
 
@@ -254,14 +288,28 @@ function render(){
     total+=q*p.price;
     const el=document.createElement("div");
     el.className="card";
+
+    let opts="";
+    if(p.perUnit && q>0){
+      for(let i=1;i<=q;i++){
+        opts+=`
+        <div class="unitBox">
+          <div class="unitTitle">${p.name} #${i}</div>
+          <input placeholder="Modelo">
+          <input placeholder="Color">
+        </div>`;
+      }
+    }
+    if(p.fields){
+      opts+=`<select><option>Tipo de cable</option>${p.fields.map(f=>`<option>${f}</option>`).join("")}</select>`;
+    }
+
     el.innerHTML=`
       <div class="media"><img src="${p.img}"></div>
       <div class="name">${p.name}</div>
       <div class="price">${money(p.price)}</div>
       ${p.note?`<div class="note">${p.note}</div>`:""}
-      ${p.fields?`<div class="opts">
-        ${p.fields.map(f=>`<input placeholder="${f}" oninput="setMeta('${p.id}',this.value)">`).join("")}
-      </div>`:""}
+      ${opts?`<div class="opts">${opts}</div>`:""}
       <div class="row">
         <div class="qty">
           <button onclick="chg('${p.id}',-1)">−</button>
@@ -269,8 +317,7 @@ function render(){
           <button onclick="chg('${p.id}',1)">+</button>
         </div>
         <button class="btn" onclick="chg('${p.id}',1)">Agregar</button>
-      </div>
-    `;
+      </div>`;
     grid.appendChild(el);
   });
   totalEl.textContent=money(total);
@@ -280,8 +327,6 @@ function chg(id,d){
   if(q<=0) cart.delete(id); else cart.set(id,q);
   render();
 }
-function setMeta(id,v){meta.set(id,v)}
-
 function openDrawer(){
   if(cart.size===0){alert("Agregá un producto");return}
   document.getElementById("bg").style.display="block";
@@ -302,7 +347,6 @@ function send(){
   msg+=`%0ANombre: ${n} ${l}%0AProvincia: ${p}%0ACP: ${c}`;
   window.open(`https://wa.me/${WA}?text=${msg}`,"_blank");
 }
-
 render();
 </script>
 
