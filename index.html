@@ -19,6 +19,8 @@
       --accent:#111827;
       --black:#0b0f17;
       --ok:#111827;
+
+      --headerH: 106px;     /* altura real del header (para empujar el main) */
     }
     *{box-sizing:border-box}
     body{
@@ -31,41 +33,60 @@
       color:var(--text);
     }
     .wrap{max-width:1050px;margin:0 auto;padding:0 16px;}
-    /* HEADER */
+
+    /* HEADER (ARREGLADO) */
     header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:50;
-  transition:transform .35s ease;
-}
-header.hide{
-  transform:translateY(-100%);
-}
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:50;
+      transition:transform .28s ease;
+      /* fondo SIEMPRE visible (para que no “buguee”) */
+      background:
+        linear-gradient(180deg, rgba(11,15,23,.72), rgba(11,15,23,.58)),
+        url('header.jpg') center/cover no-repeat;
+      border-bottom:1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+    }
+    header.hide{ transform:translateY(-110%); }
+
+    .headerInner{
+      padding:14px 0 12px;
+      text-align:center;
+      min-height:var(--headerH);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+    }
     .brand{
       font-weight:1000;
       font-size:26px;
       letter-spacing:.4px;
       text-shadow:0 10px 28px rgba(0,0,0,.35);
       margin:0;
+      color:#fff;
+      line-height:1.1;
     }
     .sub{
-      margin:6px 0 0;
+      margin:0;
       opacity:.95;
       font-size:13px;
       text-shadow:0 10px 28px rgba(0,0,0,.35);
+      color:#fff;
     }
     .pill{
-      margin:10px auto 0;
+      margin-top:8px;
       width:max-content;
       background:rgba(255,255,255,.14);
       border:1px solid rgba(255,255,255,.18);
       padding:7px 12px;border-radius:999px;font-size:12px;
       font-weight:900;
+      color:#fff;
     }
 
-    main{padding:16px 0 120px;}
+    /* IMPORTANTE: empuja el contenido por el header fixed */
+    main{padding: calc(var(--headerH) + 18px) 0 120px;}
 
     /* PRESENTACIÓN (más humana) */
     .intro{
@@ -319,6 +340,7 @@ header.hide{
       .shipbox{grid-template-columns:1fr;}
       .media{height:320px;}
       .unitGrid{grid-template-columns:1fr;}
+      :root{ --headerH: 112px; }
     }
   </style>
 </head>
@@ -326,7 +348,7 @@ header.hide{
 <body>
 
 <header>
-  <div class="wrap">
+  <div class="wrap headerInner">
     <h1 class="brand">Valentín Lourido</h1>
     <p class="sub">Catálogo de productos · Armá tu pedido y lo mandás por WhatsApp</p>
     <div class="pill" id="itemsCount">0 items</div>
@@ -339,9 +361,8 @@ header.hide{
     <section class="intro">
       <h2>Holaa 👋 Soy Valentín</h2>
       <p>
-         Trabajo con productos tecnológicos y artículos de uso diario. Empecé con esto con un grupo de amigos y con el tiempo decidí seguir por mi cuenta
+        Trabajo con productos tecnológicos y artículos de uso diario. Empecé con esto con un grupo de amigos y con el tiempo decidí seguir por mi cuenta
         porque me apasiona este mundo. Mi idea es simple: vender claro, rápido y con buena atención.
-      </p></b>.
       </p>
       <div class="badges">
         <div class="badge">+150 clientes</div>
@@ -538,7 +559,7 @@ const PRODUCTS = [
     ]
   },
 
-  /* CARGADORES (por unidad, como fundas) */
+  /* CARGADORES (por unidad) */
   {
     id:"adaptador",
     name:"Adaptador USB-C 20W + Cable",
@@ -569,8 +590,8 @@ const PRODUCTS = [
   { id:"freidora", name:"Freidora de aire Boumen 5L", img:"freidora.jpg", price:60000 }
 ];
 
-const cart = new Map();             // id -> qty
-const meta = new Map();             // id -> { fields... } o para perUnit: { units:[{...},{...}] }
+const cart = new Map();
+const meta = new Map();
 
 const $best = document.getElementById("best");
 const $products = document.getElementById("products");
@@ -597,13 +618,10 @@ const shipNoteEl=document.getElementById("shipNote");
 function money(n){
   return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
 }
-
 function getUnit(p, qty){
   let unit = p.price;
   if(p.bulkUnit && qty>0){
-    p.bulkUnit.forEach(t=>{
-      if(qty >= t.min) unit = t.unit;
-    });
+    p.bulkUnit.forEach(t=>{ if(qty >= t.min) unit = t.unit; });
   }
   return unit;
 }
@@ -611,13 +629,10 @@ function getUnit(p, qty){
 function ensureMetaForUnits(id, qty){
   const current = meta.get(id) || {};
   if(!current.units) current.units = [];
-  // agrandar
   while(current.units.length < qty) current.units.push({});
-  // achicar
   if(current.units.length > qty) current.units = current.units.slice(0, qty);
   meta.set(id, current);
 }
-
 function setUnitField(id, idx, key, value){
   const current = meta.get(id) || {units:[]};
   if(!current.units) current.units = [];
@@ -625,13 +640,11 @@ function setUnitField(id, idx, key, value){
   current.units[idx][key] = value;
   meta.set(id, current);
 }
-
 function setField(id, key, value){
   const current = meta.get(id) || {};
   current[key] = value;
   meta.set(id, current);
 }
-
 window.onUnitField = (id, idx, key, val) => setUnitField(id, idx, key, val);
 window.onField = (id, key, val) => setField(id, key, val);
 
@@ -640,7 +653,7 @@ function renderPerUnit(p, qty){
   ensureMetaForUnits(p.id, qty);
 
   const m = meta.get(p.id) || {units:[]};
-  const tones = ["#f1f5f9","#eef2ff","#ecfeff","#fef3c7","#ffe4e6"]; // suaves, elegantes
+  const tones = ["#f1f5f9","#eef2ff","#ecfeff","#fef3c7","#ffe4e6"];
 
   let html = `<div class="opts">`;
   for(let i=0;i<qty;i++){
@@ -693,33 +706,22 @@ function renderFields(p){
   let html = `<div class="opts">`;
   p.fields.forEach(f=>{
     const val = String(m[f.key] ?? "");
-    if(f.type==="select"){
-      const options = (f.choices||[]).map(c=>{
-        const sel = (val===c) ? "selected" : "";
-        return `<option value="${c}" ${sel}>${c}</option>`;
-      }).join("");
-      html += `
-        <div class="unitBox">
-          <div class="unitHead">
-            <b>${f.label}${f.required?" *":""}</b>
-            <span class="unitChip">Elegí</span>
-          </div>
-          <select onchange="onField('${p.id}','${f.key}',this.value)">
-            <option value="">Elegir...</option>
-            ${options}
-          </select>
+    const options = (f.choices||[]).map(c=>{
+      const sel = (val===c) ? "selected" : "";
+      return `<option value="${c}" ${sel}>${c}</option>`;
+    }).join("");
+    html += `
+      <div class="unitBox">
+        <div class="unitHead">
+          <b>${f.label}${f.required?" *":""}</b>
+          <span class="unitChip">Elegí</span>
         </div>
-      `;
-    } else {
-      html += `
-        <div class="unitBox">
-          <div class="unitHead"><b>${f.label}${f.required?" *":""}</b></div>
-          <input placeholder="${f.placeholder||""}" value="${val.replaceAll('"','&quot;')}"
-                 oninput="onField('${p.id}','${f.key}',this.value)" />
-        </div>
-      `;
-    }
-    if(f.hint) html += `<div class="hint">${f.hint}</div>`;
+        <select onchange="onField('${p.id}','${f.key}',this.value)">
+          <option value="">Elegir...</option>
+          ${options}
+        </select>
+      </div>
+    `;
   });
   html += `</div>`;
   return html;
@@ -728,11 +730,7 @@ function renderFields(p){
 function buildCard(p){
   const q = cart.get(p.id) || 0;
   const unit = getUnit(p, q);
-  const totalSub = unit * q;
   const mayoristaAplicado = (p.bulkUnit && q>0 && unit !== p.price);
-
-  const perUnitHtml = renderPerUnit(p, q);
-  const fieldsHtml = renderFields(p);
 
   const badgeHtml = p.badge ? `<div class="tag">${p.badge}</div>` : "";
   const tagMayorista = mayoristaAplicado ? `<div class="tag2">Mayorista aplicado</div>` : "";
@@ -747,8 +745,8 @@ function buildCard(p){
     ${tagMayorista}
     ${p.note ? `<p class="minor">${p.note}</p>` : ""}
     ${p.minor ? `<p class="minor">${p.minor}</p>` : ""}
-    ${perUnitHtml}
-    ${fieldsHtml}
+    ${renderPerUnit(p, q)}
+    ${renderFields(p)}
     <div class="row">
       <div class="qty">
         <button onclick="chg('${p.id}',-1)">−</button>
@@ -758,7 +756,7 @@ function buildCard(p){
       <button class="btn" onclick="chg('${p.id}',1)">Agregar</button>
     </div>
   `;
-  return {el, totalSub};
+  return el;
 }
 
 function render(){
@@ -766,22 +764,14 @@ function render(){
   $products.innerHTML="";
 
   let items=0, total=0;
-
   PRODUCTS.forEach(p=>{
     const q = cart.get(p.id)||0;
     items += q;
     total += getUnit(p,q) * q;
   });
 
-  PRODUCTS.filter(p=>p.best).forEach(p=>{
-    const card = buildCard(p);
-    $best.appendChild(card.el);
-  });
-
-  PRODUCTS.filter(p=>!p.best).forEach(p=>{
-    const card = buildCard(p);
-    $products.appendChild(card.el);
-  });
+  PRODUCTS.filter(p=>p.best).forEach(p=> $best.appendChild(buildCard(p)));
+  PRODUCTS.filter(p=>!p.best).forEach(p=> $products.appendChild(buildCard(p)));
 
   $items.textContent = items+" items";
   miniItems.textContent = items;
@@ -952,9 +942,20 @@ document.getElementById("sendBtn").onclick=()=>{
 
 deliveryRules();
 render();
+
+/* HEADER: se esconde al bajar y aparece al subir (sin bug) */
+let lastScroll = 0;
+const headerEl = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+  const current = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (current > lastScroll && current > 140) headerEl.classList.add("hide");
+  else headerEl.classList.remove("hide");
+
+  lastScroll = current;
+});
 </script>
 
 </body>
 </html>
-
-
