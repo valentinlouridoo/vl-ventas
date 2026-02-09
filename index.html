@@ -31,18 +31,18 @@
       color:var(--text);
     }
     .wrap{max-width:1050px;margin:0 auto;padding:0 16px;}
-
     /* HEADER */
-    header{
-      color:#fff;
-      position:sticky;top:0;z-index:10;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.42)),
-        url('header.jpg') center/cover no-repeat;
-      border-bottom:1px solid rgba(255,255,255,.14);
-      padding:18px 0 16px;
-      text-align:center;
-    }
+    eader{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:50;
+  transition:transform .35s ease;
+}
+header.hide{
+  transform:translateY(-100%);
+}
     .brand{
       font-weight:1000;
       font-size:26px;
@@ -339,8 +339,9 @@
     <section class="intro">
       <h2>Holaa 👋 Soy Valentín</h2>
       <p>
-        Vendo productos tecnológicos y de uso diario. Empecé con amigos y me fui metiendo cada vez más
-        porque me encanta este mundo. Mi idea es simple: <b>vender claro, rápido y con buena atención</b>.
+         Trabajo con productos tecnológicos y artículos de uso diario. Empecé con esto con un grupo de amigos y con el tiempo decidí seguir por mi cuenta
+        porque me apasiona este mundo. Mi idea es simple: vender claro, rápido y con buena atención.
+      </p></b>.
       </p>
       <div class="badges">
         <div class="badge">+150 clientes</div>
@@ -955,3 +956,4 @@ render();
 
 </body>
 </html>
+
