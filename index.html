@@ -31,7 +31,7 @@
     }
     .wrap{max-width:1050px;margin:0 auto;padding:0 16px;}
 
-    /* HEADER con imagen */
+    /* HEADER con imagen (con fallback si no existe) */
     header{
       position:fixed;
       top:0;left:0;right:0;
@@ -41,6 +41,9 @@
         linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.55)),
         url('header.jpg') center/cover no-repeat;
       border-bottom:1px solid rgba(255,255,255,.15);
+    }
+    header.noimg{
+      background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.75));
     }
     header.hide{transform:translateY(-100%);}
     header .wrap{padding:18px 16px 16px;}
@@ -119,8 +122,19 @@
       display:flex;gap:12px;align-items:flex-start;
     }
     .icon{
-      width:38px;height:38px;border-radius:14px;background:#f1f5f9;border:1px solid #e2e8f0;
-      display:flex;align-items:center;justify-content:center;font-weight:1000;
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  background:#f1f5f9;
+  border:1px solid #e2e8f0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.icon img{
+  width:22px;
+  height:22px;
+  object-fit:contain;
     }
     .commCard b{display:block;margin:0 0 4px;}
     .commCard p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.35;}
@@ -159,8 +173,15 @@
       display:flex;align-items:center;justify-content:center;
       overflow:hidden;
       border:1px solid rgba(2,6,23,.06);
+      position:relative;
     }
     .media img{width:100%;height:100%;object-fit:contain;display:block;background:#fff;}
+    .media .ph{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      color:#94a3b8;font-weight:1000;font-size:12px;
+      background:linear-gradient(180deg,#fff,#f8fafc);
+    }
     .name{font-weight:1000;line-height:1.15;}
     .price{margin:0;font-weight:1000;font-size:18px;}
     .price small{font-weight:800;color:var(--muted);font-size:12px;}
@@ -188,7 +209,7 @@
       cursor:pointer;
     }
 
-    /* Per unit (fundas/cargadores/templados) */
+    /* Per unit */
     .opts{display:flex;flex-direction:column;gap:10px;padding-top:2px;}
     .unitBox{
       border:1px solid var(--line);border-radius:16px;padding:10px;
@@ -253,8 +274,15 @@
     .cartThumb{
       width:56px;height:56px;border-radius:14px;border:1px solid var(--line);
       overflow:hidden;flex:0 0 auto;background:#fff;
+      position:relative;
     }
-    .cartThumb img{width:100%;height:100%;object-fit:contain;background:#fff;}
+    .cartThumb img{width:100%;height:100%;object-fit:contain;background:#fff;display:block;}
+    .cartThumb .ph{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      color:#94a3b8;font-weight:1000;font-size:10px;
+      background:#f8fafc;
+    }
     .cartInfo{flex:1;min-width:0;}
     .cartInfo b{display:block;font-size:13px;line-height:1.2;}
     .cartInfo small{display:block;color:var(--muted);font-size:12px;margin-top:2px;}
@@ -333,10 +361,10 @@
         <h3>🤝 Sumate a la comunidad</h3>
         <div class="blackTag">beneficios reales</div>
       </div>
-
       <div class="communityGrid">
         <div class="commCard">
-          <div class="icon">IG</div>
+          <div class="icon">
+  <img src="instagram.png" alt="Instagram">
           <div>
             <b>Instagram (@valentinlouridoo)</b>
             <p>Ingresos nuevos, precios reales, stock y promos. Todo lo que ves ahí, lo podés pedir directo.</p>
@@ -345,7 +373,8 @@
         </div>
 
         <div class="commCard">
-          <div class="icon">WA</div>
+          <div class="icon">
+  <img src="whatsapp.png" alt="WhatsApp">
           <div>
             <b>Comunidad WhatsApp</b>
             <p>Te aviso primero ingresos, precios especiales y stock limitado. No es spam: info útil.</p>
@@ -444,7 +473,7 @@
         </div>
 
         <div class="field">
-          <label>Tipo de envío *</label>
+          <label>Tipo de envío</label>
           <select id="shipType">
             <option value="">Elegir...</option>
             <option value="Clásico (2 a 5 días hábiles)">Clásico (2 a 5 días)</option>
@@ -488,11 +517,19 @@ window.addEventListener("scroll", () => {
   lastScrollY = y;
 });
 
+/* Fallback header si no existe header.jpg */
+(function(){
+  const test = new Image();
+  test.onload = () => {};
+  test.onerror = () => header.classList.add("noimg");
+  test.src = "header.jpg?v=" + Date.now();
+})();
+
 /*
   bulkUnit: escalas por unitario (qty >= min) -> unit
   flags:
     best: se muestra arriba
-    badge: etiqueta negra (ej “últimas 3”)
+    badge: etiqueta negra
   perUnitFields: bloques por unidad (fundas/cargadores/templados)
 */
 const PRODUCTS = [
@@ -577,8 +614,8 @@ const PRODUCTS = [
 ];
 
 /* ====== STATE ====== */
-const cart = new Map();   // id -> qty
-const meta = new Map();   // id -> fields o units[]
+const cart = new Map();
+const meta = new Map();
 
 const $best = document.getElementById("best");
 const $products = document.getElementById("products");
@@ -608,14 +645,10 @@ const shipTypeEl=document.getElementById("shipType");
 const shipNoteEl=document.getElementById("shipNote");
 
 /* ====== HELPERS ====== */
-function money(n){
-  return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
-}
+function money(n){ return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0}); }
 function getUnit(p, qty){
   let unit = p.price;
-  if(p.bulkUnit && qty>0){
-    p.bulkUnit.forEach(t=>{ if(qty >= t.min) unit = t.unit; });
-  }
+  if(p.bulkUnit && qty>0) p.bulkUnit.forEach(t=>{ if(qty >= t.min) unit = t.unit; });
   return unit;
 }
 function ensureMetaForUnits(id, qty){
@@ -725,10 +758,15 @@ function buildCard(p){
   const badgeHtml = p.badge ? `<div class="tagBadge">${p.badge}</div>` : "";
   const tagMayorista = mayoristaAplicado ? `<div class="tag2">Mayorista aplicado</div>` : "";
 
+  const imgId = `img_${p.id}`;
+
   const el = document.createElement("div");
   el.className = "card";
   el.innerHTML = `
-    <div class="media"><img src="${p.img}" alt="${p.name}"></div>
+    <div class="media">
+      <img id="${imgId}" src="${p.img}" alt="${p.name}">
+      <div class="ph" id="${imgId}_ph" style="display:none;">SIN FOTO</div>
+    </div>
     ${badgeHtml}
     <div class="name">${p.name}</div>
     <p class="price">${money(unit)} <small>c/u</small></p>
@@ -746,6 +784,16 @@ function buildCard(p){
       <button class="btn" onclick="chg('${p.id}',1)">Agregar</button>
     </div>
   `;
+
+  // Fallback si no existe la foto
+  setTimeout(()=>{
+    const img = el.querySelector(`#${imgId}`);
+    const ph = el.querySelector(`#${imgId}_ph`);
+    if(img){
+      img.onerror = () => { img.style.display="none"; if(ph) ph.style.display="flex"; };
+    }
+  },0);
+
   return el;
 }
 
@@ -787,14 +835,19 @@ function renderCartList(){
   PRODUCTS.forEach(p=>{
     const q = cart.get(p.id)||0;
     if(!q) return;
+
     const unit = getUnit(p,q);
     const sub = unit*q;
     total += sub;
 
     const item = document.createElement("div");
     item.className = "cartItem";
+
     item.innerHTML = `
-      <div class="cartThumb"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="cartThumb">
+        <img src="${p.img}" alt="${p.name}">
+        <div class="ph" style="display:none;">SIN FOTO</div>
+      </div>
       <div class="cartInfo">
         <b>${p.name}</b>
         <small>${money(unit)} c/u</small>
@@ -804,6 +857,11 @@ function renderCartList(){
         <div class="miniQ">x${q}</div>
       </div>
     `;
+
+    const img = item.querySelector("img");
+    const ph = item.querySelector(".ph");
+    img.onerror = ()=>{ img.style.display="none"; ph.style.display="flex"; };
+
     cartList.appendChild(item);
   });
 
@@ -868,8 +926,8 @@ function deliveryRules(){
   const del = deliveryEl.value || "";
   const isPickup = del.startsWith("Retiro");
   const isMoto = del.startsWith("Motomensajería");
+  const isCorreo = del.includes("Correo Argentino");
 
-  // Moto: no tiene clásico/expreso
   if(isPickup || isMoto){
     shipTypeEl.disabled = true;
     shipTypeEl.value = "";
@@ -881,8 +939,10 @@ function deliveryRules(){
     shipNoteEl.textContent = "Retiro en Hurlingham: coordinamos día y horario por WhatsApp.";
   } else if(isMoto){
     shipNoteEl.textContent = "Uber Moto (solo GBA y CABA): coordinamos costo y horario por WhatsApp.";
+  } else if(isCorreo){
+    shipNoteEl.textContent = "*Correo Argentino: el costo se confirma por CP (clásico o expreso).*";
   } else {
-    shipNoteEl.textContent = "*El costo del envío se confirma al finalizar según tu CP (clásico o expreso).*";
+    shipNoteEl.textContent = "*El costo del envío se confirma al finalizar según tu CP.*";
   }
 }
 deliveryEl.addEventListener("change", deliveryRules);
@@ -913,6 +973,7 @@ function validateAll(){
 
   for(const p of PRODUCTS){
     const q = cart.get(p.id)||0;
+
     if(q>0 && p.perUnitFields){
       const m = meta.get(p.id) || {units:[]};
       for(let i=0;i<q;i++){
@@ -928,6 +989,7 @@ function validateAll(){
         }
       }
     }
+
     if(q>0 && p.fields){
       const m = meta.get(p.id) || {};
       for(const f of p.fields){
