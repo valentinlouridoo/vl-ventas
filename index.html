@@ -1,109 +1,132 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Valentín Lourido · Catálogo</title>
-<meta name="description" content="Catálogo de productos · Armá tu pedido y coordiná por WhatsApp"/>
 
 <style>
 :root{
-  --bg:#ece7de;
-  --panel:#f6f2ea;
+  --bg:#efe9df;
+  --panel:#f7f3ec;
   --card:#ffffff;
   --text:#0f172a;
   --muted:#64748b;
-  --line:#e5e7eb;
   --accent:#111827;
-  --black:#0b0f17;
-  --shadow:0 18px 45px rgba(2,6,23,.10);
-  --r:20px;
+  --line:#e5e7eb;
+  --shadow:0 18px 40px rgba(0,0,0,.08);
+  --radius:22px;
 }
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  background:linear-gradient(180deg,var(--bg),#fff 55%);
+  background:linear-gradient(180deg,var(--bg),#fff 60%);
   color:var(--text);
 }
-.wrap{max-width:1050px;margin:0 auto;padding:0 16px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
 
 /* HEADER */
 header{
-  padding:20px 0 14px;
+  position:fixed;
+  top:0;left:0;right:0;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  z-index:50;
+  transition:transform .35s ease;
 }
-.brand{margin:0;font-size:26px;font-weight:1000}
-.sub{margin:6px 0 0;font-size:13px;color:var(--muted)}
-.pill{
-  margin-top:8px;
-  display:inline-block;
-  background:#111827;
-  color:#fff;
+header.hide{transform:translateY(-100%)}
+header .wrap{padding:14px 16px}
+.brand{font-size:24px;font-weight:900}
+.sub{font-size:13px;color:var(--muted)}
+
+/* MAIN */
+main{padding:120px 0 120px}
+
+/* INTRO */
+.intro{
+  background:var(--panel);
+  border-radius:28px;
+  padding:22px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+}
+.intro h2{margin:0;font-size:20px}
+.intro p{margin:10px auto;color:var(--muted);max-width:800px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.badge{
+  background:#fff;
+  border:1px solid var(--line);
   padding:6px 12px;
   border-radius:999px;
   font-size:12px;
-  font-weight:900;
+  font-weight:700;
+}
+.safe{
+  margin-top:12px;
+  background:#fff;
+  border:1px solid var(--line);
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:14px;
+  font-size:12px;
+  font-weight:700;
 }
 
-/* SECCIONES */
+/* COMMUNITY */
+.community{
+  background:var(--panel);
+  border-radius:26px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  margin-bottom:22px;
+}
+.community h3{margin:0 0 12px}
+.comm-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.comm-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+}
+.comm-card a{
+  display:inline-block;
+  margin-top:8px;
+  background:var(--accent);
+  color:#fff;
+  padding:8px 14px;
+  border-radius:12px;
+  font-size:13px;
+  text-decoration:none;
+  font-weight:700;
+}
+
+/* SECTIONS */
 .section{
   background:var(--panel);
-  border:1px solid rgba(2,6,23,.06);
-  box-shadow:var(--shadow);
   border-radius:26px;
   padding:16px;
-  margin:16px 0;
+  margin-bottom:20px;
+  box-shadow:var(--shadow);
 }
-.sectionTitle{
+.section h3{
+  margin:0 0 12px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin-bottom:12px;
+  align-items:center;
 }
-.sectionTitle h3{margin:0;font-size:15px;font-weight:1000}
-.blackTag{
-  background:var(--black);
+.tag{
+  background:#000;
   color:#fff;
-  padding:6px 10px;
+  font-size:12px;
+  padding:6px 12px;
   border-radius:999px;
-  font-size:12px;
-  font-weight:900;
-}
-
-/* INTRO */
-.intro{text-align:center}
-.intro h2{margin:0;font-size:20px;font-weight:1000}
-.intro p{
-  margin:10px auto 0;
-  max-width:800px;
-  font-size:14px;
-  color:var(--muted);
-  line-height:1.5;
-}
-.badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  justify-content:center;
-  margin-top:12px;
-}
-.badge{
-  background:#fff;
-  border:1px solid #e2e8f0;
-  padding:7px 12px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:900;
-}
-.notePay{
-  margin-top:12px;
-  display:inline-block;
-  background:#fff;
-  border:1px solid #e5e7eb;
-  padding:10px 14px;
-  border-radius:16px;
-  font-size:12px;
-  font-weight:900;
 }
 
 /* GRID */
@@ -113,216 +136,151 @@ header{
   gap:14px;
 }
 .card{
-  background:var(--card);
-  border-radius:var(--r);
+  background:#fff;
+  border-radius:22px;
   padding:12px;
-  border:1px solid rgba(2,6,23,.06);
-  box-shadow:0 14px 34px rgba(0,0,0,.08);
+  box-shadow:var(--shadow);
   display:flex;
   flex-direction:column;
-  gap:10px;
 }
 .media{
   height:240px;
   border-radius:16px;
-  border:1px solid var(--line);
   overflow:hidden;
-}
-.media img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-.name{font-weight:1000}
-.price{font-size:18px;font-weight:1000}
-.price small{font-size:12px;color:var(--muted)}
-.tag{
-  background:#111827;
-  color:#fff;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:900;
-  width:max-content;
-}
-.tag2{
-  background:#eff6ff;
-  color:#1d4ed8;
-  border:1px solid #dbeafe;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:900;
-  width:max-content;
-}
-.minor{font-size:12px;color:var(--muted);line-height:1.4}
-
-/* CONTROLES */
-.row{
+  border:1px solid var(--line);
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:10px;
+  justify-content:center;
+}
+.media img{width:100%;height:100%;object-fit:contain}
+.name{font-weight:800;margin-top:8px}
+.price{font-size:18px;font-weight:900}
+.note{font-size:12px;color:var(--muted)}
+.qty{
+  display:flex;
+  gap:8px;
+  align-items:center;
   margin-top:auto;
 }
-.qty{display:flex;gap:8px;align-items:center}
 .qty button{
   width:36px;height:36px;
-  border-radius:12px;
-  border:0;
+  border:0;border-radius:10px;
   background:#eef2f7;
   font-size:18px;
-  font-weight:1000;
+  font-weight:900;
 }
 .btn{
+  margin-left:auto;
   background:var(--accent);
   color:#fff;
   border:0;
   padding:10px 14px;
   border-radius:14px;
-  font-weight:1000;
-  cursor:pointer;
+  font-weight:800;
 }
 
-/* COMUNIDAD */
-.community{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:14px;
-}
-.commCard{
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:20px;
-  padding:16px;
-  box-shadow:0 14px 30px rgba(0,0,0,.08);
-  text-decoration:none;
-  color:inherit;
-}
-.commCard strong{font-size:16px}
-.commCard p{
-  margin:8px 0 0;
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.4;
-}
-
-/* FOOTER MINI */
-.cartMini{
+/* CART BAR */
+.cart{
   position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
+  bottom:0;left:0;right:0;
   background:#fff;
   border-top:1px solid var(--line);
-  box-shadow:0 -12px 30px rgba(2,6,23,.10);
+  box-shadow:0 -10px 30px rgba(0,0,0,.08);
 }
-.miniRow{
+.cart .wrap{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:10px 16px;
 }
-.miniBtn{
-  border:1px solid var(--line);
-  background:#fff;
-  padding:10px 14px;
-  border-radius:14px;
-  font-weight:1000;
-}
-.miniBtn.primary{
+.cart button{
   background:var(--accent);
   color:#fff;
   border:0;
+  padding:10px 16px;
+  border-radius:14px;
+  font-weight:800;
+}
+
+@media(max-width:700px){
+  .comm-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<header id="header">
   <div class="wrap">
-    <h1 class="brand">Valentín Lourido</h1>
-    <p class="sub">Catálogo de productos · Armá tu pedido y coordinamos por WhatsApp</p>
-    <div class="pill" id="itemsCount">0 items</div>
+    <div class="brand">Valentín Lourido</div>
+    <div class="sub">Catálogo · Armás el pedido y lo coordinamos por WhatsApp</div>
   </div>
 </header>
 
 <main>
 <div class="wrap">
 
-<section class="section intro">
-  <h2>Holaa 👋 Soy Valentín</h2>
-  <p>
-    Trabajo con productos tecnológicos y artículos de uso diario.
-    Arranqué con amigos y después seguí solo porque me apasiona esto.
-    Mi idea es vender claro, rápido y sin vueltas.
-  </p>
-  <div class="badges">
-    <div class="badge">+150 clientes</div>
-    <div class="badge">WhatsApp directo</div>
-    <div class="badge">Envíos a todo el país</div>
-    <div class="badge">Retiro en Hurlingham</div>
-  </div>
-  <div class="notePay">
-    ✅ No se paga nada en la web. Solo armás el pedido y se abre WhatsApp.
-  </div>
+<section class="intro">
+<h2>Hola 👋 Soy Valentín</h2>
+<p>
+Trabajo con productos tecnológicos y artículos de uso diario.
+Arranqué con amigos y seguí solo porque me apasiona esto.
+Mi forma de laburar es simple: claro, rápido y sin vueltas.
+</p>
+<div class="badges">
+<span class="badge">+150 clientes</span>
+<span class="badge">WhatsApp directo</span>
+<span class="badge">Envíos a todo el país</span>
+<span class="badge">Retiro en Hurlingham</span>
+</div>
+<div class="safe">✅ No se paga nada acá · Solo armás el pedido</div>
+</section>
+
+<section class="community">
+<h3>🤝 Sumate a la comunidad</h3>
+<div class="comm-grid">
+<div class="comm-card">
+<b>Instagram</b>
+<p>Ingresos nuevos, precios reales, stock y promos.</p>
+<a href="https://instagram.com/valentinlouridoo" target="_blank">Seguir</a>
+</div>
+<div class="comm-card">
+<b>Comunidad WhatsApp</b>
+<p>Primero los ingresos, precios especiales y stock limitado. No spam.</p>
+<a href="https://chat.whatsapp.com/EFLSmI4IifTFEEkwK2l0X9" target="_blank">Unirme</a>
+</div>
+</div>
 </section>
 
 <section class="section">
-  <div class="sectionTitle">
-    <h3>🤝 Sumate a la comunidad</h3>
-    <div class="blackTag">beneficios reales</div>
-  </div>
+<h3>🔥 Más vendidos <span class="tag">los más pedidos</span></h3>
+<div class="grid" id="best"></div>
+</section>
 
-  <div class="community">
-    <a class="commCard" href="https://instagram.com/valentinlouridoo" target="_blank">
-      <strong>📸 Instagram</strong>
-      <p>
-        Subo ingresos nuevos, precios reales, stock y promos.
-        Todo lo que ves ahí lo podés pedir directo.
-      </p>
-      <span class="tag2">Seguir</span>
-    </a>
-
-    <a class="commCard" href="https://chat.whatsapp.com/EFLSmI4IifTFEEkwK2l0X9" target="_blank">
-      <strong>💬 Comunidad WhatsApp</strong>
-      <p>
-        Aviso primero ingresos, precios especiales y stock limitado.
-        No es spam, solo info útil.
-      </p>
-      <span class="tag2">Unirme</span>
-    </a>
-  </div>
+<section class="section">
+<h3>🛒 Catálogo completo <span class="tag">stock</span></h3>
+<div class="grid" id="products"></div>
 </section>
 
 </div>
 </main>
 
-<div class="cartMini">
-  <div class="miniRow">
-    <div>
-      <strong id="miniTotal">$0</strong><br>
-      <small><span id="miniItems">0</span> items</small>
-    </div>
-    <div>
-      <button class="miniBtn">Ver carrito</button>
-      <button class="miniBtn primary">Finalizar</button>
-    </div>
-  </div>
+<div class="cart">
+<div class="wrap">
+<div><b id="total">$0</b></div>
+<button onclick="checkout()">Finalizar pedido</button>
+</div>
 </div>
 
 <script>
-let items=0,total=0;
-const itemsEl=document.getElementById("itemsCount");
-const miniItems=document.getElementById("miniItems");
-const miniTotal=document.getElementById("miniTotal");
-function render(){
-  itemsEl.textContent=items+" items";
-  miniItems.textContent=items;
-  miniTotal.textContent=total.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
-}
-render();
+let lastScroll=0;
+const header=document.getElementById("header");
+window.addEventListener("scroll",()=>{
+  const cur=window.scrollY;
+  if(cur>lastScroll && cur>80) header.classList.add("hide");
+  else header.classList.remove("hide");
+  lastScroll=cur;
+});
 </script>
 
 </body>
