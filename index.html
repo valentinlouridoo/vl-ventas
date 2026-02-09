@@ -1,960 +1,328 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Valentín Lourido - Catálogo</title>
-  <meta name="description" content="Catálogo de productos · Armá tu pedido y enviá todo por WhatsApp" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Valentín Lourido · Catálogo</title>
+<meta name="description" content="Catálogo de productos · Armá tu pedido y coordiná por WhatsApp"/>
 
-  <style>
-    :root{
-      --bg:#ece7de;         /* fondo CREMITA visible */
-      --bg2:#f6f2ea;        /* panel suave */
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --line:#e5e7eb;
-      --shadow:0 18px 45px rgba(2,6,23,.10);
-      --r:20px;
-      --accent:#111827;
-      --black:#0b0f17;
-      --ok:#111827;
+<style>
+:root{
+  --bg:#ece7de;
+  --panel:#f6f2ea;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e5e7eb;
+  --accent:#111827;
+  --black:#0b0f17;
+  --shadow:0 18px 45px rgba(2,6,23,.10);
+  --r:20px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:linear-gradient(180deg,var(--bg),#fff 55%);
+  color:var(--text);
+}
+.wrap{max-width:1050px;margin:0 auto;padding:0 16px}
 
-      --headerH: 106px;     /* altura real del header (para empujar el main) */
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:
-        radial-gradient(900px 500px at 15% 0%, #dbeafe55, transparent 70%),
-        radial-gradient(900px 500px at 85% 10%, #fde68a33, transparent 65%),
-        linear-gradient(180deg, var(--bg), #fff 55%);
-      color:var(--text);
-    }
-    .wrap{max-width:1050px;margin:0 auto;padding:0 16px;}
+/* HEADER */
+header{
+  padding:20px 0 14px;
+}
+.brand{margin:0;font-size:26px;font-weight:1000}
+.sub{margin:6px 0 0;font-size:13px;color:var(--muted)}
+.pill{
+  margin-top:8px;
+  display:inline-block;
+  background:#111827;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+}
 
-    /* HEADER (ARREGLADO) */
-    header{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:50;
-      transition:transform .28s ease;
-      /* fondo SIEMPRE visible (para que no “buguee”) */
-      background:
-        linear-gradient(180deg, rgba(11,15,23,.72), rgba(11,15,23,.58)),
-        url('header.jpg') center/cover no-repeat;
-      border-bottom:1px solid rgba(255,255,255,.14);
-      backdrop-filter: blur(10px);
-    }
-    header.hide{ transform:translateY(-110%); }
+/* SECCIONES */
+.section{
+  background:var(--panel);
+  border:1px solid rgba(2,6,23,.06);
+  box-shadow:var(--shadow);
+  border-radius:26px;
+  padding:16px;
+  margin:16px 0;
+}
+.sectionTitle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+.sectionTitle h3{margin:0;font-size:15px;font-weight:1000}
+.blackTag{
+  background:var(--black);
+  color:#fff;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+}
 
-    .headerInner{
-      padding:14px 0 12px;
-      text-align:center;
-      min-height:var(--headerH);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:4px;
-    }
-    .brand{
-      font-weight:1000;
-      font-size:26px;
-      letter-spacing:.4px;
-      text-shadow:0 10px 28px rgba(0,0,0,.35);
-      margin:0;
-      color:#fff;
-      line-height:1.1;
-    }
-    .sub{
-      margin:0;
-      opacity:.95;
-      font-size:13px;
-      text-shadow:0 10px 28px rgba(0,0,0,.35);
-      color:#fff;
-    }
-    .pill{
-      margin-top:8px;
-      width:max-content;
-      background:rgba(255,255,255,.14);
-      border:1px solid rgba(255,255,255,.18);
-      padding:7px 12px;border-radius:999px;font-size:12px;
-      font-weight:900;
-      color:#fff;
-    }
+/* INTRO */
+.intro{text-align:center}
+.intro h2{margin:0;font-size:20px;font-weight:1000}
+.intro p{
+  margin:10px auto 0;
+  max-width:800px;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.5;
+}
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  margin-top:12px;
+}
+.badge{
+  background:#fff;
+  border:1px solid #e2e8f0;
+  padding:7px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+}
+.notePay{
+  margin-top:12px;
+  display:inline-block;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  padding:10px 14px;
+  border-radius:16px;
+  font-size:12px;
+  font-weight:900;
+}
 
-    /* IMPORTANTE: empuja el contenido por el header fixed */
-    main{padding: calc(var(--headerH) + 18px) 0 120px;}
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;
+}
+.card{
+  background:var(--card);
+  border-radius:var(--r);
+  padding:12px;
+  border:1px solid rgba(2,6,23,.06);
+  box-shadow:0 14px 34px rgba(0,0,0,.08);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.media{
+  height:240px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  overflow:hidden;
+}
+.media img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.name{font-weight:1000}
+.price{font-size:18px;font-weight:1000}
+.price small{font-size:12px;color:var(--muted)}
+.tag{
+  background:#111827;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  width:max-content;
+}
+.tag2{
+  background:#eff6ff;
+  color:#1d4ed8;
+  border:1px solid #dbeafe;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  width:max-content;
+}
+.minor{font-size:12px;color:var(--muted);line-height:1.4}
 
-    /* PRESENTACIÓN (más humana) */
-    .intro{
-      background:var(--bg2);
-      border:1px solid rgba(2,6,23,.06);
-      box-shadow:var(--shadow);
-      border-radius:26px;
-      padding:18px;
-      margin:12px 0 14px;
-      text-align:center;
-    }
-    .intro h2{margin:0;font-size:18px;font-weight:1000;}
-    .intro p{margin:10px auto 0;color:var(--muted);font-size:13.5px;line-height:1.5;max-width:820px;}
-    .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;}
-    .badge{
-      font-size:12px;
-      background:#fff;
-      border:1px solid #e2e8f0;
-      padding:7px 11px;
-      border-radius:999px;
-      font-weight:950;
-      color:#0f172a;
-      box-shadow:0 10px 18px rgba(2,6,23,.05);
-    }
-    .notePay{
-      margin-top:10px;
-      font-size:12px;
-      color:#111;
-      background:#fff;
-      border:1px solid #e5e7eb;
-      padding:10px 12px;
-      border-radius:16px;
-      display:inline-block;
-      box-shadow:0 10px 18px rgba(2,6,23,.05);
-    }
+/* CONTROLES */
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:auto;
+}
+.qty{display:flex;gap:8px;align-items:center}
+.qty button{
+  width:36px;height:36px;
+  border-radius:12px;
+  border:0;
+  background:#eef2f7;
+  font-size:18px;
+  font-weight:1000;
+}
+.btn{
+  background:var(--accent);
+  color:#fff;
+  border:0;
+  padding:10px 14px;
+  border-radius:14px;
+  font-weight:1000;
+  cursor:pointer;
+}
 
-    /* SECCIONES */
-    .section{
-      background:var(--bg2);
-      border:1px solid rgba(2,6,23,.06);
-      box-shadow:var(--shadow);
-      border-radius:26px;
-      padding:14px;
-      margin:14px 0;
-    }
-    .sectionTitle{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      margin:0 0 10px;
-    }
-    .sectionTitle h3{
-      margin:0;
-      font-size:14px;
-      font-weight:1000;
-      letter-spacing:.2px;
-      display:flex;align-items:center;gap:8px;
-    }
-    .blackTag{
-      background:var(--black);
-      color:#fff;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:950;
-      width:max-content;
-    }
+/* COMUNIDAD */
+.community{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;
+}
+.commCard{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:16px;
+  box-shadow:0 14px 30px rgba(0,0,0,.08);
+  text-decoration:none;
+  color:inherit;
+}
+.commCard strong{font-size:16px}
+.commCard p{
+  margin:8px 0 0;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.4;
+}
 
-    /* GRID */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
-    .card{
-      background:var(--card);
-      border-radius:var(--r);
-      padding:12px;
-      box-shadow:0 14px 34px rgba(0,0,0,.08);
-      border:1px solid rgba(2,6,23,.06);
-      display:flex;flex-direction:column;gap:10px;
-    }
-    .media{
-      width:100%;
-      height:260px;
-      border-radius:16px;
-      background:#fff;
-      display:flex;align-items:center;justify-content:center;
-      overflow:hidden;
-      border:1px solid rgba(2,6,23,.06);
-    }
-    .media img, .media video{
-      width:100%;height:100%;
-      object-fit:contain;
-      display:block;background:#fff;
-    }
-    .name{font-weight:1000;line-height:1.15;}
-    .price{margin:0;font-weight:1000;font-size:18px;}
-    .price small{font-weight:800;color:var(--muted);font-size:12px;}
-    .minor{margin:0;font-size:12px;color:var(--muted);line-height:1.3;}
-    .tag{
-      font-size:12px;
-      background:#111827;
-      color:#fff;
-      padding:6px 10px;border-radius:999px;width:max-content;font-weight:950;
-    }
-    .tag2{
-      font-size:12px;
-      background:#eff6ff;
-      color:#1d4ed8;
-      border:1px solid #dbeafe;
-      padding:5px 10px;border-radius:999px;width:max-content;font-weight:900;
-    }
-
-    .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;}
-    .qty{display:flex;align-items:center;gap:8px;}
-    .qty button{
-      width:36px;height:36px;border:0;border-radius:12px;
-      background:#eef2f7;font-size:18px;font-weight:1000;color:#0f172a;
-      cursor:pointer;
-    }
-    .btn{
-      border:0;border-radius:14px;padding:10px 14px;background:var(--accent);
-      color:#fff;font-weight:1000;box-shadow:0 10px 18px rgba(2,6,23,.18);
-      cursor:pointer;
-    }
-    .btn:active{transform:translateY(1px);}
-
-    /* VARIANTES POR UNIDAD (fundas + cargadores) */
-    .opts{display:flex;flex-direction:column;gap:10px;padding-top:2px;}
-    .unitBox{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:10px;
-      background:#ffffff;
-      box-shadow:0 10px 18px rgba(2,6,23,.05);
-    }
-    .unitHead{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      margin-bottom:8px;
-    }
-    .unitHead b{font-size:13px;}
-    .unitChip{
-      font-size:11px;
-      font-weight:950;
-      padding:5px 9px;
-      border-radius:999px;
-      background:#f1f5f9;
-      border:1px solid #e2e8f0;
-      color:#0f172a;
-    }
-    .unitGrid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-    }
-    .unitGrid input, .unitGrid select{
-      width:100%;min-width:0;
-      padding:9px 10px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      font-size:13px;
-      outline:none;
-      background:#fff;
-    }
-    .hint{font-size:12px;color:var(--muted);margin:-4px 0 0;line-height:1.3;}
-
-    /* MINI BAR */
-    .cartMini{
-      position:fixed;left:0;right:0;bottom:0;
-      background:#fff;border-top:1px solid var(--line);
-      box-shadow:0 -12px 30px rgba(2,6,23,.10);
-      z-index:20;
-    }
-    .miniRow{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      padding:10px 0;
-    }
-    .miniLeft{display:flex;flex-direction:column;gap:2px;}
-    .miniLeft .t1{font-weight:1000;font-size:18px;}
-    .miniLeft .t2{font-size:12px;color:var(--muted);}
-    .miniBtns{display:flex;gap:8px;align-items:center;}
-    .miniBtn{
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:14px;
-      padding:10px 12px;
-      font-weight:1000;
-      cursor:pointer;
-    }
-    .miniBtn.primary{
-      border:0;background:var(--accent);color:#fff;
-      box-shadow:0 10px 18px rgba(2,6,23,.18);
-    }
-
-    /* DRAWER CHECKOUT */
-    .drawerBackdrop{
-      position:fixed;inset:0;background:rgba(2,6,23,.45);
-      z-index:30;display:none;
-    }
-    .drawer{
-      position:fixed;left:0;right:0;bottom:0;
-      background:#fff;border-top-left-radius:18px;border-top-right-radius:18px;
-      box-shadow:0 -18px 45px rgba(2,6,23,.22);
-      z-index:31;
-      transform:translateY(105%);
-      transition:transform .22s ease;
-      max-height:78vh;overflow:auto;
-    }
-    .drawer.open{transform:translateY(0);}
-    .drawerHead{
-      padding:10px 16px;border-bottom:1px solid var(--line);
-      display:flex;align-items:center;justify-content:space-between;
-      position:sticky;top:0;background:#fff;z-index:1;
-    }
-    .grab{width:44px;height:5px;border-radius:999px;background:#e5e7eb;margin:4px auto 0;}
-    .drawerTitle{font-weight:1000;}
-    .xbtn{
-      border:1px solid var(--line);background:#fff;border-radius:12px;
-      padding:8px 10px;font-weight:1000;cursor:pointer;
-    }
-    .drawerBody{padding:12px 16px 16px;}
-    .inputs{display:flex;flex-direction:column;gap:10px;}
-    .line{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-    .inputs input{
-      min-width:0;width:100%;
-      padding:10px 12px;border-radius:12px;border:1px solid var(--line);
-      font-size:14px;
-    }
-    .shipbox{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-    .field{display:flex;flex-direction:column;gap:6px;}
-    .field label{font-size:12px;color:var(--muted);font-weight:1000;}
-    .field select{
-      width:100%;min-width:0;
-      padding:10px 12px;border-radius:12px;border:1px solid var(--line);
-      font-size:14px;outline:none;background:#fff;
-    }
-    .shipnote{font-size:12px;color:var(--muted);line-height:1.3;margin-top:2px;}
-    .drawerFooter{
-      position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);
-      margin-top:12px;
-    }
-    .drawerFooter .sum{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:10px 16px 12px;
-    }
-    .drawerFooter strong{font-size:18px;font-weight:1000;}
-    .drawerFooter .btn{width:100%;padding:12px 14px;border-radius:16px;}
-    .safePay{
-      margin:0 16px 10px;
-      background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;
-      padding:10px 12px;font-size:12px;color:#0f172a;line-height:1.35;
-    }
-
-    @media (max-width:360px){
-      .line{grid-template-columns:1fr;}
-      .shipbox{grid-template-columns:1fr;}
-      .media{height:320px;}
-      .unitGrid{grid-template-columns:1fr;}
-      :root{ --headerH: 112px; }
-    }
-  </style>
+/* FOOTER MINI */
+.cartMini{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#fff;
+  border-top:1px solid var(--line);
+  box-shadow:0 -12px 30px rgba(2,6,23,.10);
+}
+.miniRow{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 16px;
+}
+.miniBtn{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:10px 14px;
+  border-radius:14px;
+  font-weight:1000;
+}
+.miniBtn.primary{
+  background:var(--accent);
+  color:#fff;
+  border:0;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="wrap headerInner">
+  <div class="wrap">
     <h1 class="brand">Valentín Lourido</h1>
-    <p class="sub">Catálogo de productos · Armá tu pedido y lo mandás por WhatsApp</p>
+    <p class="sub">Catálogo de productos · Armá tu pedido y coordinamos por WhatsApp</p>
     <div class="pill" id="itemsCount">0 items</div>
   </div>
 </header>
 
 <main>
-  <div class="wrap">
+<div class="wrap">
 
-    <section class="intro">
-      <h2>Holaa 👋 Soy Valentín</h2>
-      <p>
-        Trabajo con productos tecnológicos y artículos de uso diario. Empecé con esto con un grupo de amigos y con el tiempo decidí seguir por mi cuenta
-        porque me apasiona este mundo. Mi idea es simple: vender claro, rápido y con buena atención.
-      </p>
-      <div class="badges">
-        <div class="badge">+150 clientes</div>
-        <div class="badge">Atención por WhatsApp</div>
-        <div class="badge">Envíos a todo el país</div>
-        <div class="badge">Retiro en Hurlingham</div>
-      </div>
-      <div class="notePay">✅ No se paga nada en la web. Solo armás el pedido y se abre WhatsApp.</div>
-    </section>
-
-    <!-- MÁS VENDIDOS -->
-    <section class="section">
-      <div class="sectionTitle">
-        <h3>🔥 Más vendidos</h3>
-        <div class="blackTag">los más pedidos</div>
-      </div>
-      <div class="grid" id="best"></div>
-    </section>
-
-    <!-- RESTO -->
-    <section class="section">
-      <div class="sectionTitle">
-        <h3>🛒 Catálogo completo</h3>
-        <div class="blackTag">stock disponible</div>
-      </div>
-      <div class="grid" id="products"></div>
-    </section>
-
+<section class="section intro">
+  <h2>Holaa 👋 Soy Valentín</h2>
+  <p>
+    Trabajo con productos tecnológicos y artículos de uso diario.
+    Arranqué con amigos y después seguí solo porque me apasiona esto.
+    Mi idea es vender claro, rápido y sin vueltas.
+  </p>
+  <div class="badges">
+    <div class="badge">+150 clientes</div>
+    <div class="badge">WhatsApp directo</div>
+    <div class="badge">Envíos a todo el país</div>
+    <div class="badge">Retiro en Hurlingham</div>
   </div>
+  <div class="notePay">
+    ✅ No se paga nada en la web. Solo armás el pedido y se abre WhatsApp.
+  </div>
+</section>
+
+<section class="section">
+  <div class="sectionTitle">
+    <h3>🤝 Sumate a la comunidad</h3>
+    <div class="blackTag">beneficios reales</div>
+  </div>
+
+  <div class="community">
+    <a class="commCard" href="https://instagram.com/valentinlouridoo" target="_blank">
+      <strong>📸 Instagram</strong>
+      <p>
+        Subo ingresos nuevos, precios reales, stock y promos.
+        Todo lo que ves ahí lo podés pedir directo.
+      </p>
+      <span class="tag2">Seguir</span>
+    </a>
+
+    <a class="commCard" href="https://chat.whatsapp.com/EFLSmI4IifTFEEkwK2l0X9" target="_blank">
+      <strong>💬 Comunidad WhatsApp</strong>
+      <p>
+        Aviso primero ingresos, precios especiales y stock limitado.
+        No es spam, solo info útil.
+      </p>
+      <span class="tag2">Unirme</span>
+    </a>
+  </div>
+</section>
+
+</div>
 </main>
 
-<!-- MINI BAR -->
 <div class="cartMini">
-  <div class="wrap">
-    <div class="miniRow">
-      <div class="miniLeft">
-        <div class="t1" id="miniTotal">$0</div>
-        <div class="t2"><span id="miniItems">0</span> items</div>
-      </div>
-      <div class="miniBtns">
-        <button class="miniBtn" id="openCart">Ver carrito</button>
-        <button class="miniBtn primary" id="openCheckout">Finalizar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- DRAWER -->
-<div class="drawerBackdrop" id="backdrop"></div>
-<div class="drawer" id="drawer">
-  <div class="drawerHead">
+  <div class="miniRow">
     <div>
-      <div class="grab"></div>
-      <div class="drawerTitle">Finalizar pedido</div>
+      <strong id="miniTotal">$0</strong><br>
+      <small><span id="miniItems">0</span> items</small>
     </div>
-    <button class="xbtn" id="closeDrawer">Cerrar</button>
-  </div>
-
-  <div class="drawerBody">
-    <div class="inputs">
-      <div class="line">
-        <input id="name" placeholder="Nombre *">
-        <input id="lastname" placeholder="Apellido *">
-      </div>
-      <div class="line">
-        <input id="province" placeholder="Provincia *">
-        <input id="cp" placeholder="Código Postal *">
-      </div>
-
-      <div class="shipbox">
-        <div class="field">
-          <label>Entrega *</label>
-          <select id="delivery">
-            <option value="">Elegir...</option>
-            <option value="Retiro en oficina (Hurlingham)">Retiro en Hurlingham</option>
-            <option value="Envío a domicilio (Correo Argentino)">Envío a domicilio</option>
-            <option value="Envío a sucursal (Correo Argentino)">Envío a sucursal</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Tipo de envío *</label>
-          <select id="shipType">
-            <option value="">Elegir...</option>
-            <option value="Clásico (2 a 5 días hábiles)">Clásico (2 a 5 días)</option>
-            <option value="Expreso (1 a 3 días hábiles)">Expreso (1 a 3 días)</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="shipnote" id="shipNote">
-        *El costo del envío se confirma al finalizar según tu CP (clásico o expreso).*
-      </div>
-    </div>
-
-    <div class="drawerFooter">
-      <div class="sum">
-        <strong id="drawerTotal">$0</strong>
-      </div>
-
-      <div class="safePay">
-        ✅ Tranquilo: <b>no hay pagos, bancos ni links raros</b>.  
-        El catálogo solo arma el mensaje y se abre WhatsApp para coordinar stock + envío.
-      </div>
-
-      <div style="padding:0 16px 14px;">
-        <button class="btn" id="sendBtn">Enviar pedido por WhatsApp</button>
-      </div>
+    <div>
+      <button class="miniBtn">Ver carrito</button>
+      <button class="miniBtn primary">Finalizar</button>
     </div>
   </div>
 </div>
 
 <script>
-const WHATSAPP_NUMBER = "5491165292907";
-
-/*
-  bulkUnit: escalas por unitario (qty >= min) -> unit
-  flags:
-    best: se muestra arriba
-    badge: etiqueta negra (ej “últimas 3”)
-  perUnitFields: genera bloques por unidad (fundas/cargadores/templados)
-*/
-const PRODUCTS = [
-  {
-    id:"tv", best:true,
-    name:"Q6 TV Stick + Xuper instalado", img:"tv.jpg",
-    price:38000,
-    bulkUnit:[
-      {min:3, unit:37000},
-      {min:5, unit:35500}
-    ],
-    note:"✅ 1=$38.000 | 3=$37.000 c/u | 5=$35.500 c/u"
-  },
-  {
-    id:"airpodspro", best:true,
-    name:"AirPods Pro 2 (sello ANC)", img:"airpods-pro2.jpg",
-    price:25000,
-    bulkUnit:[
-      {min:3, unit:22000},
-      {min:5, unit:19500},
-      {min:10, unit:18500}
-    ],
-    note:"✅ 1=$25.000 | 3=$22.000 | 5=$19.500 | 10=$18.500"
-  },
-  {
-    id:"airpodstws", best:true,
-    name:"AirPods TWS con cancelación de ruido", img:"airpods-tws.jpg",
-    price:16000,
-    bulkUnit:[
-      {min:2, unit:15000},
-      {min:3, unit:14000}
-    ],
-    note:"✅ 1=$16.000 | 2=$15.000 | 3=$14.000"
-  },
-  {
-    id:"jbl_go4pro", best:true,
-    name:"JBL Go 4 Pro RGB", img:"jbl-go4pro-rgb.jpg",
-    price:35000,
-    bulkUnit:[
-      {min:3, unit:33000},
-      {min:5, unit:31000}
-    ],
-    note:"✅ 1=$35.000 | 3=$33.000 | 5=$31.000",
-    fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Verde camuflado","Azul","Negro"] }]
-  },
-  {
-    id:"jbl_go3", best:true,
-    name:"JBL GO3", img:"jbl-go3.jpg",
-    price:30000,
-    bulkUnit:[
-      {min:3, unit:28000},
-      {min:5, unit:26500}
-    ],
-    note:"✅ 1=$30.000 | 3=$28.000 | 5=$26.500",
-    badge:"🚨 ÚLTIMAS 3 UNIDADES",
-    fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Azul camuflado","Verde agua"] }]
-  },
-
-  /* FUNDAS */
-  {
-    id:"fundas",
-    name:"Fundas iPhone – Silicone Case Premium (11 al 16 Pro Max)",
-    img:"fundas.jpg",
-    price:15000,
-    bulkUnit:[
-      {min:5, unit:12000},
-      {min:10, unit:9000}
-    ],
-    note:"💰 1=$15.000 | 5=$12.000 c/u | 10=$9.000 c/u",
-    minor:"🎨 Los colores de la imagen son de ayuda y pueden no ser 100% precisos. Indicá modelo + color para cada funda.",
-    perUnitFields:[
-      { key:"modelo", label:"Modelo (iPhone)", type:"text", required:true, placeholder:"Ej: iPhone 14 Pro Max" },
-      { key:"color", label:"Color", type:"text", required:true, placeholder:"Ej: Negro / Azul / 7 (según foto)" }
-    ]
-  },
-
-  /* CARGADORES (por unidad) */
-  {
-    id:"adaptador",
-    name:"Adaptador USB-C 20W + Cable",
-    img:"adaptador.jpg",
-    price:15000,
-    minor:"Elegí el tipo de cable por cada unidad.",
-    perUnitFields:[
-      { key:"tipo", label:"Tipo de cable", type:"select", required:true, choices:["USB-C a Lightning","USB-C a USB-C"] }
-    ]
-  },
-
-  { id:"cable3", name:"Cable 3 en 1", img:"cable3en1.jpg", price:9000 },
-
-  /* TEMPLADOS */
-  {
-    id:"templados",
-    name:"Vidrio templado 9D (iPhone)",
-    img:"templado.png",
-    price:5000,
-    minor:"Indicá el modelo por cada templado.",
-    perUnitFields:[
-      { key:"modelo", label:"Modelo (iPhone)", type:"text", required:true, placeholder:"Ej: iPhone 13" }
-    ]
-  },
-
-  { id:"billetera", name:"Billeteras magnéticas", img:"billeteras.jpg", price:12000 },
-  { id:"elfbar", name:"Elfbar Ice King 40K", img:"elfbar.jpg", price:28000 },
-  { id:"freidora", name:"Freidora de aire Boumen 5L", img:"freidora.jpg", price:60000 }
-];
-
-const cart = new Map();
-const meta = new Map();
-
-const $best = document.getElementById("best");
-const $products = document.getElementById("products");
-const $items = document.getElementById("itemsCount");
-
-const miniItems = document.getElementById("miniItems");
-const miniTotal = document.getElementById("miniTotal");
-const drawerTotal = document.getElementById("drawerTotal");
-
-const backdrop = document.getElementById("backdrop");
-const drawer = document.getElementById("drawer");
-const openCart = document.getElementById("openCart");
-const openCheckout = document.getElementById("openCheckout");
-const closeDrawer = document.getElementById("closeDrawer");
-
-const nameEl=document.getElementById("name");
-const lastnameEl=document.getElementById("lastname");
-const provinceEl=document.getElementById("province");
-const cpEl=document.getElementById("cp");
-const deliveryEl=document.getElementById("delivery");
-const shipTypeEl=document.getElementById("shipType");
-const shipNoteEl=document.getElementById("shipNote");
-
-function money(n){
-  return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
-}
-function getUnit(p, qty){
-  let unit = p.price;
-  if(p.bulkUnit && qty>0){
-    p.bulkUnit.forEach(t=>{ if(qty >= t.min) unit = t.unit; });
-  }
-  return unit;
-}
-
-function ensureMetaForUnits(id, qty){
-  const current = meta.get(id) || {};
-  if(!current.units) current.units = [];
-  while(current.units.length < qty) current.units.push({});
-  if(current.units.length > qty) current.units = current.units.slice(0, qty);
-  meta.set(id, current);
-}
-function setUnitField(id, idx, key, value){
-  const current = meta.get(id) || {units:[]};
-  if(!current.units) current.units = [];
-  while(current.units.length <= idx) current.units.push({});
-  current.units[idx][key] = value;
-  meta.set(id, current);
-}
-function setField(id, key, value){
-  const current = meta.get(id) || {};
-  current[key] = value;
-  meta.set(id, current);
-}
-window.onUnitField = (id, idx, key, val) => setUnitField(id, idx, key, val);
-window.onField = (id, key, val) => setField(id, key, val);
-
-function renderPerUnit(p, qty){
-  if(!p.perUnitFields || qty<=0) return "";
-  ensureMetaForUnits(p.id, qty);
-
-  const m = meta.get(p.id) || {units:[]};
-  const tones = ["#f1f5f9","#eef2ff","#ecfeff","#fef3c7","#ffe4e6"];
-
-  let html = `<div class="opts">`;
-  for(let i=0;i<qty;i++){
-    const tone = tones[i % tones.length];
-    const unit = m.units[i] || {};
-    html += `
-      <div class="unitBox" style="background:${tone}">
-        <div class="unitHead">
-          <b>${p.name} #${i+1}</b>
-          <span class="unitChip">Unidad ${i+1}</span>
-        </div>
-        <div class="unitGrid">
-          ${p.perUnitFields.map(f=>{
-            const v = String(unit[f.key] ?? "");
-            if(f.type==="select"){
-              const opts = (f.choices||[]).map(c=>{
-                const sel = (v===c) ? "selected" : "";
-                return `<option value="${c}" ${sel}>${c}</option>`;
-              }).join("");
-              return `
-                <div>
-                  <select onchange="onUnitField('${p.id}',${i},'${f.key}',this.value)">
-                    <option value="">${f.label}${f.required?" *":""}</option>
-                    ${opts}
-                  </select>
-                </div>
-              `;
-            }
-            return `
-              <div>
-                <input
-                  value="${v.replaceAll('"','&quot;')}"
-                  placeholder="${(f.placeholder||f.label)+(f.required?" *":"")}"
-                  oninput="onUnitField('${p.id}',${i},'${f.key}',this.value)"
-                />
-              </div>
-            `;
-          }).join("")}
-        </div>
-      </div>
-    `;
-  }
-  html += `</div>`;
-  return html;
-}
-
-function renderFields(p){
-  if(!p.fields || p.fields.length===0) return "";
-  const m = meta.get(p.id) || {};
-  let html = `<div class="opts">`;
-  p.fields.forEach(f=>{
-    const val = String(m[f.key] ?? "");
-    const options = (f.choices||[]).map(c=>{
-      const sel = (val===c) ? "selected" : "";
-      return `<option value="${c}" ${sel}>${c}</option>`;
-    }).join("");
-    html += `
-      <div class="unitBox">
-        <div class="unitHead">
-          <b>${f.label}${f.required?" *":""}</b>
-          <span class="unitChip">Elegí</span>
-        </div>
-        <select onchange="onField('${p.id}','${f.key}',this.value)">
-          <option value="">Elegir...</option>
-          ${options}
-        </select>
-      </div>
-    `;
-  });
-  html += `</div>`;
-  return html;
-}
-
-function buildCard(p){
-  const q = cart.get(p.id) || 0;
-  const unit = getUnit(p, q);
-  const mayoristaAplicado = (p.bulkUnit && q>0 && unit !== p.price);
-
-  const badgeHtml = p.badge ? `<div class="tag">${p.badge}</div>` : "";
-  const tagMayorista = mayoristaAplicado ? `<div class="tag2">Mayorista aplicado</div>` : "";
-
-  const el = document.createElement("div");
-  el.className = "card";
-  el.innerHTML = `
-    <div class="media"><img src="${p.img}" alt="${p.name}"></div>
-    ${badgeHtml}
-    <div class="name">${p.name}</div>
-    <p class="price">${money(unit)} <small>c/u</small></p>
-    ${tagMayorista}
-    ${p.note ? `<p class="minor">${p.note}</p>` : ""}
-    ${p.minor ? `<p class="minor">${p.minor}</p>` : ""}
-    ${renderPerUnit(p, q)}
-    ${renderFields(p)}
-    <div class="row">
-      <div class="qty">
-        <button onclick="chg('${p.id}',-1)">−</button>
-        <strong>${q}</strong>
-        <button onclick="chg('${p.id}',1)">+</button>
-      </div>
-      <button class="btn" onclick="chg('${p.id}',1)">Agregar</button>
-    </div>
-  `;
-  return el;
-}
-
+let items=0,total=0;
+const itemsEl=document.getElementById("itemsCount");
+const miniItems=document.getElementById("miniItems");
+const miniTotal=document.getElementById("miniTotal");
 function render(){
-  $best.innerHTML="";
-  $products.innerHTML="";
-
-  let items=0, total=0;
-  PRODUCTS.forEach(p=>{
-    const q = cart.get(p.id)||0;
-    items += q;
-    total += getUnit(p,q) * q;
-  });
-
-  PRODUCTS.filter(p=>p.best).forEach(p=> $best.appendChild(buildCard(p)));
-  PRODUCTS.filter(p=>!p.best).forEach(p=> $products.appendChild(buildCard(p)));
-
-  $items.textContent = items+" items";
-  miniItems.textContent = items;
-  miniTotal.textContent = money(total);
-  drawerTotal.textContent = money(total);
+  itemsEl.textContent=items+" items";
+  miniItems.textContent=items;
+  miniTotal.textContent=total.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
 }
-
-function chg(id, d){
-  const p = PRODUCTS.find(x=>x.id===id);
-  const q = (cart.get(id) || 0) + d;
-  if(q <= 0){
-    cart.delete(id);
-    meta.delete(id);
-  }else{
-    cart.set(id, q);
-    if(p && p.perUnitFields) ensureMetaForUnits(id, q);
-  }
-  render();
-}
-
-/* Drawer */
-function openDrawer(){
-  backdrop.style.display="block";
-  drawer.classList.add("open");
-}
-function closeDrawerFn(){
-  drawer.classList.remove("open");
-  backdrop.style.display="none";
-}
-openCart.onclick = openDrawer;
-openCheckout.onclick = () => {
-  if(cart.size===0) return alert("Agregá un producto");
-  openDrawer();
-};
-closeDrawer.onclick = closeDrawerFn;
-backdrop.onclick = closeDrawerFn;
-
-function deliveryRules(){
-  const del = deliveryEl.value || "";
-  const isPickup = del.startsWith("Retiro");
-  shipTypeEl.disabled = isPickup;
-
-  if(isPickup){
-    shipTypeEl.value = "";
-    shipNoteEl.textContent = "Retiro en Hurlingham: coordinamos día y horario por WhatsApp.";
-  } else {
-    shipNoteEl.textContent = "*El costo del envío se confirma al finalizar según tu CP (clásico o expreso).*";
-  }
-}
-deliveryEl.addEventListener("change", deliveryRules);
-
-function validateAll(){
-  const name=nameEl.value.trim();
-  const lastname=lastnameEl.value.trim();
-  const province=provinceEl.value.trim();
-  const cp=cpEl.value.trim();
-  const delivery=deliveryEl.value.trim();
-  const shipType=shipTypeEl.value.trim();
-
-  if(!name || !lastname || !province || !cp){
-    alert("Completá nombre, apellido, provincia y código postal.");
-    return false;
-  }
-  if(!delivery){
-    alert("Elegí la forma de entrega (retiro / domicilio / sucursal).");
-    return false;
-  }
-  if(!delivery.startsWith("Retiro") && !shipType){
-    alert("Elegí el tipo de envío: Clásico o Expreso.");
-    return false;
-  }
-
-  for(const p of PRODUCTS){
-    const q = cart.get(p.id)||0;
-    if(q>0 && p.perUnitFields){
-      const m = meta.get(p.id) || {units:[]};
-      for(let i=0;i<q;i++){
-        const unit = (m.units && m.units[i]) ? m.units[i] : {};
-        for(const f of p.perUnitFields){
-          if(f.required){
-            const v = String(unit[f.key] ?? "").trim();
-            if(!v){
-              alert(`Falta completar "${f.label}" en ${p.name} (Unidad ${i+1})`);
-              return false;
-            }
-          }
-        }
-      }
-    }
-    if(q>0 && p.fields){
-      const m = meta.get(p.id) || {};
-      for(const f of p.fields){
-        if(f.required){
-          const v = String(m[f.key] ?? "").trim();
-          if(!v){
-            alert(`Falta completar "${f.label}" en ${p.name}`);
-            return false;
-          }
-        }
-      }
-    }
-  }
-  return true;
-}
-
-document.getElementById("sendBtn").onclick=()=>{
-  if(cart.size===0) return alert("Agregá un producto");
-  if(!validateAll()) return;
-
-  const name=nameEl.value.trim();
-  const lastname=lastnameEl.value.trim();
-  const province=provinceEl.value.trim();
-  const cp=cpEl.value.trim();
-  const delivery=deliveryEl.value.trim();
-  const shipType=shipTypeEl.value.trim();
-
-  let msg="Hola! Quiero hacer este pedido:%0A%0A";
-  let tot=0;
-
-  PRODUCTS.forEach(p=>{
-    const q=cart.get(p.id)||0;
-    if(q){
-      const unit=getUnit(p,q);
-      const sub=unit*q;
-      tot+=sub;
-
-      msg += `• ${encodeURIComponent(p.name)} x${q}%0A`;
-      msg += `  Unit: ${encodeURIComponent(money(unit))} | Subtotal: ${encodeURIComponent(money(sub))}%0A`;
-      if(p.bulkUnit && unit !== p.price) msg += `  (${encodeURIComponent("Mayorista aplicado")})%0A`;
-
-      const m = meta.get(p.id) || {};
-      if(p.perUnitFields){
-        msg += `  Detalle:%0A`;
-        for(let i=0;i<q;i++){
-          const u = (m.units && m.units[i]) ? m.units[i] : {};
-          msg += `   - Unidad ${i+1}: `;
-          const parts=[];
-          for(const f of p.perUnitFields){
-            const v = String(u[f.key] ?? "").trim();
-            if(v) parts.push(`${f.label}: ${v}`);
-          }
-          msg += `${encodeURIComponent(parts.join(" | "))}%0A`;
-        }
-      } else if(p.fields){
-        for(const f of p.fields){
-          const v = String(m[f.key] ?? "").trim();
-          if(v) msg += `  ${encodeURIComponent(f.label)}: ${encodeURIComponent(v)}%0A`;
-        }
-      }
-
-      msg += `%0A`;
-    }
-  });
-
-  msg += `Total: ${encodeURIComponent(money(tot))}%0A`;
-  msg += `Nombre: ${encodeURIComponent(name+" "+lastname)}%0A`;
-  msg += `Provincia: ${encodeURIComponent(province)}%0A`;
-  msg += `CP: ${encodeURIComponent(cp)}%0A%0A`;
-
-  msg += `Entrega: ${encodeURIComponent(delivery)}%0A`;
-  if(!delivery.startsWith("Retiro")){
-    msg += `Envío: ${encodeURIComponent(shipType)}%0A`;
-  }
-  msg += `%0A¿Me confirmás stock y envío?`;
-
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`,"_blank");
-};
-
-deliveryRules();
 render();
-
-/* HEADER: se esconde al bajar y aparece al subir (sin bug) */
-let lastScroll = 0;
-const headerEl = document.querySelector("header");
-
-window.addEventListener("scroll", () => {
-  const current = window.pageYOffset || document.documentElement.scrollTop;
-
-  if (current > lastScroll && current > 140) headerEl.classList.add("hide");
-  else headerEl.classList.remove("hide");
-
-  lastScroll = current;
-});
 </script>
 
 </body>
