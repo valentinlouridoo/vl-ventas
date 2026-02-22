@@ -364,7 +364,6 @@
       </div>
 
       <div class="communityGrid">
-        <!-- ✅ FIX: tags cerrados correctamente + fallback si falta icono -->
         <div class="commCard">
           <div class="icon">
             <img src="instagram.png" alt="Instagram" onerror="this.remove(); this.parentElement.innerHTML='<span>IG</span>';">
@@ -541,9 +540,9 @@ const PRODUCTS = [
   {
     id:"tv", best:true,
     name:"Q6 TV Stick + Xuper instalado", img:"tv.jpg",
-    price:38000,
-    bulkUnit:[ {min:3, unit:37000}, {min:5, unit:35500} ],
-    note:"✅ 1=$38.000 | 3=$37.000 c/u | 5=$35.500 c/u"
+    price:35000,
+    bulkUnit:[ {min:3, unit:34000}, {min:5, unit:32500} ],
+    note:"✅ 1=$35.000 | 3=$34.000 c/u | 5=$32.500 c/u"
   },
   {
     id:"airpodspro", best:true,
@@ -562,19 +561,10 @@ const PRODUCTS = [
   {
     id:"jbl_go4pro", best:true,
     name:"JBL Go 4 Pro RGB", img:"jbl-go4pro-rgb.jpg",
-    price:35000,
-    bulkUnit:[ {min:3, unit:33000}, {min:5, unit:31000} ],
-    note:"✅ 1=$35.000 | 3=$33.000 | 5=$31.000",
+    price:32000,
+    bulkUnit:[ {min:3, unit:29000}, {min:5, unit:27500} ],
+    note:"✅ 1=$32.000 | 3=$29.000 | 5=$27.500",
     fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Verde camuflado","Azul","Negro"] }]
-  },
-  {
-    id:"jbl_go3", best:true,
-    name:"JBL GO3", img:"jbl-go3.jpg",
-    price:30000,
-    bulkUnit:[ {min:3, unit:28000}, {min:5, unit:26500} ],
-    note:"✅ 1=$30.000 | 3=$28.000 | 5=$26.500",
-    badge:"🚨 ÚLTIMAS 3 UNIDADES",
-    fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Azul camuflado","Verde agua"] }]
   },
 
   {
@@ -614,8 +604,7 @@ const PRODUCTS = [
   },
 
   { id:"billetera", name:"Billeteras magnéticas", img:"billeteras.jpg", price:12000 },
-  { id:"elfbar", name:"Elfbar Ice King 40K", img:"elfbar.jpg", price:28000 },
-  { id:"freidora", name:"Freidora de aire Boumen 5L", img:"freidora.jpg", price:60000 }
+  { id:"elfbar", name:"Elfbar Ice King 40K", img:"elfbar.jpg", price:28000 }
 ];
 
 /* ====== STATE ====== */
