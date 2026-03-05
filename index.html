@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Valentín Lourido - Catálogo</title>
-  <meta name="description" content="Catálogo de productos · Armá tu pedido y enviá todo por WhatsApp" />
+  <title>Valentín Ventas - Catálogo</title>
+  <meta name="description" content="Catálogo de productos · Armá tu pedido y enviá todo por WhatsApp + Email" />
 
   <style>
     :root{
@@ -31,7 +31,6 @@
     }
     .wrap{max-width:1050px;margin:0 auto;padding:0 16px;}
 
-    /* HEADER con imagen (con fallback si no existe) */
     header{
       position:fixed;
       top:0;left:0;right:0;
@@ -75,7 +74,6 @@
 
     main{padding:110px 0 120px;}
 
-    /* PRESENTACIÓN */
     .intro{
       background:var(--bg2);
       border:1px solid rgba(2,6,23,.06);
@@ -99,7 +97,6 @@
       box-shadow:0 10px 18px rgba(2,6,23,.05);
     }
 
-    /* BLOQUE COMUNIDAD */
     .community{
       background:var(--bg2);
       border:1px solid rgba(2,6,23,.06);
@@ -121,8 +118,6 @@
       box-shadow:0 10px 18px rgba(2,6,23,.05);
       display:flex;gap:12px;align-items:flex-start;
     }
-
-    /* ✅ FIX: iconos con PNG/JPG y fallback si falta el archivo */
     .icon{
       width:38px;height:38px;border-radius:14px;
       background:#f1f5f9;border:1px solid #e2e8f0;
@@ -130,13 +125,8 @@
       flex:0 0 auto;
       overflow:hidden;
     }
-    .icon img{
-      width:22px;height:22px;object-fit:contain;display:block;
-    }
-    .icon span{
-      font-weight:1000;font-size:12px;color:#0f172a;
-    }
-
+    .icon img{width:22px;height:22px;object-fit:contain;display:block;}
+    .icon span{font-weight:1000;font-size:12px;color:#0f172a;}
     .commCard b{display:block;margin:0 0 4px;}
     .commCard p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.35;}
     .commCard a{
@@ -144,7 +134,6 @@
       background:var(--accent);color:#fff;padding:9px 12px;border-radius:12px;font-weight:1000;font-size:13px;
     }
 
-    /* SECCIONES */
     .section{
       background:var(--bg2);
       border:1px solid rgba(2,6,23,.06);
@@ -156,7 +145,6 @@
     .sectionTitle{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px;}
     .sectionTitle h3{margin:0;font-size:14px;font-weight:1000;display:flex;align-items:center;gap:8px;}
 
-    /* GRID */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
     .card{
       background:var(--card);
@@ -183,11 +171,25 @@
       color:#94a3b8;font-weight:1000;font-size:12px;
       background:linear-gradient(180deg,#fff,#f8fafc);
     }
+
+    /* ✅ Carrusel simple */
+    .dots{
+      position:absolute;left:50%;bottom:8px;transform:translateX(-50%);
+      display:flex;gap:6px;
+      background:rgba(255,255,255,.65);
+      border:1px solid rgba(2,6,23,.08);
+      padding:6px 8px;border-radius:999px;
+      backdrop-filter: blur(6px);
+    }
+    .dot{
+      width:7px;height:7px;border-radius:999px;background:#cbd5e1;
+    }
+    .dot.on{background:#111827;}
+
     .name{font-weight:1000;line-height:1.15;}
     .price{margin:0;font-weight:1000;font-size:18px;}
     .price small{font-weight:800;color:var(--muted);font-size:12px;}
     .minor{margin:0;font-size:12px;color:var(--muted);line-height:1.3;}
-
     .tagBadge{
       font-size:12px;background:#111827;color:#fff;padding:6px 10px;border-radius:999px;width:max-content;font-weight:950;
       display:inline-flex;align-items:center;gap:6px;
@@ -210,7 +212,6 @@
       cursor:pointer;
     }
 
-    /* Per unit */
     .opts{display:flex;flex-direction:column;gap:10px;padding-top:2px;}
     .unitBox{
       border:1px solid var(--line);border-radius:16px;padding:10px;
@@ -228,7 +229,6 @@
       font-size:13px;outline:none;background:#fff;
     }
 
-    /* MINI BAR */
     .cartMini{
       position:fixed;left:0;right:0;bottom:0;
       background:#fff;border-top:1px solid var(--line);
@@ -245,7 +245,6 @@
     }
     .miniBtn.primary{border:0;background:var(--accent);color:#fff;box-shadow:0 10px 18px rgba(2,6,23,.18);}
 
-    /* DRAWERS */
     .backdrop{position:fixed;inset:0;background:rgba(2,6,23,.45);z-index:30;display:none;}
     .drawer{
       position:fixed;left:0;right:0;bottom:0;background:#fff;
@@ -265,7 +264,6 @@
     .xbtn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 10px;font-weight:1000;cursor:pointer;}
     .drawerBody{padding:12px 16px 16px;}
 
-    /* carrito lista */
     .cartList{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
     .cartItem{
       display:flex;gap:10px;align-items:center;
@@ -291,7 +289,6 @@
     .cartRight .subt{font-weight:1000;}
     .cartRight .miniQ{font-size:12px;color:var(--muted);}
 
-    /* checkout */
     .inputs{display:flex;flex-direction:column;gap:10px;}
     .line2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
     .inputs input{
@@ -333,8 +330,8 @@
 
 <header id="header">
   <div class="wrap">
-    <h1 class="brand">Valentín Lourido</h1>
-    <p class="sub">Catálogo de productos · Armá tu pedido y lo mandás por WhatsApp</p>
+    <h1 class="brand">Valentín Ventas</h1>
+    <p class="sub">Catálogo de productos · Armá tu pedido y lo mandás por WhatsApp (y me llega por Email)</p>
     <div class="pill" id="itemsCount">0 items</div>
   </div>
 </header>
@@ -345,8 +342,7 @@
     <section class="intro">
       <h2>Holaa 👋 Soy Valentín</h2>
       <p>
-        Trabajo con productos tecnológicos y artículos de uso diario. Empecé con esto con un grupo de amigos y con el tiempo decidí seguir por mi cuenta
-        porque me apasiona este mundo. Mi idea es simple: vender claro, rápido y con buena atención.
+        Trabajo con productos tecnológicos y artículos de uso diario. Mi idea es simple: vender claro, rápido y con buena atención.
       </p>
       <div class="badges">
         <div class="badge">+150 clientes</div>
@@ -354,7 +350,7 @@
         <div class="badge">Envíos a todo el país</div>
         <div class="badge">Retiro en Hurlingham</div>
       </div>
-      <div class="notePay">✅ No se paga nada en la web. Solo armás el pedido y se abre WhatsApp.</div>
+      <div class="notePay">✅ No se paga nada en la web. Solo armás el pedido y se abre WhatsApp. A mí me llega el pedido por mail.</div>
     </section>
 
     <section class="community">
@@ -369,9 +365,9 @@
             <img src="instagram.png" alt="Instagram" onerror="this.remove(); this.parentElement.innerHTML='<span>IG</span>';">
           </div>
           <div>
-            <b>Instagram (@valentinlouridoo)</b>
+            <b>Instagram (@valentinventass)</b>
             <p>Ingresos nuevos, precios reales, stock y promos. Todo lo que ves ahí, lo podés pedir directo.</p>
-            <a target="_blank" rel="noopener" href="https://instagram.com/valentinlouridoo">Seguir</a>
+            <a target="_blank" rel="noopener" href="https://instagram.com/valentinventass">Seguir</a>
           </div>
         </div>
 
@@ -498,14 +494,22 @@
 
       <div class="safePay">
         ✅ Tranquilo: <b>no hay pagos, bancos ni links raros</b>.  
-        El catálogo solo arma el mensaje y se abre WhatsApp para coordinar stock + envío.
+        El catálogo solo arma el pedido, a mí me llega por mail y se abre WhatsApp para coordinar stock + envío.
       </div>
 
-      <button class="btn" id="sendBtn">Enviar pedido por WhatsApp</button>
+      <button class="btn" id="sendBtn">Enviar pedido</button>
     </div>
 
   </div>
 </div>
+
+<!-- ✅ EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("_EXnBgRQNAmY-MC4b"); // Public Key
+  })();
+</script>
 
 <script>
 /* ====== CONFIG ====== */
@@ -530,37 +534,40 @@ window.addEventListener("scroll", () => {
 })();
 
 /*
-  bulkUnit: escalas por unitario (qty >= min) -> unit
-  flags:
-    best: se muestra arriba
-    badge: etiqueta negra
-  perUnitFields: bloques por unidad (fundas/cargadores/templados)
+  ✅ IMPORTANTE: las imágenes son archivos locales.
+  Tenés que tener estos nombres en la misma carpeta que el HTML:
+  header.jpg, instagram.png, whatsapp.png,
+  tv.jpg, airpods-pro2.jpg, airpods-tws.jpg,
+  jbl-rojo.jpg, jbl-verde.jpg, jbl-azul.jpg, jbl-negro.jpg,
+  fundas.jpg, adaptador.jpg, cable3en1.jpg, templado.png, billeteras.jpg
 */
+
 const PRODUCTS = [
   {
-    id:"tv", best:true,
+    id:"tv", code:"TV-Q6-8+128", best:true,
     name:"Q6 TV Stick + Xuper instalado", img:"tv.jpg",
     price:35000,
     bulkUnit:[ {min:3, unit:34000}, {min:5, unit:32500} ],
     note:"✅ 1=$35.000 | 3=$34.000 c/u | 5=$32.500 c/u"
   },
   {
-    id:"airpodspro", best:true,
+    id:"airpodspro", code:"AIR-PRO2-ANC", best:true,
     name:"AirPods Pro 2 (sello ANC)", img:"airpods-pro2.jpg",
     price:25000,
     bulkUnit:[ {min:3, unit:22000}, {min:5, unit:19500}, {min:10, unit:18500} ],
     note:"✅ 1=$25.000 | 3=$22.000 | 5=$19.500 | 10=$18.500"
   },
   {
-    id:"airpodstws", best:true,
+    id:"airpodstws", code:"AIR-TWS-ANC", best:true,
     name:"AirPods TWS con cancelación de ruido", img:"airpods-tws.jpg",
     price:16000,
     bulkUnit:[ {min:2, unit:15000}, {min:3, unit:14000} ],
     note:"✅ 1=$16.000 | 2=$15.000 | 3=$14.000"
   },
   {
-    id:"jbl_go4pro", best:true,
-    name:"JBL Go 4 Pro RGB", img:"jbl-go4pro-rgb.jpg",
+    id:"jbl_go4pro", code:"SPK-GO4PRO-RGB", best:true,
+    name:"JBL Go 4 Pro RGB", 
+    imgs:["jbl-rojo.jpg","jbl-verde.jpg","jbl-azul.jpg","jbl-negro.jpg"],  // ✅ carrusel
     price:32000,
     bulkUnit:[ {min:3, unit:29000}, {min:5, unit:27500} ],
     note:"✅ 1=$32.000 | 3=$29.000 | 5=$27.500",
@@ -568,13 +575,13 @@ const PRODUCTS = [
   },
 
   {
-    id:"fundas",
+    id:"fundas", code:"CASE-SIL-IPH",
     name:"Fundas iPhone – Silicone Case Premium (11 al 16 Pro Max)",
     img:"fundas.jpg",
     price:15000,
     bulkUnit:[ {min:5, unit:12000}, {min:10, unit:9000} ],
     note:"💰 1=$15.000 | 5=$12.000 c/u | 10=$9.000 c/u",
-    minor:"🎨 Los colores de la imagen son orientativos y pueden no ser 100% precisos. Indicá modelo + color para cada funda.",
+    minor:"🎨 Los colores de la imagen son orientativos. Indicá modelo + color para cada funda.",
     perUnitFields:[
       { key:"modelo", label:"Modelo (iPhone)", type:"text", required:true, placeholder:"Ej: iPhone 14 Pro Max" },
       { key:"color", label:"Color", type:"text", required:true, placeholder:"Ej: Negro / Azul / 7 (según foto)" }
@@ -582,7 +589,7 @@ const PRODUCTS = [
   },
 
   {
-    id:"adaptador",
+    id:"adaptador", code:"CHG-20W+CBL",
     name:"Adaptador USB-C 20W + Cable",
     img:"adaptador.jpg",
     price:15000,
@@ -592,10 +599,10 @@ const PRODUCTS = [
     ]
   },
 
-  { id:"cable3", name:"Cable 3 en 1", img:"cable3en1.jpg", price:9000 },
+  { id:"cable3", code:"CBL-3IN1", name:"Cable 3 en 1", img:"cable3en1.jpg", price:9000 },
 
   {
-    id:"templados",
+    id:"templados", code:"GLASS-9D-IPH",
     name:"Vidrio templado 9D (iPhone)",
     img:"templado.png",
     price:5000,
@@ -603,8 +610,7 @@ const PRODUCTS = [
     perUnitFields:[ { key:"modelo", label:"Modelo (iPhone)", type:"text", required:true, placeholder:"Ej: iPhone 13" } ]
   },
 
-  { id:"billetera", name:"Billeteras magnéticas", img:"billeteras.jpg", price:12000 },
-  { id:"elfbar", name:"Elfbar Ice King 40K", img:"elfbar.jpg", price:28000 }
+  { id:"billetera", code:"WALLET-MAG", name:"Billeteras magnéticas", img:"billeteras.jpg", price:12000 }
 ];
 
 /* ====== STATE ====== */
@@ -666,6 +672,9 @@ function setField(id, key, value){
 }
 window.onUnitField = (id, idx, key, val) => setUnitField(id, idx, key, val);
 window.onField = (id, key, val) => setField(id, key, val);
+
+function genOrderId(){ return String(Date.now()).slice(-5); }
+function todayAR(){ return new Date().toLocaleDateString("es-AR"); }
 
 /* ====== RENDER FIELDS ====== */
 function renderPerUnit(p, qty){
@@ -748,18 +757,21 @@ function buildCard(p){
   const q = cart.get(p.id) || 0;
   const unit = getUnit(p, q);
   const mayoristaAplicado = (p.bulkUnit && q>0 && unit !== p.price);
-
-  const badgeHtml = p.badge ? `<div class="tagBadge">${p.badge}</div>` : "";
   const tagMayorista = mayoristaAplicado ? `<div class="tag2">Mayorista aplicado</div>` : "";
 
+  const badgeHtml = p.badge ? `<div class="tagBadge">${p.badge}</div>` : "";
+
   const imgId = `img_${p.id}`;
+  const phId = `${imgId}_ph`;
+  const dotsId = `dots_${p.id}`;
 
   const el = document.createElement("div");
   el.className = "card";
   el.innerHTML = `
-    <div class="media">
-      <img id="${imgId}" src="${p.img}" alt="${p.name}">
-      <div class="ph" id="${imgId}_ph" style="display:none;">SIN FOTO</div>
+    <div class="media" data-product="${p.id}">
+      <img id="${imgId}" src="${(p.imgs && p.imgs.length)? p.imgs[0] : (p.img||"")}" alt="${p.name}">
+      <div class="ph" id="${phId}" style="display:none;">SIN FOTO</div>
+      ${(p.imgs && p.imgs.length>1) ? `<div class="dots" id="${dotsId}">${p.imgs.map((_,i)=>`<div class="dot ${i===0?'on':''}"></div>`).join('')}</div>` : ``}
     </div>
     ${badgeHtml}
     <div class="name">${p.name}</div>
@@ -782,13 +794,41 @@ function buildCard(p){
   // Fallback si no existe la foto
   setTimeout(()=>{
     const img = el.querySelector(`#${imgId}`);
-    const ph = el.querySelector(`#${imgId}_ph`);
+    const ph = el.querySelector(`#${phId}`);
     if(img){
       img.onerror = () => { img.style.display="none"; if(ph) ph.style.display="flex"; };
     }
   },0);
 
+  // ✅ Carrusel (si tiene imgs)
+  setTimeout(()=>{
+    if(p.imgs && p.imgs.length>1){
+      startCarousel(p.id, p.imgs);
+    }
+  },0);
+
   return el;
+}
+
+/* ====== Carousel engine ====== */
+const carousels = new Map();
+function startCarousel(pid, imgs){
+  if(carousels.has(pid)) return;
+  let idx = 0;
+  const timer = setInterval(()=>{
+    const img = document.getElementById(`img_${pid}`);
+    const dotsWrap = document.getElementById(`dots_${pid}`);
+    if(!img) return;
+
+    idx = (idx + 1) % imgs.length;
+    img.src = imgs[idx];
+
+    if(dotsWrap){
+      const dots = [...dotsWrap.querySelectorAll(".dot")];
+      dots.forEach((d,i)=>d.classList.toggle("on", i===idx));
+    }
+  }, 2500);
+  carousels.set(pid, timer);
 }
 
 /* ====== RENDER ====== */
@@ -834,12 +874,14 @@ function renderCartList(){
     const sub = unit*q;
     total += sub;
 
+    const thumbSrc = (p.imgs && p.imgs.length) ? p.imgs[0] : p.img;
+
     const item = document.createElement("div");
     item.className = "cartItem";
 
     item.innerHTML = `
       <div class="cartThumb">
-        <img src="${p.img}" alt="${p.name}">
+        <img src="${thumbSrc}" alt="${p.name}">
         <div class="ph" style="display:none;">SIN FOTO</div>
       </div>
       <div class="cartInfo">
@@ -1001,20 +1043,83 @@ function validateAll(){
   return true;
 }
 
-/* ====== SEND WHATSAPP ====== */
-document.getElementById("sendBtn").onclick=()=>{
+/* ====== SEND EMAIL + WHATSAPP ====== */
+document.getElementById("sendBtn").onclick = async () => {
   if(cart.size===0) return alert("Agregá un producto");
   if(!validateAll()) return;
 
-  const name=nameEl.value.trim();
-  const lastname=lastnameEl.value.trim();
-  const province=provinceEl.value.trim();
-  const cp=cpEl.value.trim();
-  const delivery=deliveryEl.value.trim();
-  const shipType=shipTypeEl.value.trim();
+  const name = nameEl.value.trim();
+  const lastname = lastnameEl.value.trim();
+  const province = provinceEl.value.trim();
+  const cp = cpEl.value.trim();
+  const delivery = deliveryEl.value.trim();
+  const shipType = shipTypeEl.value.trim();
 
+  const orderId = genOrderId();
+  const date = todayAR();
+
+  // ✅ Armar items tipo "remito"
+  let tot = 0;
+  const lines = [];
+
+  PRODUCTS.forEach(p=>{
+    const q = cart.get(p.id)||0;
+    if(!q) return;
+
+    const unit = getUnit(p,q);
+    const sub = unit*q;
+    tot += sub;
+
+    const code = p.code || p.id.toUpperCase();
+    lines.push(`${code} | ${p.name} | x${q} | ${money(unit)} | ${money(sub)}`);
+
+    const m = meta.get(p.id) || {};
+    if(p.perUnitFields){
+      for(let i=0;i<q;i++){
+        const u = (m.units && m.units[i]) ? m.units[i] : {};
+        const parts=[];
+        for(const f of p.perUnitFields){
+          const v = String(u[f.key] ?? "").trim();
+          if(v) parts.push(`${f.label}: ${v}`);
+        }
+        if(parts.length) lines.push(`   - Unidad ${i+1}: ${parts.join(" | ")}`);
+      }
+    } else if(p.fields){
+      for(const f of p.fields){
+        const v = String(m[f.key] ?? "").trim();
+        if(v) lines.push(`   - ${f.label}: ${v}`);
+      }
+    }
+  });
+
+  const itemsText = lines.join("\n");
+  const totalText = money(tot);
+
+  // ✅ 1) Enviar EMAIL
+  try{
+    await emailjs.send(
+      "service_pmsu7hl",
+      "template_72wxpxs",
+      {
+        order_id: orderId,
+        date: date,
+        customer_name: `${name} ${lastname}`,
+        province: province,
+        cp: cp,
+        delivery: delivery,
+        ship_type: shipType || "-",
+        items: itemsText,
+        total: totalText
+      }
+    );
+  }catch(e){
+    console.log(e);
+    alert("No se pudo enviar el mail. Igual se va a abrir WhatsApp para confirmar.");
+  }
+
+  // ✅ 2) WhatsApp (como siempre)
   let msg="Hola! Quiero hacer este pedido:%0A%0A";
-  let tot=0;
+  let tot2=0;
 
   PRODUCTS.forEach(p=>{
     const q=cart.get(p.id)||0;
@@ -1022,7 +1127,7 @@ document.getElementById("sendBtn").onclick=()=>{
 
     const unit=getUnit(p,q);
     const sub=unit*q;
-    tot+=sub;
+    tot2+=sub;
 
     msg += `• ${encodeURIComponent(p.name)} x${q}%0A`;
     msg += `  Unit: ${encodeURIComponent(money(unit))} | Subtotal: ${encodeURIComponent(money(sub))}%0A`;
@@ -1046,11 +1151,10 @@ document.getElementById("sendBtn").onclick=()=>{
         if(v) msg += `  ${encodeURIComponent(f.label)}: ${encodeURIComponent(v)}%0A`;
       }
     }
-
     msg += `%0A`;
   });
 
-  msg += `Total: ${encodeURIComponent(money(tot))}%0A`;
+  msg += `Total: ${encodeURIComponent(totalText)}%0A`;
   msg += `Nombre: ${encodeURIComponent(name+" "+lastname)}%0A`;
   msg += `Provincia: ${encodeURIComponent(province)}%0A`;
   msg += `CP: ${encodeURIComponent(cp)}%0A%0A`;
