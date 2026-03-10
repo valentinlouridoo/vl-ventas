@@ -360,18 +360,21 @@
     </div>
     <button class="xbtn" id="closeDrawer">Cerrar</button>
   </div>
+ <label>Nombre y apellido</label>
+<input type="text" id="customer_name" placeholder="Nombre y apellido" required>
 
-  <div class="drawerBody">
-    <div class="inputs">
-      <div class="line2">
-        <input id="name" placeholder="Nombre *">
-        <input id="lastname" placeholder="Apellido *">
-      </div>
-      <div class="line2">
-        <input id="province" placeholder="Provincia *">
-        <input id="cp" placeholder="Código Postal *">
-      </div>
+<label>Número de teléfono</label>
+<input type="tel" id="customer_phone" placeholder="Ej: 11 2345 6789" required>
 
+<label>Email</label>
+<input type="email" id="customer_email" placeholder="Ej: cliente@gmail.com" required>
+
+<label>Provincia</label>
+<input type="text" id="province" placeholder="Provincia" required>
+
+<label>Código Postal</label>
+<input type="text" id="cp" placeholder="Código Postal" required>
+      </div>
       <div class="shipbox">
         <div class="field">
           <label>Entrega *</label>
@@ -383,16 +386,6 @@
             <option value="Motomensajería (Uber Moto) - solo GBA y CABA">Motomensajería (Uber Moto) - solo GBA y CABA</option>
           </select>
         </div>
-
-        <div class="field">
-          <label>Tipo de envío</label>
-          <select id="shipType">
-            <option value="">Elegir...</option>
-            <option value="Clásico (2 a 5 días hábiles)">Clásico (2 a 5 días)</option>
-            <option value="Expreso (1 a 3 días hábiles)">Expreso (1 a 3 días)</option>
-          </select>
-        </div>
-      </div>
 
       <div class="shipnote" id="shipNote">
         *El costo del envío se confirma al finalizar según tu CP.*
