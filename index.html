@@ -43,7 +43,7 @@
       transition:transform .35s ease;
       background:
         linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.75)),
-        url('header.jpg') center/cover no-repeat;
+        url('headerr.jpg') center/cover no-repeat;
       border-bottom:1px solid rgba(255,255,255,.08);
       backdrop-filter: blur(8px);
     }
@@ -541,7 +541,7 @@
   (function(){
     const test = new Image();
     test.onerror = () => header.classList.add("noimg");
-    test.src = "header.jpg?v=" + Date.now();
+    test.src = "headerr.jpg?v=" + Date.now();
 
     const logo = document.getElementById("brandLogo");
     const text = document.getElementById("brandText");
