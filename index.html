@@ -16,12 +16,8 @@
 --muted:#b7b7bf;
 --line:#2c2c31;
 --shadow:0 18px 45px rgba(0,0,0,.35);
---r:20px;
 --accent:#c9a227;
 --accent2:#e6c55a;
---black:#090909;
---ok:#16a34a;
---danger:#dc2626;
 }
 
 *{box-sizing:border-box}
@@ -51,7 +47,7 @@ header.noimg{
 background:linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.92));
 }
 header.hide{transform:translateY(-100%)}
-header .wrap{padding:14px 16px 14px}
+header .wrap{padding:14px 16px}
 
 .brand{
 margin:0;
@@ -72,10 +68,7 @@ max-width:220px;
 object-fit:contain;
 display:block;
 }
-.brandText{
-color:#fff;
-letter-spacing:.3px;
-}
+.brandText{color:#fff;letter-spacing:.3px}
 .sub{
 margin:6px 0 0;
 opacity:.95;
@@ -98,7 +91,7 @@ color:#f8e3a0;
 
 main{padding:118px 0 120px}
 
-.intro,.community,.section,.trust{
+.intro,.community,.trust,.section{
 background:linear-gradient(180deg,var(--bg2),var(--card));
 border:1px solid rgba(255,255,255,.06);
 box-shadow:var(--shadow);
@@ -130,11 +123,11 @@ display:inline-block;
 box-shadow:0 10px 18px rgba(0,0,0,.20);
 }
 
-.community,.trust{padding:14px;margin:14px 0}
-.communityTop,.sectionTitle,.trustTop{
+.community,.trust,.section{padding:14px;margin:14px 0}
+.communityTop,.trustTop,.sectionTitle{
 display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px
 }
-.communityTop h3,.sectionTitle h3,.trustTop h3{
+.communityTop h3,.trustTop h3,.sectionTitle h3{
 margin:0;font-size:14px;font-weight:1000;display:flex;align-items:center;gap:8px;color:#fff
 }
 .blackTag{
@@ -176,7 +169,6 @@ font-weight:1000;
 font-size:13px;
 }
 
-.section{padding:14px;margin:14px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .card{
 background:var(--card2);
@@ -431,7 +423,7 @@ Trabajo con productos tecnológicos y artículos de uso diario. Mi idea es vende
 </div>
 <div>
 <b>Compra con tranquilidad</b>
-<p>Si querés más seguridad antes de comprar, te muestro referencias y resolvemos todas las dudas por WhatsApp.</p>
+<p>Si querés más seguridad antes de comprar, te muestro referencias y resolvemos dudas por WhatsApp.</p>
 <a target="_blank" rel="noopener" href="https://wa.me/5491165292907">Hablar por WhatsApp</a>
 </div>
 </div>
@@ -459,77 +451,10 @@ Trabajo con productos tecnológicos y artículos de uso diario. Mi idea es vende
 <h3>🛍️ Productos a pedido</h3>
 <div class="blackTag">stock externo</div>
 </div>
-
-<p class="minor" style="margin-bottom:12px">
-⚠️ Estos productos se traen a pedido. Puede demorar 1 a 3 días extra el envío. Se reserva con seña.
+<p class="minor" style="margin:0 0 12px;color:var(--muted)">
+Estos productos también se pueden agregar al carrito. Puede demorar 1 a 3 días extra el envío.
 </p>
-
-<div class="grid">
-
-<div class="card">
-<div class="media">
-<img src="magsafe.jpg" alt="Cargador MagSafe imantado">
-</div>
-<div class="name">Cargador MagSafe imantado</div>
-<p class="price">$8.000</p>
-<p class="minor">Mínimo 2 unidades</p>
-</div>
-
-<div class="card">
-<div class="media">
-<img src="humidificador.jpg" alt="Humidificador efecto llama">
-</div>
-<div class="name">Humidificador efecto llama</div>
-<p class="price">$16.000</p>
-<p class="minor">Mínimo 2 unidades</p>
-</div>
-
-<div class="card">
-<div class="media">
-<img src="t12.jpg" alt="Auriculares T12 con pantalla">
-</div>
-<div class="name">Auriculares T12 con pantalla</div>
-<p class="price">$20.000</p>
-<p class="minor">Mínimo 2 unidades</p>
-</div>
-
-<div class="card">
-<div class="media">
-<img src="freidora.jpg" alt="Freidora de aire 7L">
-</div>
-<div class="name">Freidora de aire 7L</div>
-<p class="price">$75.000</p>
-<p class="minor">Mínimo 2 unidades</p>
-</div>
-
-<div class="card">
-<div class="media">
-<img src="pava.jpg" alt="Pava eléctrica 2L acero inoxidable">
-</div>
-<div class="name">Pava eléctrica 2L acero inoxidable</div>
-<p class="price">$25.000</p>
-<p class="minor">Mínimo 2 unidades</p>
-</div>
-
-<div class="card">
-<div class="media">
-<img src="tazas.jpg" alt="Tazas doble vidrio 140ml">
-</div>
-<div class="name">Tazas doble vidrio 140ml</div>
-<p class="price">5 unidades $30.000</p>
-<p class="minor">Venta mínima por pack</p>
-</div>
-
-<div class="card">
-<div class="media">
-<img src="silla.jpg" alt="Silla gamer ergonómica reclinable">
-</div>
-<div class="name">Silla gamer ergonómica reclinable</div>
-<p class="price">$120.000</p>
-<p class="minor">Producto bajo pedido</p>
-</div>
-
-</div>
+<div class="grid" id="pedido"></div>
 </section>
 
 </div>
@@ -682,7 +607,7 @@ id:"tv",
 code:"TV-Q6",
 best:true,
 name:"TV Stick Q6 con apps instaladas",
-img:"q6.jpg",
+img:"tv-q6.jpg",
 price:33000,
 note:"✅ $33.000",
 minor:"Incluye apps instaladas para ver películas, series, deportes y TV en vivo. Servicio de instalación incluido sin costo extra. Se entrega listo para usar, con tutorial paso a paso y soporte post-venta."
@@ -802,6 +727,77 @@ imgs:["quencher-1.jpg","quencher-2.jpg","quencher-3.jpg","quencher-4.jpg","quenc
 price:25000,
 note:"✅ $25.000",
 minor:"Disponible en varios colores. Las fotos son ilustrativas, se entregan según disponibilidad de stock."
+},
+
+{
+id:"magsafe",
+code:"PED-MAGSAFE",
+pedido:true,
+name:"Cargador MagSafe imantado",
+img:"magsafe.jpg",
+price:8000,
+note:"✅ $8.000",
+minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+},
+{
+id:"humidificador",
+code:"PED-HUMID",
+pedido:true,
+name:"Humidificador efecto llama",
+img:"humidificador.jpg",
+price:16000,
+note:"✅ $16.000",
+minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+},
+{
+id:"t12",
+code:"PED-T12",
+pedido:true,
+name:"Auriculares T12 con pantalla",
+img:"t12.jpg",
+price:20000,
+note:"✅ $20.000",
+minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+},
+{
+id:"freidora",
+code:"PED-FREI7L",
+pedido:true,
+name:"Freidora de aire 7L",
+img:"freidora.jpg",
+price:75000,
+note:"✅ $75.000",
+minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+},
+{
+id:"pava",
+code:"PED-PAVA2L",
+pedido:true,
+name:"Pava eléctrica 2L acero inoxidable",
+img:"pava.jpg",
+price:25000,
+note:"✅ $25.000",
+minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+},
+{
+id:"tazas",
+code:"PED-TAZASX5",
+pedido:true,
+name:"Tazas doble vidrio 140ml x5",
+img:"tazas.jpg",
+price:30000,
+note:"✅ 5 unidades $30.000",
+minor:"Producto a pedido. Venta por pack."
+},
+{
+id:"silla",
+code:"PED-SILLA-GAMER",
+pedido:true,
+name:"Silla gamer ergonómica reclinable",
+img:"silla.jpg",
+price:120000,
+note:"✅ $120.000",
+minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
 }
 ];
 
@@ -810,6 +806,7 @@ const meta = new Map();
 
 const $best = document.getElementById("best");
 const $products = document.getElementById("products");
+const $pedido = document.getElementById("pedido");
 const $items = document.getElementById("itemsCount");
 
 const miniItems = document.getElementById("miniItems");
@@ -872,14 +869,7 @@ current.units[idx][key] = value;
 meta.set(id, current);
 }
 
-function setField(id, key, value){
-const current = meta.get(id) || {};
-current[key] = value;
-meta.set(id, current);
-}
-
 window.onUnitField = (id, idx, key, val) => setUnitField(id, idx, key, val);
-window.onField = (id, key, val) => setField(id, key, val);
 
 function setStatus(text, type="warn"){
 statusBox.className = "statusNote " + type;
@@ -931,33 +921,6 @@ html += `</div>`;
 return html;
 }
 
-function renderFields(p){
-if(!p.fields || p.fields.length === 0) return "";
-const m = meta.get(p.id) || {};
-let html = `<div class="opts">`;
-p.fields.forEach(f=>{
-const val = String(m[f.key] ?? "");
-const options = (f.choices || []).map(c=>{
-const sel = (val === c) ? "selected" : "";
-return `<option value="${esc(c)}" ${sel}>${esc(c)}</option>`;
-}).join("");
-html += `
-<div class="unitBox">
-<div class="unitHead">
-<b>${esc(f.label)}${f.required ? " *" : ""}</b>
-<span class="unitChip">Elegí</span>
-</div>
-<select onchange="onField('${p.id}','${f.key}',this.value)">
-<option value="">Elegir...</option>
-${options}
-</select>
-</div>
-`;
-});
-html += `</div>`;
-return html;
-}
-
 function buildCard(p){
 const q = cart.get(p.id) || 0;
 const unit = getUnit(p, q);
@@ -987,7 +950,6 @@ ${p.note ? `<p class="minor">${esc(p.note)}</p>` : ""}
 ${p.minor ? `<p class="minor">${esc(p.minor)}</p>` : ""}
 
 ${renderPerUnit(p, q)}
-${renderFields(p)}
 
 <div class="row">
 <div class="qty">
@@ -1031,6 +993,7 @@ return el;
 function render(){
 $best.innerHTML = "";
 $products.innerHTML = "";
+if($pedido) $pedido.innerHTML = "";
 
 let items = 0;
 let total = 0;
@@ -1042,7 +1005,10 @@ total += getUnit(p,q) * q;
 });
 
 PRODUCTS.filter(p=>p.best).forEach(p => $best.appendChild(buildCard(p)));
-PRODUCTS.filter(p=>!p.best).forEach(p => $products.appendChild(buildCard(p)));
+PRODUCTS.filter(p=>!p.best && !p.pedido).forEach(p => $products.appendChild(buildCard(p)));
+PRODUCTS.filter(p=>p.pedido).forEach(p => {
+if($pedido) $pedido.appendChild(buildCard(p));
+});
 
 $items.textContent = items + " items";
 miniItems.textContent = items;
@@ -1211,19 +1177,6 @@ return false;
 }
 }
 }
-
-if(q > 0 && p.fields){
-const m = meta.get(p.id) || {};
-for(const f of p.fields){
-if(f.required){
-const v = String(m[f.key] ?? "").trim();
-if(!v){
-alert(`Falta completar "${f.label}" en ${p.name}`);
-return false;
-}
-}
-}
-}
 }
 
 return true;
@@ -1329,11 +1282,6 @@ if(parts.length){
 textLines.push(` - Unidad ${i+1}: ${parts.join(" | ")}`);
 }
 }
-} else if(p.fields){
-for(const f of p.fields){
-const v = String(m[f.key] ?? "").trim();
-if(v) textLines.push(` - ${f.label}: ${v}`);
-}
 }
 });
 
@@ -1416,11 +1364,6 @@ if(parts.length){
 msg += ` - Unidad ${i+1}: ${encodeURIComponent(parts.join(" | "))}%0A`;
 }
 }
-} else if(p.fields){
-for(const f of p.fields){
-const v = String(m[f.key] ?? "").trim();
-if(v) msg += ` ${encodeURIComponent(f.label)}: ${encodeURIComponent(v)}%0A`;
-}
 }
 msg += `%0A`;
 });
@@ -1450,7 +1393,6 @@ sendBtn.textContent = "Enviar pedido";
 }
 
 document.getElementById("sendBtn").onclick = sendOrder;
-
 deliveryRules();
 render();
 </script>
