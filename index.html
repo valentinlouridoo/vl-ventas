@@ -592,6 +592,7 @@ logoTest.src = "logo.png?v=" + Date.now();
 })();
 
 const PRODUCTS = [
+
 {
 id:"airpods_pro2",
 code:"AIR-PRO2-ANC",
@@ -602,6 +603,7 @@ price:22500,
 bulkUnit:[{min:3, unit:21000},{min:5, unit:20000},{min:10, unit:19000}],
 note:"✅ 1 $22.500 · 3 $21.000 · 5 $20.000 · 10 $19.000"
 },
+
 {
 id:"tv",
 code:"TV-Q6",
@@ -610,194 +612,188 @@ name:"TV Stick Q6 con apps instaladas",
 img:"tv-q6.jpg",
 price:33000,
 note:"✅ $33.000",
-minor:"Incluye apps instaladas para ver películas, series, deportes y TV en vivo. Servicio de instalación incluido sin costo extra. Se entrega listo para usar, con tutorial paso a paso y soporte post-venta."
+minor:"Incluye apps instaladas, listo para usar + soporte."
 },
+
 {
 id:"parlante_go4",
 code:"SPK-GO4PRO-RGB",
 best:true,
 name:"Parlante Go 4 Pro RGB",
-imgs:["go4-1.jpg","go4-2.jpg","go4-3.jpg","go4-4.jpg","go4-5.jpg"],
+imgs:["go4-1.jpg","go4-2.jpg","go4-3.jpg","go4-4.jpg"],
 price:30000,
 bulkUnit:[{min:3, unit:29000},{min:5, unit:27500}],
-note:"✅ 1 $30.000 · 3 $29.000 · 5 $27.500"
+note:"✅ 1 $30.000 · 3 $29.000 · 5 $27.500",
+fields:[
+{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Azul","Negro","Verde camuflado"] }
+]
 },
+
 {
 id:"patillera",
-code:"BARB-T9",
 best:true,
 name:"Patillera vintage",
 img:"patillera-vintage.jpg",
 price:12000,
 note:"✅ $12.000"
 },
+
 {
 id:"airpods_tws",
-code:"AIR-TWS",
-name:"AirPods TWS (genéricos)",
+name:"AirPods TWS",
 img:"airpods-tws.jpg",
 price:15000,
 bulkUnit:[{min:3, unit:14000}],
-note:"✅ 1 $15.000 · 3 $14.000 c/u"
+note:"✅ 1 $15.000 · 3 $14.000"
 },
+
 {
 id:"adaptador20",
-code:"CHG-20W+CBL",
 name:"Adaptador 20W + cable iPhone",
 img:"adaptador-20w.jpg",
 price:12000,
 bulkUnit:[{min:3, unit:11000},{min:5, unit:10000}],
 note:"✅ 1 $12.000 · 3 $11.000 · 5 $10.000"
 },
+
 {
 id:"adaptador45",
-code:"CHG-45W-C",
-name:"Adaptador 45W (tipo C)",
+name:"Adaptador 45W",
 img:"adaptador-45w.jpg",
 price:15000,
 note:"✅ $15.000"
 },
+
 {
 id:"cables",
-code:"CBL-IND",
-name:"Cables individuales para celular",
+name:"Cables individuales",
 img:"cables-individuales.jpg",
 price:5000,
-minor:"Elegí el tipo por cada unidad.",
-note:"✅ 1 x $5.000",
+note:"✅ $5.000",
 perUnitFields:[
 { key:"tipo", label:"Tipo", type:"select", required:true, choices:["Tipo C a USB-C","Tipo C a Lightning","USB A a Lightning"] }
 ]
 },
+
 {
 id:"fundas",
-code:"CASE-SILICONE",
 name:"Fundas Silicone Case",
 img:"fundas-silicone.jpg",
 price:15000,
 bulkUnit:[{min:5, unit:12000},{min:10, unit:9000}],
-note:"✅ 1 $15.000 · 5 $12.000 c/u · 10 $9.000 c/u",
-minor:"Indicá modelo y color por cada funda.",
+note:"✅ 1 $15.000 · 5 $12.000 · 10 $9.000",
 perUnitFields:[
-{ key:"modelo", label:"Modelo", type:"text", required:true, placeholder:"Ej: iPhone 14 Pro Max" },
-{ key:"color", label:"Color", type:"text", required:true, placeholder:"Ej: Negro / Rosa / Azul" }
+{ key:"modelo", label:"Modelo", type:"text", required:true },
+{ key:"color", label:"Color", type:"text", required:true }
 ]
 },
+
 {
 id:"templados",
-code:"GLASS-9D",
 name:"Vidrio templado 9D",
 img:"templado-9d.jpg",
 price:5000,
 note:"✅ $5.000",
-minor:"Indicá el modelo por cada templado.",
 perUnitFields:[
-{ key:"modelo", label:"Modelo", type:"text", required:true, placeholder:"Ej: iPhone 13" }
+{ key:"modelo", label:"Modelo", type:"text", required:true }
 ]
 },
+
 {
 id:"pad80",
-code:"PAD-GRANDE",
-name:"Pad grande",
-img:"pad-grande.jpg",
+name:"Pad gamer 80x30 cm",
+img:"pad-80x30.jpg",
 price:12000,
 note:"✅ $12.000"
 },
+
 {
 id:"pad30",
-code:"PAD-CHICO",
-name:"Pad chico",
-img:"pad-chico.jpg",
+name:"Pad gamer 30x25 cm",
+img:"pad-30x25.jpg",
 price:9000,
 note:"✅ $9.000"
 },
+
 {
 id:"led",
-code:"LED-RGB",
 name:"Luces LED",
 img:"luces-led.jpg",
 price:12000,
 note:"✅ $12.000"
 },
+
 {
 id:"quencher",
-code:"VASO-QUENCHER",
-name:"Vaso térmico tipo Quencher",
+name:"Vaso Quencher",
 imgs:["quencher-1.jpg","quencher-2.jpg","quencher-3.jpg","quencher-4.jpg","quencher-5.jpg","quencher-6.jpg"],
 price:25000,
-note:"✅ $25.000",
-minor:"Disponible en varios colores. Las fotos son ilustrativas, se entregan según disponibilidad de stock."
+note:"✅ $25.000"
 },
+
+// 🔥 PRODUCTOS A PEDIDO
 
 {
 id:"magsafe",
-code:"PED-MAGSAFE",
 pedido:true,
-name:"Cargador MagSafe imantado",
+name:"Cargador MagSafe",
 img:"magsafe.jpg",
 price:8000,
-note:"✅ $8.000",
-minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+note:"✅ $8.000"
 },
+
 {
 id:"humidificador",
-code:"PED-HUMID",
 pedido:true,
-name:"Humidificador efecto llama",
+name:"Humidificador",
 img:"humidificador.jpg",
 price:16000,
-note:"✅ $16.000",
-minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+note:"✅ $16.000"
 },
+
 {
 id:"t12",
-code:"PED-T12",
 pedido:true,
-name:"Auriculares T12 con pantalla",
+name:"Auriculares T12",
 img:"t12.jpg",
 price:20000,
-note:"✅ $20.000",
-minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+note:"✅ $20.000"
 },
+
 {
 id:"freidora",
-code:"PED-FREI7L",
 pedido:true,
-name:"Freidora de aire 7L",
+name:"Freidora de aire",
 img:"freidora.jpg",
 price:75000,
-note:"✅ $75.000",
-minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+note:"✅ $75.000"
 },
+
 {
 id:"pava",
-code:"PED-PAVA2L",
 pedido:true,
-name:"Pava eléctrica 2L acero inoxidable",
+name:"Pava eléctrica",
 img:"pava.jpg",
 price:25000,
-note:"✅ $25.000",
-minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+note:"✅ $25.000"
 },
+
 {
 id:"tazas",
-code:"PED-TAZASX5",
 pedido:true,
-name:"Tazas doble vidrio 140ml x5",
+name:"Tazas doble vidrio",
 img:"tazas.jpg",
 price:30000,
-note:"✅ 5 unidades $30.000",
-minor:"Producto a pedido. Venta por pack."
+note:"✅ $30.000"
 },
+
 {
 id:"silla",
-code:"PED-SILLA-GAMER",
 pedido:true,
-name:"Silla gamer ergonómica reclinable",
+name:"Silla gamer",
 img:"silla.jpg",
 price:120000,
-note:"✅ $120.000",
-minor:"Producto a pedido. Puede demorar 1 a 3 días extra."
+note:"✅ $120.000"
 }
 ];
 
