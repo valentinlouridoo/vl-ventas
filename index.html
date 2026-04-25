@@ -446,16 +446,7 @@ Trabajo con productos tecnológicos y artículos de uso diario. Mi idea es vende
 <div class="grid" id="products"></div>
 </section>
 
-<section class="section">
-<div class="sectionTitle">
-<h3>🛍️ Productos a pedido</h3>
-<div class="blackTag">stock externo</div>
-</div>
-<p class="minor" style="margin:0 0 12px;color:var(--muted)">
-Estos productos también se pueden agregar al carrito. Puede demorar 1 a 3 días extra el envío.
-</p>
-<div class="grid" id="pedido"></div>
-</section>
+
 
 </div>
 </main>
@@ -599,9 +590,9 @@ code:"AIR-PRO2-ANC",
 best:true,
 name:"AirPods Pro 2 (sello ANC)",
 img:"airpods-pro2.jpg",
-price:22500,
-bulkUnit:[{min:3, unit:21000},{min:5, unit:20000},{min:10, unit:19000}],
-note:"✅ 1 $22.500 · 3 $21.000 · 5 $20.000 · 10 $19.000"
+price:20000,
+bulkUnit:[{min:3, unit:20000},{min:5, unit:19500},{min:10, unit:19000},{min:20, unit:18500}],
+note:"✅ 1 $20.000 · 3 $20.000 · 5 $19.500 · 10 $19.000 · 20 $18.500"
 },
 
 {
@@ -621,12 +612,35 @@ code:"SPK-GO4PRO-RGB",
 best:true,
 name:"Parlante Go 4 Pro RGB",
 imgs:["go4-1.jpg","go4-2.jpg","go4-3.jpg","go4-4.jpg"],
-price:30000,
-bulkUnit:[{min:3, unit:29000},{min:5, unit:27500}],
-note:"✅ 1 $30.000 · 3 $29.000 · 5 $27.500",
-fields:[
-{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Azul","Negro","Verde camuflado"] }
-]
+price:25000,
+note:"✅ $25.000",
+fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Azul","Negro","Verde camuflado"] }]
+},
+
+{
+id:"camiseta_arg_titular",
+category:"camisetas",
+best:true,
+name:"Camiseta Argentina titular versión jugador",
+img:"camiseta-argentina-titular.jpg",
+price:40000,
+bulkUnit:[{min:5, unit:38000},{min:10, unit:35000}],
+note:"✅ Mínimo 3 unidades · 3 $40.000 c/u · 5 $38.000 c/u · 10 $35.000 c/u",
+minor:"Calidad tailandesa premium · Termosellada",
+perUnitFields:[{ key:"talle", label:"Talle", type:"text", required:true },{ key:"detalle", label:"Detalle / versión", type:"text", required:false }]
+},
+
+{
+id:"camiseta_arg_suplente",
+category:"camisetas",
+best:true,
+name:"Camiseta Argentina suplente versión hincha",
+img:"camiseta-argentina-suplente.jpg",
+price:40000,
+bulkUnit:[{min:5, unit:38000},{min:10, unit:35000}],
+note:"✅ Mínimo 3 unidades · 3 $40.000 c/u · 5 $38.000 c/u · 10 $35.000 c/u",
+minor:"Calidad tailandesa premium · Termosellada",
+perUnitFields:[{ key:"talle", label:"Talle", type:"text", required:true },{ key:"detalle", label:"Detalle / versión", type:"text", required:false }]
 },
 
 {
@@ -652,8 +666,7 @@ id:"adaptador20",
 name:"Adaptador 20W + cable iPhone",
 img:"adaptador-20w.jpg",
 price:12000,
-bulkUnit:[{min:3, unit:11000},{min:5, unit:10000}],
-note:"✅ 1 $12.000 · 3 $11.000 · 5 $10.000"
+note:"✅ $12.000"
 },
 
 {
@@ -670,22 +683,67 @@ name:"Cables individuales",
 img:"cables-individuales.jpg",
 price:5000,
 note:"✅ $5.000",
-perUnitFields:[
-{ key:"tipo", label:"Tipo", type:"select", required:true, choices:["Tipo C a USB-C","Tipo C a Lightning","USB A a Lightning"] }
-]
+perUnitFields:[{ key:"tipo", label:"Tipo", type:"select", required:true, choices:["Tipo C a USB-C","Tipo C a Lightning","USB A a Lightning"] }]
 },
 
 {
-id:"fundas",
-name:"Fundas Silicone Case",
-img:"fundas-silicone.jpg",
-price:15000,
+id:"funda_silicone_premium",
+category:"fundas",
+name:"Fundas iPhone Silicone Case Premium",
+img:"funda-silicone-premium.jpg",
+price:13500,
 bulkUnit:[{min:5, unit:12000},{min:10, unit:9000}],
-note:"✅ 1 $15.000 · 5 $12.000 · 10 $9.000",
-perUnitFields:[
-{ key:"modelo", label:"Modelo", type:"text", required:true },
-{ key:"color", label:"Color", type:"text", required:true }
-]
+note:"✅ Mínimo 3 fundas · 3 $13.500 c/u · 5 $12.000 c/u · 10 $9.000 c/u",
+minor:"iPhone 11 al 17 Pro Max · Colores modernos, stock surtido o a elección.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
+},
+
+{
+id:"funda_magsafe_mate",
+category:"fundas",
+name:"Funda MagSafe Mate",
+img:"funda-magsafe-mate.jpg",
+price:12000,
+bulkUnit:[{min:5, unit:10000},{min:10, unit:8000}],
+note:"✅ Mínimo 3 fundas · 3 $12.000 c/u · 5 $10.000 c/u · 10 $8.000 c/u",
+minor:"Compatible MagSafe · iPhone 12 hasta 17 Pro Max · Colores varios.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
+},
+
+{
+id:"funda_texturada_magsafe",
+category:"fundas",
+name:"Funda texturada MagSafe",
+img:"funda-texturada-magsafe.jpg",
+price:12000,
+bulkUnit:[{min:5, unit:10000},{min:10, unit:8000}],
+note:"✅ Mínimo 3 fundas · 3 $12.000 c/u · 5 $10.000 c/u · 10 $8.000 c/u",
+minor:"Agarre antideslizante · Blanco, negro, marrón y violeta · iPhone 12 al 17 Pro Max.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
+},
+
+{
+id:"funda_puffer",
+category:"fundas",
+name:"Funda Puffer",
+img:"funda-puffer.jpg",
+price:10000,
+bulkUnit:[{min:5, unit:8500},{min:10, unit:7000}],
+note:"✅ Mínimo 3 fundas · 3 $10.000 c/u · 5 $8.500 c/u · 10 $7.000 c/u",
+minor:"Diseño acolchado · Protección alta · iPhone 11 al 16 Pro Max.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
+},
+
+{
+id:"funda_magsafe_acrilica",
+category:"fundas",
+name:"Funda MagSafe acrílica",
+img:"funda-magsafe-acrilica.jpg",
+price:10000,
+bulkUnit:[{min:5, unit:8500},{min:10, unit:7000}],
+note:"✅ Mínimo 3 fundas · 3 $10.000 c/u · 5 $8.500 c/u · 10 $7.000 c/u",
+minor:"Transparente rígida · Compatible MagSafe · iPhone 11 al 17 Pro Max.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
 },
 
 {
@@ -694,9 +752,7 @@ name:"Vidrio templado 9D",
 img:"templado-9d.jpg",
 price:5000,
 note:"✅ $5.000",
-perUnitFields:[
-{ key:"modelo", label:"Modelo", type:"text", required:true }
-]
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true }]
 },
 
 {
@@ -727,82 +783,16 @@ note:"✅ $12.000"
 id:"quencher",
 name:"Vaso Quencher",
 imgs:["quencher-1.jpg","quencher-2.jpg","quencher-3.jpg","quencher-4.jpg","quencher-5.jpg","quencher-6.jpg"],
-price:25000,
-note:"✅ $25.000"
-},
-
-// 🔥 PRODUCTOS A PEDIDO
-
-{
-id:"magsafe",
-pedido:true,
-name:"Cargador MagSafe",
-img:"magsafe.jpg",
-price:8000,
-note:"✅ $8.000"
-},
-
-{
-id:"humidificador",
-pedido:true,
-name:"Humidificador",
-img:"humidificador.jpg",
-price:16000,
-note:"✅ $16.000"
-},
-
-{
-id:"t12",
-pedido:true,
-name:"Auriculares T12",
-img:"t12.jpg",
 price:20000,
 note:"✅ $20.000"
-},
-
-{
-id:"freidora",
-pedido:true,
-name:"Freidora de aire",
-img:"freidora.jpg",
-price:75000,
-note:"✅ $75.000"
-},
-
-{
-id:"pava",
-pedido:true,
-name:"Pava eléctrica",
-img:"pava.jpg",
-price:25000,
-note:"✅ $25.000"
-},
-
-{
-id:"tazas",
-pedido:true,
-name:"Tazas doble vidrio",
-img:"tazas.jpg",
-price:30000,
-note:"✅ $30.000"
-},
-
-{
-id:"silla",
-pedido:true,
-name:"Silla gamer",
-img:"silla.jpg",
-price:120000,
-note:"✅ $120.000"
 }
-];
+];>
 
 const cart = new Map();
 const meta = new Map();
 
 const $best = document.getElementById("best");
 const $products = document.getElementById("products");
-const $pedido = document.getElementById("pedido");
 const $items = document.getElementById("itemsCount");
 
 const miniItems = document.getElementById("miniItems");
@@ -989,8 +979,6 @@ return el;
 function render(){
 $best.innerHTML = "";
 $products.innerHTML = "";
-if($pedido) $pedido.innerHTML = "";
-
 let items = 0;
 let total = 0;
 
@@ -1001,7 +989,7 @@ total += getUnit(p,q) * q;
 });
 
 PRODUCTS.filter(p=>p.best).forEach(p => $best.appendChild(buildCard(p)));
-PRODUCTS.filter(p=>!p.best && !p.pedido).forEach(p => $products.appendChild(buildCard(p)));
+PRODUCTS.filter(p=>!p.best).forEach(p => $products.appendChild(buildCard(p)));
 PRODUCTS.filter(p=>p.pedido).forEach(p => {
 if($pedido) $pedido.appendChild(buildCard(p));
 });
@@ -1152,6 +1140,22 @@ return false;
 
 if(!delivery){
 alert("Elegí la forma de entrega.");
+return false;
+}
+
+const fundasQty = PRODUCTS
+.filter(p => p.category === "fundas")
+.reduce((acc,p) => acc + (cart.get(p.id) || 0), 0);
+if(fundasQty > 0 && fundasQty < 3){
+alert("Las fundas tienen mínimo 3 unidades en total. Podés mezclar modelos, pero agregá al menos 3 fundas.");
+return false;
+}
+
+const camisetasQty = PRODUCTS
+.filter(p => p.category === "camisetas")
+.reduce((acc,p) => acc + (cart.get(p.id) || 0), 0);
+if(camisetasQty > 0 && camisetasQty < 3){
+alert("Las camisetas tienen mínimo 3 unidades en total.");
 return false;
 }
 
