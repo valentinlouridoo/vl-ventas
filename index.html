@@ -4,82 +4,1381 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Valentín Ventas - Catálogo</title>
+<meta name="description" content="Catálogo de productos · Armá tu pedido y coordinamos por WhatsApp" />
 
 <style>
-body{background:#0b0b0c;color:#fff;font-family:Arial;margin:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;padding:20px}
-.card{background:#17171a;border-radius:15px;padding:10px}
-.card img{width:100%;height:220px;object-fit:contain}
-.name{font-weight:bold;margin-top:10px}
-.price{color:#c9a227;font-weight:bold}
-button{padding:8px 12px;margin-top:10px;border:none;border-radius:8px;background:#c9a227;cursor:pointer}
+:root{
+--bg:#0b0b0c;
+--bg2:#121214;
+--card:#17171a;
+--card2:#1d1d21;
+--text:#f5f5f5;
+--muted:#b7b7bf;
+--line:#2c2c31;
+--shadow:0 18px 45px rgba(0,0,0,.35);
+--accent:#c9a227;
+--accent2:#e6c55a;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+background:
+radial-gradient(900px 500px at 15% 0%, rgba(201,162,39,.08), transparent 70%),
+radial-gradient(900px 500px at 85% 10%, rgba(255,255,255,.03), transparent 65%),
+linear-gradient(180deg, var(--bg), #111 55%);
+color:var(--text);
+}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+
+header{
+position:fixed;top:0;left:0;right:0;z-index:50;
+transition:transform .35s ease;
+background:
+linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.75)),
+url('headerr.jpg') center/cover no-repeat;
+border-bottom:1px solid rgba(255,255,255,.08);
+backdrop-filter: blur(8px);
+}
+header.noimg{
+background:linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.92));
+}
+header.hide{transform:translateY(-100%)}
+header .wrap{padding:14px 16px}
+
+.brand{
+margin:0;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+min-height:52px;
+text-align:center;
+font-weight:1000;
+font-size:26px;
+color:#fff;
+text-shadow:0 10px 28px rgba(0,0,0,.35);
+}
+.brand img{
+max-height:56px;
+max-width:220px;
+object-fit:contain;
+display:block;
+}
+.brandText{color:#fff;letter-spacing:.3px}
+.sub{
+margin:6px 0 0;
+opacity:.95;
+font-size:13px;
+color:#f4ead0;
+text-shadow:0 10px 28px rgba(0,0,0,.35);
+text-align:center;
+}
+.pill{
+margin:10px auto 0;
+width:max-content;
+background:rgba(201,162,39,.14);
+border:1px solid rgba(201,162,39,.22);
+padding:7px 12px;
+border-radius:999px;
+font-size:12px;
+font-weight:900;
+color:#f8e3a0;
+}
+
+main{padding:118px 0 120px}
+
+.intro,.community,.trust,.section{
+background:linear-gradient(180deg,var(--bg2),var(--card));
+border:1px solid rgba(255,255,255,.06);
+box-shadow:var(--shadow);
+border-radius:26px;
+}
+.intro{padding:18px;margin:12px 0 14px;text-align:center}
+.intro h2{margin:0;font-size:18px;font-weight:1000;color:#fff}
+.intro p{margin:10px auto 0;color:var(--muted);font-size:13.5px;line-height:1.5;max-width:820px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.badge{
+font-size:12px;
+background:#111;
+border:1px solid rgba(201,162,39,.22);
+padding:7px 11px;
+border-radius:999px;
+font-weight:950;
+color:#f3ddb0;
+box-shadow:0 10px 18px rgba(0,0,0,.20);
+}
+.notePay{
+margin-top:10px;
+font-size:12px;
+color:#f5e4b0;
+background:#111;
+border:1px solid rgba(201,162,39,.22);
+padding:10px 12px;
+border-radius:16px;
+display:inline-block;
+box-shadow:0 10px 18px rgba(0,0,0,.20);
+}
+
+.community,.trust,.section{padding:14px;margin:14px 0}
+.communityTop,.trustTop,.sectionTitle{
+display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px
+}
+.communityTop h3,.trustTop h3,.sectionTitle h3{
+margin:0;font-size:14px;font-weight:1000;display:flex;align-items:center;gap:8px;color:#fff
+}
+.blackTag{
+background:#0c0c0d;
+color:#f3ddb0;
+padding:6px 10px;
+border-radius:999px;
+font-size:12px;
+font-weight:950;
+border:1px solid rgba(201,162,39,.18);
+}
+.communityGrid,.trustGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.commCard,.trustCard{
+background:var(--card2);
+border:1px solid var(--line);
+border-radius:18px;
+padding:14px;
+box-shadow:0 10px 18px rgba(0,0,0,.15);
+display:flex;
+gap:12px;
+align-items:flex-start;
+}
+.icon{
+width:38px;height:38px;border-radius:14px;
+background:#101012;border:1px solid rgba(201,162,39,.18);
+display:flex;align-items:center;justify-content:center;flex:0 0 auto;overflow:hidden
+}
+.icon img{width:22px;height:22px;object-fit:contain;display:block}
+.icon span{font-weight:1000;font-size:12px;color:#f3ddb0}
+.commCard b,.trustCard b{display:block;margin:0 0 4px;color:#fff}
+.commCard p,.trustCard p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.35}
+.commCard a,.trustCard a{
+display:inline-block;margin-top:10px;text-decoration:none;
+background:linear-gradient(180deg,var(--accent2),var(--accent));
+color:#111;
+padding:9px 12px;
+border-radius:12px;
+font-weight:1000;
+font-size:13px;
+}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{
+background:var(--card2);
+border-radius:20px;
+padding:12px;
+box-shadow:0 14px 34px rgba(0,0,0,.20);
+border:1px solid rgba(255,255,255,.06);
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+.media{
+width:100%;
+height:260px;
+border-radius:16px;
+background:#0f0f11;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.06);
+position:relative;
+}
+.media img{width:100%;height:100%;object-fit:contain;display:block;background:#0f0f11}
+.media .ph{
+position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+color:#8b8b95;font-weight:1000;font-size:12px;background:linear-gradient(180deg,#111,#16161a)
+}
+.dots{
+position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;gap:6px;pointer-events:none
+}
+.dot{
+width:8px;height:8px;border-radius:999px;
+background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.08)
+}
+.dot.on{background:rgba(201,162,39,.95)}
+
+.name{font-weight:1000;line-height:1.15;color:#fff}
+.price{margin:0;font-weight:1000;font-size:18px;color:#f8e3a0}
+.price small{font-weight:800;color:var(--muted);font-size:12px}
+.minor{margin:0;font-size:12px;color:var(--muted);line-height:1.35}
+.tag2{
+font-size:12px;
+background:rgba(201,162,39,.12);
+color:#f5d678;
+border:1px solid rgba(201,162,39,.20);
+padding:5px 10px;
+border-radius:999px;
+width:max-content;
+font-weight:900
+}
+
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{
+width:36px;height:36px;border:0;border-radius:12px;background:#111;
+font-size:18px;font-weight:1000;color:#fff;cursor:pointer;border:1px solid rgba(255,255,255,.06)
+}
+.btn{
+border:0;border-radius:14px;padding:10px 14px;
+background:linear-gradient(180deg,var(--accent2),var(--accent));
+color:#111;
+font-weight:1000;
+box-shadow:0 10px 18px rgba(0,0,0,.25);
+cursor:pointer
+}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+
+.opts{display:flex;flex-direction:column;gap:10px;padding-top:2px}
+.unitBox{
+border:1px solid var(--line);
+border-radius:16px;
+padding:10px;
+background:#111114;
+box-shadow:0 10px 18px rgba(0,0,0,.12)
+}
+.unitHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.unitHead b{font-size:13px;color:#fff}
+.unitChip{
+font-size:11px;font-weight:950;padding:5px 9px;border-radius:999px;
+background:#17171b;border:1px solid rgba(201,162,39,.18);color:#f3ddb0
+}
+.unitGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.unitGrid input,.unitGrid select,.inputs input,.field select{
+width:100%;min-width:0;padding:10px 12px;border-radius:12px;border:1px solid var(--line);
+font-size:14px;outline:none;background:#0f0f12;color:#fff
+}
+.unitGrid input::placeholder,.inputs input::placeholder{color:#8f8f98}
+
+.cartMini{
+position:fixed;left:0;right:0;bottom:0;background:#0e0e10;border-top:1px solid rgba(255,255,255,.06);
+box-shadow:0 -12px 30px rgba(0,0,0,.28);z-index:20
+}
+.miniRow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0}
+.miniLeft{display:flex;flex-direction:column;gap:2px}
+.miniLeft .t1{font-weight:1000;font-size:18px;color:#f8e3a0}
+.miniLeft .t2{font-size:12px;color:var(--muted)}
+.miniBtns{display:flex;gap:8px;align-items:center}
+.miniBtn{
+border:1px solid rgba(255,255,255,.08);background:#141418;color:#fff;border-radius:14px;padding:10px 12px;font-weight:1000;cursor:pointer
+}
+.miniBtn.primary{
+border:0;background:linear-gradient(180deg,var(--accent2),var(--accent));color:#111;
+box-shadow:0 10px 18px rgba(0,0,0,.25)
+}
+
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:30;display:none}
+.drawer{
+position:fixed;left:0;right:0;bottom:0;background:#111114;border-top-left-radius:18px;border-top-right-radius:18px;
+box-shadow:0 -18px 45px rgba(0,0,0,.38);z-index:31;transform:translateY(105%);transition:transform .22s ease;
+max-height:84vh;overflow:auto;border-top:1px solid rgba(255,255,255,.06)
+}
+.drawer.open{transform:translateY(0)}
+.drawerHead{
+padding:10px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;
+position:sticky;top:0;background:#111114;z-index:1
+}
+.grab{width:44px;height:5px;border-radius:999px;background:#303038;margin:4px auto 0}
+.drawerTitle{font-weight:1000;color:#fff}
+.xbtn{
+border:1px solid rgba(255,255,255,.08);background:#17171b;color:#fff;border-radius:12px;padding:8px 10px;font-weight:1000;cursor:pointer
+}
+.drawerBody{padding:12px 16px 16px}
+
+.cartList{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.cartItem{
+display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:10px;background:#17171b
+}
+.cartThumb{
+width:56px;height:56px;border-radius:14px;border:1px solid var(--line);overflow:hidden;flex:0 0 auto;background:#0f0f12;position:relative
+}
+.cartThumb img{width:100%;height:100%;object-fit:contain;background:#0f0f12;display:block}
+.cartThumb .ph{
+position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8b8b95;font-weight:1000;font-size:10px;background:#111
+}
+.cartInfo{flex:1;min-width:0}
+.cartInfo b{display:block;font-size:13px;line-height:1.2;color:#fff}
+.cartInfo small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.cartRight{text-align:right}
+.cartRight .subt{font-weight:1000;color:#f8e3a0}
+.cartRight .miniQ{font-size:12px;color:var(--muted)}
+
+.inputs{display:flex;flex-direction:column;gap:10px}
+.line2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shipbox{display:grid;grid-template-columns:1fr;gap:8px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;color:var(--muted);font-weight:1000}
+.shipnote{font-size:12px;color:var(--muted);line-height:1.3;margin-top:2px}
+.statusNote{
+font-size:12px;border-radius:12px;padding:10px 12px;border:1px solid var(--line);background:#17171b;color:#ddd
+}
+.statusNote.ok{color:#b7f7c9;background:#0f1b13;border-color:#1f6b35}
+.statusNote.warn{color:#f0d993;background:#1a1710;border-color:#7f6320}
+.statusNote.bad{color:#fecaca;background:#1d1010;border-color:#7f1d1d}
+
+.drawerFooter{position:sticky;bottom:0;background:#111114;border-top:1px solid var(--line);margin-top:12px}
+.drawerFooter .sum{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 12px}
+.drawerFooter strong{font-size:18px;font-weight:1000;color:#f8e3a0}
+.safePay{
+margin:0 16px 10px;background:#16161a;border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:12px;color:#ddd;line-height:1.35
+}
+.drawerFooter .btn{width:calc(100% - 32px);margin:0 16px 14px;padding:12px 14px;border-radius:16px}
+
+@media (max-width:760px){
+.communityGrid,.trustGrid,.line2,.unitGrid{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
 
-<h2 style="text-align:center;margin-top:20px;">Valentín Ventas</h2>
+<header id="header">
+<div class="wrap">
+<h1 class="brand" id="brandBox">
+<img src="logo.png" alt="Logo" id="brandLogo" style="display:none">
+<span class="brandText" id="brandText">Valentín Ventas</span>
+</h1>
+<p class="sub">Catálogo de productos · Armá tu pedido y coordinamos por WhatsApp</p>
+<div class="pill" id="itemsCount">0 items</div>
+</div>
+</header>
 
+<main>
+<div class="wrap">
+
+<section class="intro">
+<h2>Holaa 👋 Soy Valentín</h2>
+<p>
+Trabajo con productos tecnológicos y artículos de uso diario. Mi idea es vender claro, rápido y con buena atención.
+</p>
+<div class="badges">
+<div class="badge">+150 clientes</div>
+<div class="badge">Atención por WhatsApp</div>
+<div class="badge">Envíos a todo el país</div>
+<div class="badge">Retiro en Hurlingham</div>
+</div>
+<div class="notePay">✅ No se paga nada en la web. Solo armás el pedido y después coordinamos.</div>
+</section>
+
+<section class="community">
+<div class="communityTop">
+<h3>🤝 Sumate a la comunidad</h3>
+<div class="blackTag">beneficios reales</div>
+</div>
+
+<div class="communityGrid">
+<div class="commCard">
+<div class="icon">
+<img src="instagram.png" alt="Instagram" onerror="this.remove(); this.parentElement.innerHTML='<span>IG</span>';">
+</div>
+<div>
+<b>Instagram (@valentinventass)</b>
+<p>Ingresos nuevos, precios reales, stock y promos. Todo lo que ves ahí, lo podés pedir directo.</p>
+<a target="_blank" rel="noopener" href="https://www.instagram.com/valentinventass">Seguir</a>
+</div>
+</div>
+
+<div class="commCard">
+<div class="icon">
+<img src="whatsapp.png" alt="WhatsApp" onerror="this.remove(); this.parentElement.innerHTML='<span>WA</span>';">
+</div>
+<div>
+<b>Comunidad WhatsApp</b>
+<p>Te aviso primero ingresos, precios especiales y stock limitado. No es spam.</p>
+<a target="_blank" rel="noopener" href="https://chat.whatsapp.com/EFLSmI4IifTFEEkwK2l0X9">Unirme</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="trust">
+<div class="trustTop">
+<h3>⭐ Referencias y confianza</h3>
+<div class="blackTag">clientes reales</div>
+</div>
+
+<div class="trustGrid">
+<div class="trustCard">
+<div class="icon">
+<img src="instagram.png" alt="Instagram" onerror="this.remove(); this.parentElement.innerHTML='<span>IG</span>';">
+</div>
+<div>
+<b>Mis referencias están en Instagram</b>
+<p>En mis destacadas podés ver entregas, referencias y experiencias de clientes que ya compraron.</p>
+<a target="_blank" rel="noopener" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDc0MjUxNDM5NDI4MDE4?igsh=MWo0OXA2dWt4a3FsZw==">Ver destacadas</a>
+</div>
+</div>
+
+<div class="trustCard">
+<div class="icon">
+<img src="whatsapp.png" alt="WhatsApp" onerror="this.remove(); this.parentElement.innerHTML='<span>WA</span>';">
+</div>
+<div>
+<b>Compra con tranquilidad</b>
+<p>Si querés más seguridad antes de comprar, te muestro referencias y resolvemos dudas por WhatsApp.</p>
+<a target="_blank" rel="noopener" href="https://wa.me/5491165292907">Hablar por WhatsApp</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="sectionTitle">
+<h3>🔥 Más vendidos</h3>
+<div class="blackTag">los más pedidos</div>
+</div>
+<div class="grid" id="best"></div>
+</section>
+
+<section class="section">
+<div class="sectionTitle">
+<h3>🛒 Catálogo completo</h3>
+<div class="blackTag">stock disponible</div>
+</div>
 <div class="grid" id="products"></div>
+</section>
 
+</div>
+</main>
+
+<div class="cartMini">
+<div class="wrap">
+<div class="miniRow">
+<div class="miniLeft">
+<div class="t1" id="miniTotal">$0</div>
+<div class="t2"><span id="miniItems">0</span> items</div>
+</div>
+<div class="miniBtns">
+<button class="miniBtn" id="openCart">Ver carrito</button>
+<button class="miniBtn primary" id="openCheckout">Finalizar</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="backdrop" id="backdropCart"></div>
+<div class="drawer" id="drawerCart">
+<div class="drawerHead">
+<div>
+<div class="grab"></div>
+<div class="drawerTitle">Tu carrito</div>
+</div>
+<button class="xbtn" id="closeCart">Cerrar</button>
+</div>
+<div class="drawerBody">
+<div class="cartList" id="cartList"></div>
+<p class="minor" style="margin:0;color:var(--muted)">
+*El costo del envío se confirma después según tu CP.*
+</p>
+</div>
+</div>
+
+<div class="backdrop" id="backdrop"></div>
+<div class="drawer" id="drawer">
+<div class="drawerHead">
+<div>
+<div class="grab"></div>
+<div class="drawerTitle">Finalizar pedido</div>
+</div>
+<button class="xbtn" id="closeDrawer">Cerrar</button>
+</div>
+
+<div class="drawerBody">
+<div class="inputs">
+<div class="line2">
+<input id="name" placeholder="Nombre *">
+<input id="lastname" placeholder="Apellido *">
+</div>
+
+<div class="line2">
+<input id="phone" placeholder="Número de teléfono *">
+<input id="email" placeholder="Email *">
+</div>
+
+<div class="line2">
+<input id="province" placeholder="Provincia *">
+<input id="cp" placeholder="Código Postal *">
+</div>
+
+<div class="shipbox">
+<div class="field">
+<label>Entrega *</label>
+<select id="delivery">
+<option value="">Elegir...</option>
+<option value="Retiro en Hurlingham">Retiro en Hurlingham</option>
+<option value="Envío por Correo Argentino">Envío por Correo Argentino</option>
+<option value="Motomensajería (Uber Moto) - solo GBA y CABA">Motomensajería (Uber Moto) - solo GBA y CABA</option>
+</select>
+</div>
+</div>
+
+<div class="shipnote" id="shipNote">
+*El costo del envío se confirma al finalizar según tu CP.*
+</div>
+
+<div class="statusNote warn" id="statusBox">
+El pedido se manda a tu WhatsApp y también queda enviado por mail.
+</div>
+</div>
+
+<div class="drawerFooter">
+<div class="sum">
+<strong id="drawerTotal">$0</strong>
+</div>
+
+<div class="safePay">
+✅ No hay pagos ni links raros en la web. Solo se arma el pedido y después se coordina stock + envío.
+</div>
+
+<button class="btn" id="sendBtn">Enviar pedido</button>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+const EMAILJS_SERVICE_ID = "service_pmsu7hl";
+const EMAILJS_TEMPLATE_ID = "template_72wxpxs";
+const EMAILJS_PUBLIC_KEY = "_EXnBgRQNamY-MC4b";
+const WHATSAPP_NUMBER = "5491165292907";
+
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+let lastScrollY = window.scrollY;
+const header = document.getElementById("header");
+window.addEventListener("scroll", () => {
+const y = window.scrollY;
+if (y > lastScrollY && y > 80) header.classList.add("hide");
+else header.classList.remove("hide");
+lastScrollY = y;
+});
+
+(function(){
+const test = new Image();
+test.onerror = () => header.classList.add("noimg");
+test.src = "headerr.jpg?v=" + Date.now();
+
+const logo = document.getElementById("brandLogo");
+const text = document.getElementById("brandText");
+const logoTest = new Image();
+logoTest.onload = () => {
+logo.style.display = "block";
+text.style.display = "none";
+};
+logoTest.onerror = () => {
+logo.style.display = "none";
+text.style.display = "inline";
+};
+logoTest.src = "logo.png?v=" + Date.now();
+})();
+
 const PRODUCTS = [
-
-{ id:"airpods_pro2", name:"AirPods Pro 2 (sello ANC)", img:"airpods-pro2.jpg", price:20000 },
-
-{ id:"tv", name:"Tokyo Style TV Stick con apps instaladas", img:"tvstick.jpg", price:33000 },
-
-{ id:"go4", name:"Parlante Go 4 Pro RGB", img:"go4-1.jpg", price:25000 },
-
-{ id:"camiseta_normal", name:"Camiseta Argentina normal", img:"camiseta-argentina-normal.jpg", price:40000 },
-
-{ id:"camiseta_termica", name:"Camiseta Argentina termosellada", img:"camiseta-argentina-termosellada.jpg", price:40000 },
-
-{ id:"patillera", name:"Patillera vintage", img:"patillera-vintage.jpg", price:12000 },
-
-{ id:"adaptador20", name:"Adaptador 20W + cable iPhone", img:"adaptador-20w.jpg", price:12000 },
-
-{ id:"adaptador45", name:"Adaptador 45W", img:"adaptador-45w.jpg", price:15000 },
-
-{ id:"cables", name:"Cables individuales", img:"cables-individuales.jpg", price:5000 },
-
-{ id:"funda1", name:"Funda Silicone Premium", img:"funda-silicone-premium.jpg", price:13500 },
-
-{ id:"funda2", name:"Funda MagSafe Mate", img:"funda-magsafe-mate.jpg", price:12000 },
-
-{ id:"funda3", name:"Funda texturada MagSafe", img:"funda-texturada-magsafe.jpg", price:12000 },
-
-{ id:"funda4", name:"Funda Puffer", img:"funda-puffer.jpg", price:10000 },
-
-{ id:"funda5", name:"Funda MagSafe acrílica", img:"funda-magsafe-acrilica.jpg", price:10000 },
-
-{ id:"templado", name:"Vidrio templado 9D", img:"templado-9d.jpg", price:5000 },
-
-{ id:"pad80", name:"Pad gamer 80x30 cm", img:"pad-80x30.jpg", price:12000 },
-
-{ id:"pad30", name:"Pad gamer 30x25 cm", img:"pad-30x25.jpg", price:9000 },
-
-{ id:"led", name:"Luces LED", img:"luces-led.jpg", price:12000 },
-
-{ id:"quencher", name:"Vaso Quencher", img:"quencher-1.jpg", price:20000 }
-
+{
+id:"airpods_pro2",
+code:"AIR-PRO2-ANC",
+best:true,
+name:"AirPods Pro 2 (sello ANC)",
+img:"airpods-pro2.jpg",
+price:20000,
+bulkUnit:[{min:3, unit:20000},{min:5, unit:19500},{min:10, unit:19000},{min:20, unit:18500}],
+note:"✅ 1 $20.000 · 3 $20.000 · 5 $19.500 · 10 $19.000 · 20 $18.500"
+},
+{
+id:"tv",
+code:"TV-Q6",
+best:true,
+name:"Tokyo Style TV Stick con apps y codificado instalado",
+img:"tvstick.jpg",
+price:33000,
+note:"✅ $33.000",
+minor:"Incluye apps instaladas, listo para usar + soporte."
+},
+{
+id:"parlante_go4",
+code:"SPK-GO4PRO-RGB",
+best:true,
+name:"Parlante Go 4 Pro RGB",
+imgs:["go4-1.jpg","go4-2.jpg","go4-3.jpg","go4-4.jpg"],
+price:25000,
+note:"✅ $25.000",
+perUnitFields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Azul","Negro","Verde camuflado"] }]
+},
+{
+id:"camiseta_arg_normal",
+code:"CAM-ARG-NORMAL",
+category:"camisetas",
+best:true,
+name:"Camiseta Argentina normal",
+img:"camiseta-argentina-normal.jpg",
+price:40000,
+bulkUnit:[{min:5, unit:38000},{min:10, unit:35000}],
+note:"✅ Mínimo 3 unidades · 3 $40.000 c/u · 5 $38.000 c/u · 10 $35.000 c/u",
+minor:"Modelo normal · Se coordina talle y detalle por WhatsApp.",
+perUnitFields:[{ key:"talle", label:"Talle", type:"text", required:true },{ key:"detalle", label:"Detalle", type:"text", required:false }]
+},
+{
+id:"camiseta_arg_termosellada",
+code:"CAM-ARG-TERMO",
+category:"camisetas",
+best:true,
+name:"Camiseta Argentina termosellada",
+img:"camiseta-argentina-termosellada.jpg",
+price:40000,
+bulkUnit:[{min:5, unit:38000},{min:10, unit:35000}],
+note:"✅ Mínimo 3 unidades · 3 $40.000 c/u · 5 $38.000 c/u · 10 $35.000 c/u",
+minor:"Modelo termosellado · Se coordina talle y detalle por WhatsApp.",
+perUnitFields:[{ key:"talle", label:"Talle", type:"text", required:true },{ key:"detalle", label:"Detalle", type:"text", required:false }]
+},
+{
+id:"patillera",
+code:"PAT-VINTAGE",
+best:true,
+name:"Patillera vintage",
+img:"patillera-vintage.jpg",
+price:12000,
+note:"✅ $12.000"
+},
+{
+id:"adaptador20",
+code:"CHG-20W",
+name:"Adaptador 20W + cable iPhone",
+img:"adaptador-20w.jpg",
+price:12000,
+note:"✅ $12.000"
+},
+{
+id:"adaptador45",
+code:"CHG-45W",
+name:"Adaptador 45W",
+img:"adaptador-45w.jpg",
+price:15000,
+note:"✅ $15.000"
+},
+{
+id:"cables",
+code:"CAB-IND",
+name:"Cables individuales",
+img:"cables-individuales.jpg",
+price:5000,
+note:"✅ $5.000",
+perUnitFields:[{ key:"tipo", label:"Tipo", type:"select", required:true, choices:["Tipo C a USB-C","Tipo C a Lightning","USB A a Lightning"] }]
+},
+{
+id:"funda_silicone_premium",
+code:"FUN-SIL-PREM",
+category:"fundas",
+name:"Fundas iPhone Silicone Case Premium",
+img:"funda-silicone-premium.jpg",
+price:13500,
+bulkUnit:[{min:5, unit:12000},{min:10, unit:9000}],
+note:"✅ Mínimo 3 fundas · 3 $13.500 c/u · 5 $12.000 c/u · 10 $9.000 c/u",
+minor:"iPhone 11 al 17 Pro Max · Colores modernos, stock surtido o a elección.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
+},
+{
+id:"funda_magsafe_mate",
+code:"FUN-MAG-MATE",
+category:"fundas",
+name:"Funda MagSafe Mate",
+img:"funda-magsafe-mate.jpg",
+price:12000,
+bulkUnit:[{min:5, unit:10000},{min:10, unit:8000}],
+note:"✅ Mínimo 3 fundas · 3 $12.000 c/u · 5 $10.000 c/u · 10 $8.000 c/u",
+minor:"Compatible MagSafe · iPhone 12 hasta 17 Pro Max · Colores varios.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
+},
+{
+id:"funda_texturada_magsafe",
+code:"FUN-TEXT-MAG",
+category:"fundas",
+name:"Funda texturada MagSafe",
+img:"funda-texturada-magsafe.jpg",
+price:12000,
+bulkUnit:[{min:5, unit:10000},{min:10, unit:8000}],
+note:"✅ Mínimo 3 fundas · 3 $12.000 c/u · 5 $10.000 c/u · 10 $8.000 c/u",
+minor:"Agarre antideslizante · Blanco, negro, marrón y violeta · iPhone 12 al 17 Pro Max.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
+},
+{
+id:"funda_puffer",
+code:"FUN-PUFFER",
+category:"fundas",
+name:"Funda Puffer",
+img:"funda-puffer.jpg",
+price:10000,
+bulkUnit:[{min:5, unit:8500},{min:10, unit:7000}],
+note:"✅ Mínimo 3 fundas · 3 $10.000 c/u · 5 $8.500 c/u · 10 $7.000 c/u",
+minor:"Diseño acolchado · Protección alta · iPhone 11 al 16 Pro Max.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
+},
+{
+id:"funda_magsafe_acrilica",
+code:"FUN-MAG-ACR",
+category:"fundas",
+name:"Funda MagSafe acrílica",
+img:"funda-magsafe-acrilica.jpg",
+price:10000,
+bulkUnit:[{min:5, unit:8500},{min:10, unit:7000}],
+note:"✅ Mínimo 3 fundas · 3 $10.000 c/u · 5 $8.500 c/u · 10 $7.000 c/u",
+minor:"Transparente rígida · Compatible MagSafe · iPhone 11 al 17 Pro Max.",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
+},
+{
+id:"templados",
+code:"TEMP-9D",
+name:"Vidrio templado 9D",
+img:"templado-9d.jpg",
+price:5000,
+note:"✅ $5.000",
+perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true }]
+},
+{
+id:"pad80",
+code:"PAD-80X30",
+name:"Pad gamer 80x30 cm",
+img:"pad-80x30.jpg",
+price:12000,
+note:"✅ $12.000"
+},
+{
+id:"pad30",
+code:"PAD-30X25",
+name:"Pad gamer 30x25 cm",
+img:"pad-30x25.jpg",
+price:9000,
+note:"✅ $9.000"
+},
+{
+id:"led",
+code:"LED",
+name:"Luces LED",
+img:"luces-led.jpg",
+price:12000,
+note:"✅ $12.000"
+},
+{
+id:"quencher",
+code:"VASO-QUENCHER",
+name:"Vaso Quencher",
+imgs:["quencher-1.jpg","quencher-2.jpg","quencher-3.jpg","quencher-4.jpg","quencher-5.jpg","quencher-6.jpg"],
+price:20000,
+note:"✅ $20.000"
+}
 ];
 
-const container = document.getElementById("products");
+const cart = new Map();
+const meta = new Map();
 
-PRODUCTS.forEach(p=>{
-const card = document.createElement("div");
-card.className = "card";
+const $best = document.getElementById("best");
+const $products = document.getElementById("products");
+const $items = document.getElementById("itemsCount");
 
-card.innerHTML = `
-<img src="${p.img}">
-<div class="name">${p.name}</div>
-<div class="price">$${p.price}</div>
-<button>Agregar</button>
+const miniItems = document.getElementById("miniItems");
+const miniTotal = document.getElementById("miniTotal");
+const drawerTotal = document.getElementById("drawerTotal");
+const statusBox = document.getElementById("statusBox");
+
+const backdrop = document.getElementById("backdrop");
+const drawer = document.getElementById("drawer");
+const openCart = document.getElementById("openCart");
+const openCheckout = document.getElementById("openCheckout");
+const closeDrawer = document.getElementById("closeDrawer");
+
+const backdropCart = document.getElementById("backdropCart");
+const drawerCart = document.getElementById("drawerCart");
+const closeCart = document.getElementById("closeCart");
+const cartList = document.getElementById("cartList");
+
+const nameEl = document.getElementById("name");
+const lastnameEl = document.getElementById("lastname");
+const phoneEl = document.getElementById("phone");
+const emailEl = document.getElementById("email");
+const provinceEl = document.getElementById("province");
+const cpEl = document.getElementById("cp");
+const deliveryEl = document.getElementById("delivery");
+const shipNoteEl = document.getElementById("shipNote");
+const sendBtn = document.getElementById("sendBtn");
+
+function money(n){
+return n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0});
+}
+
+function esc(s){
+return String(s ?? "").replace(/[&<>"']/g, m => ({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[m]));
+}
+
+function getUnit(p, qty){
+let unit = p.price;
+if(p.bulkUnit && qty > 0){
+p.bulkUnit.forEach(t => { if(qty >= t.min) unit = t.unit; });
+}
+return unit;
+}
+
+function ensureMetaForUnits(id, qty){
+const current = meta.get(id) || {};
+if(!current.units) current.units = [];
+while(current.units.length < qty) current.units.push({});
+if(current.units.length > qty) current.units = current.units.slice(0, qty);
+meta.set(id, current);
+}
+
+function setUnitField(id, idx, key, value){
+const current = meta.get(id) || {units:[]};
+if(!current.units) current.units = [];
+while(current.units.length <= idx) current.units.push({});
+current.units[idx][key] = value;
+meta.set(id, current);
+}
+
+window.onUnitField = (id, idx, key, val) => setUnitField(id, idx, key, val);
+
+function setStatus(text, type="warn"){
+statusBox.className = "statusNote " + type;
+statusBox.textContent = text;
+}
+
+function renderPerUnit(p, qty){
+if(!p.perUnitFields || qty <= 0) return "";
+ensureMetaForUnits(p.id, qty);
+const m = meta.get(p.id) || {units:[]};
+let html = `<div class="opts">`;
+
+for(let i=0;i<qty;i++){
+const unit = m.units[i] || {};
+html += `
+<div class="unitBox">
+<div class="unitHead">
+<b>${p.name} #${i+1}</b>
+<span class="unitChip">Unidad ${i+1}</span>
+</div>
+<div class="unitGrid">
+${p.perUnitFields.map(f=>{
+const v = String(unit[f.key] ?? "");
+if(f.type === "select"){
+const opts = (f.choices || []).map(c => {
+const sel = (v === c) ? "selected" : "";
+return `<option value="${esc(c)}" ${sel}>${esc(c)}</option>`;
+}).join("");
+return `
+<select onchange="onUnitField('${p.id}',${i},'${f.key}',this.value)">
+<option value="">${esc(f.label)}${f.required ? " *" : ""}</option>
+${opts}
+</select>
+`;
+}
+return `
+<input
+value="${esc(v)}"
+placeholder="${esc((f.placeholder || f.label) + (f.required ? " *" : ""))}"
+oninput="onUnitField('${p.id}',${i},'${f.key}',this.value)"
+/>
+`;
+}).join("")}
+</div>
+</div>
+`;
+}
+html += `</div>`;
+return html;
+}
+
+function buildCard(p){
+const q = cart.get(p.id) || 0;
+const unit = getUnit(p, q);
+const mayoristaAplicado = (p.bulkUnit && q > 0 && unit !== p.price);
+
+const imgId = `img_${p.id}`;
+const dotsId = `dots_${p.id}`;
+const currentSrc = (p.imgs && p.imgs.length) ? p.imgs[0] : p.img;
+
+const el = document.createElement("div");
+el.className = "card";
+el.innerHTML = `
+<div class="media">
+<img id="${imgId}" src="${esc(currentSrc || "")}" alt="${esc(p.name)}">
+<div class="ph" id="${imgId}_ph" style="display:none;">SIN FOTO</div>
+${p.imgs && p.imgs.length > 1 ? `
+<div class="dots" id="${dotsId}">
+${p.imgs.map((_,i)=>`<span class="dot ${i===0?'on':''}"></span>`).join("")}
+</div>
+` : ""}
+</div>
+
+<div class="name">${esc(p.name)}</div>
+<p class="price">${money(unit)} <small>c/u</small></p>
+${mayoristaAplicado ? `<div class="tag2">Mayorista aplicado</div>` : ""}
+${p.note ? `<p class="minor">${esc(p.note)}</p>` : ""}
+${p.minor ? `<p class="minor">${esc(p.minor)}</p>` : ""}
+
+${renderPerUnit(p, q)}
+
+<div class="row">
+<div class="qty">
+<button onclick="chg('${p.id}',-1)">−</button>
+<strong>${q}</strong>
+<button onclick="chg('${p.id}',1)">+</button>
+</div>
+<button class="btn" onclick="chg('${p.id}',1)">Agregar</button>
+</div>
 `;
 
-container.appendChild(card);
+setTimeout(()=>{
+const img = el.querySelector(`#${imgId}`);
+const ph = el.querySelector(`#${imgId}_ph`);
+if(img){
+img.onerror = () => {
+img.style.display = "none";
+if(ph) ph.style.display = "flex";
+};
+}
+},0);
+
+if(p.imgs && p.imgs.length > 1){
+let idx = 0;
+const img = el.querySelector(`#${imgId}`);
+const dots = [...el.querySelectorAll(`#${dotsId} .dot`)];
+setInterval(()=>{
+if(!document.body.contains(el)) return;
+idx = (idx + 1) % p.imgs.length;
+if(img){
+img.style.display = "block";
+img.src = p.imgs[idx];
+}
+dots.forEach((d,i)=>d.classList.toggle("on", i === idx));
+}, 2600);
+}
+
+return el;
+}
+
+function render(){
+$best.innerHTML = "";
+$products.innerHTML = "";
+let items = 0;
+let total = 0;
+
+PRODUCTS.forEach(p=>{
+const q = cart.get(p.id) || 0;
+items += q;
+total += getUnit(p,q) * q;
 });
+
+PRODUCTS.filter(p=>p.best).forEach(p => $best.appendChild(buildCard(p)));
+PRODUCTS.filter(p=>!p.best).forEach(p => $products.appendChild(buildCard(p)));
+
+$items.textContent = items + " items";
+miniItems.textContent = items;
+miniTotal.textContent = money(total);
+drawerTotal.textContent = money(total);
+
+renderCartList();
+}
+
+function renderCartList(){
+cartList.innerHTML = "";
+if(cart.size === 0){
+cartList.innerHTML = `<p class="minor" style="margin:0;color:var(--muted)">Tu carrito está vacío.</p>`;
+return;
+}
+
+let total = 0;
+PRODUCTS.forEach(p=>{
+const q = cart.get(p.id) || 0;
+if(!q) return;
+
+const unit = getUnit(p,q);
+const sub = unit * q;
+total += sub;
+
+const thumbSrc = (p.imgs && p.imgs.length) ? p.imgs[0] : p.img;
+
+const item = document.createElement("div");
+item.className = "cartItem";
+item.innerHTML = `
+<div class="cartThumb">
+<img src="${esc(thumbSrc || "")}" alt="${esc(p.name)}">
+<div class="ph" style="display:none;">SIN FOTO</div>
+</div>
+<div class="cartInfo">
+<b>${esc(p.name)}</b>
+<small>${money(unit)} c/u</small>
+</div>
+<div class="cartRight">
+<div class="subt">${money(sub)}</div>
+<div class="miniQ">x${q}</div>
+</div>
+`;
+const img = item.querySelector("img");
+const ph = item.querySelector(".ph");
+img.onerror = ()=>{ img.style.display="none"; ph.style.display="flex"; };
+cartList.appendChild(item);
+});
+
+const totalLine = document.createElement("div");
+totalLine.className = "cartItem";
+totalLine.innerHTML = `
+<div class="cartInfo">
+<b>Total estimado</b>
+<small>(sin envío)</small>
+</div>
+<div class="cartRight">
+<div class="subt">${money(total)}</div>
+</div>
+`;
+cartList.appendChild(totalLine);
+}
+
+function chg(id,d){
+const p = PRODUCTS.find(x=>x.id===id);
+const q = (cart.get(id) || 0) + d;
+if(q <= 0){
+cart.delete(id);
+meta.delete(id);
+} else {
+cart.set(id,q);
+if(p && p.perUnitFields) ensureMetaForUnits(id,q);
+}
+render();
+}
+
+function openDrawerCart(){
+backdropCart.style.display = "block";
+drawerCart.classList.add("open");
+}
+function closeDrawerCart(){
+drawerCart.classList.remove("open");
+backdropCart.style.display = "none";
+}
+function openDrawer(){
+backdrop.style.display = "block";
+drawer.classList.add("open");
+}
+function closeDrawerFn(){
+drawer.classList.remove("open");
+backdrop.style.display = "none";
+}
+
+openCart.onclick = openDrawerCart;
+closeCart.onclick = closeDrawerCart;
+backdropCart.onclick = closeDrawerCart;
+
+openCheckout.onclick = () => {
+if(cart.size === 0) return alert("Agregá un producto");
+openDrawer();
+};
+closeDrawer.onclick = closeDrawerFn;
+backdrop.onclick = closeDrawerFn;
+
+function deliveryRules(){
+const del = deliveryEl.value || "";
+const isPickup = del.startsWith("Retiro");
+const isMoto = del.startsWith("Motomensajería");
+const isCorreo = del.includes("Correo Argentino");
+
+if(isPickup){
+shipNoteEl.textContent = "Retiro en Hurlingham: coordinamos día y horario por WhatsApp.";
+} else if(isMoto){
+shipNoteEl.textContent = "Uber Moto (solo GBA y CABA): coordinamos costo y horario por WhatsApp.";
+} else if(isCorreo){
+shipNoteEl.textContent = "Correo Argentino: el costo se confirma por CP.";
+} else {
+shipNoteEl.textContent = "El costo del envío se confirma al finalizar según tu CP.";
+}
+}
+deliveryEl.addEventListener("change", deliveryRules);
+
+function isValidEmail(email){
+return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validateAll(){
+const name = nameEl.value.trim();
+const lastname = lastnameEl.value.trim();
+const phone = phoneEl.value.trim();
+const email = emailEl.value.trim();
+const province = provinceEl.value.trim();
+const cp = cpEl.value.trim();
+const delivery = deliveryEl.value.trim();
+
+if(!name || !lastname || !phone || !email || !province || !cp){
+alert("Completá nombre, apellido, teléfono, email, provincia y código postal.");
+return false;
+}
+
+if(!isValidEmail(email)){
+alert("Ingresá un email válido.");
+return false;
+}
+
+if(!delivery){
+alert("Elegí la forma de entrega.");
+return false;
+}
+
+const fundasQty = PRODUCTS
+.filter(p => p.category === "fundas")
+.reduce((acc,p) => acc + (cart.get(p.id) || 0), 0);
+if(fundasQty > 0 && fundasQty < 3){
+alert("Las fundas tienen mínimo 3 unidades en total. Podés mezclar modelos, pero agregá al menos 3 fundas.");
+return false;
+}
+
+const camisetasQty = PRODUCTS
+.filter(p => p.category === "camisetas")
+.reduce((acc,p) => acc + (cart.get(p.id) || 0), 0);
+if(camisetasQty > 0 && camisetasQty < 3){
+alert("Las camisetas tienen mínimo 3 unidades en total.");
+return false;
+}
+
+for(const p of PRODUCTS){
+const q = cart.get(p.id) || 0;
+
+if(q > 0 && p.perUnitFields){
+const m = meta.get(p.id) || {units:[]};
+for(let i=0;i<q;i++){
+const unit = (m.units && m.units[i]) ? m.units[i] : {};
+for(const f of p.perUnitFields){
+if(f.required){
+const v = String(unit[f.key] ?? "").trim();
+if(!v){
+alert(`Falta completar "${f.label}" en ${p.name} (Unidad ${i+1})`);
+return false;
+}
+}
+}
+}
+}
+}
+
+return true;
+}
+
+function buildOrderSignature(){
+const ordered = [];
+PRODUCTS.forEach(p=>{
+const q = cart.get(p.id) || 0;
+if(!q) return;
+const info = meta.get(p.id) || {};
+ordered.push({
+id:p.id,
+q,
+unit:getUnit(p,q),
+meta:info
+});
+});
+
+return JSON.stringify({
+n:nameEl.value.trim(),
+a:lastnameEl.value.trim(),
+ph:phoneEl.value.trim(),
+em:emailEl.value.trim(),
+pr:provinceEl.value.trim(),
+cp:cpEl.value.trim(),
+d:deliveryEl.value.trim(),
+items:ordered
+});
+}
+
+function canSendNow(){
+const sig = buildOrderSignature();
+const now = Date.now();
+const cooldownMs = 3 * 60 * 1000;
+
+const lastSig = localStorage.getItem("last_order_signature");
+const lastAt = Number(localStorage.getItem("last_order_at") || 0);
+
+if(lastSig === sig && now - lastAt < cooldownMs){
+const remain = Math.ceil((cooldownMs - (now - lastAt))/1000);
+return {
+ok:false,
+reason:`Ese mismo pedido ya fue enviado recién. Esperá ${remain}s o cambiá algo del carrito.`
+};
+}
+
+return { ok:true, signature:sig, now };
+}
+
+function rememberOrder(sig, now){
+localStorage.setItem("last_order_signature", sig);
+localStorage.setItem("last_order_at", String(now));
+}
+
+function buildOrderData(){
+const orderId = String(Date.now()).slice(-5);
+const dateAR = new Date().toLocaleDateString("es-AR");
+
+const customerName = `${nameEl.value.trim()} ${lastnameEl.value.trim()}`.trim();
+const customerPhone = phoneEl.value.trim();
+const customerEmail = emailEl.value.trim();
+const province = provinceEl.value.trim();
+const cp = cpEl.value.trim();
+const delivery = deliveryEl.value.trim();
+
+let total = 0;
+const textLines = [];
+const htmlRows = [];
+
+PRODUCTS.forEach(p=>{
+const q = cart.get(p.id) || 0;
+if(!q) return;
+
+const unit = getUnit(p,q);
+const sub = unit * q;
+total += sub;
+const code = p.code || p.id;
+
+textLines.push(`${code} | ${p.name} | x${q} | ${money(unit)} | ${money(sub)}`);
+
+htmlRows.push(`
+<tr>
+<td style="padding:9px 8px;border-bottom:1px solid #e5e7eb">
+<div style="font-weight:700">${esc(p.name)}</div>
+<div style="font-size:12px;color:#64748b">${esc(code)}</div>
+</td>
+<td style="padding:9px 8px;border-bottom:1px solid #e5e7eb;text-align:center">${q}</td>
+<td style="padding:9px 8px;border-bottom:1px solid #e5e7eb;text-align:right">${money(unit)}</td>
+<td style="padding:9px 8px;border-bottom:1px solid #e5e7eb;text-align:right">${money(sub)}</td>
+</tr>
+`);
+
+const m = meta.get(p.id) || {};
+if(p.perUnitFields){
+for(let i=0;i<q;i++){
+const u = (m.units && m.units[i]) ? m.units[i] : {};
+const parts = [];
+for(const f of p.perUnitFields){
+const v = String(u[f.key] ?? "").trim();
+if(v) parts.push(`${f.label}: ${v}`);
+}
+if(parts.length){
+textLines.push(` - Unidad ${i+1}: ${parts.join(" | ")}`);
+}
+}
+}
+});
+
+return {
+orderId,
+dateAR,
+customerName,
+customerPhone,
+customerEmail,
+province,
+cp,
+delivery,
+itemsText:textLines.join("\n"),
+itemsHtml:htmlRows.join(""),
+totalText:money(total)
+};
+}
+
+async function sendOrder(){
+if(cart.size === 0) return alert("Agregá un producto");
+if(!validateAll()) return;
+
+const check = canSendNow();
+if(!check.ok){
+setStatus(check.reason, "bad");
+alert(check.reason);
+return;
+}
+
+const data = buildOrderData();
+
+sendBtn.disabled = true;
+sendBtn.textContent = "Enviando...";
+setStatus("Enviando pedido...", "warn");
+
+try{
+await emailjs.send(
+EMAILJS_SERVICE_ID,
+EMAILJS_TEMPLATE_ID,
+{
+order_id: data.orderId,
+date: data.dateAR,
+customer_name: data.customerName,
+customer_phone: data.customerPhone,
+customer_email: data.customerEmail,
+province: data.province,
+cp: data.cp,
+delivery: data.delivery,
+items: data.itemsText,
+items_html: data.itemsHtml,
+total: data.totalText
+}
+);
+
+rememberOrder(check.signature, check.now);
+setStatus("Pedido enviado. Ahora se abre WhatsApp para terminar de coordinar.", "ok");
+
+let msg = `Hola! Quiero hacer este pedido:%0A%0A`;
+PRODUCTS.forEach(p=>{
+const q = cart.get(p.id) || 0;
+if(!q) return;
+
+const unit = getUnit(p,q);
+const sub = unit*q;
+
+msg += `• ${encodeURIComponent(p.name)} x${q}%0A`;
+msg += ` Unit: ${encodeURIComponent(money(unit))} | Subtotal: ${encodeURIComponent(money(sub))}%0A`;
+
+const m = meta.get(p.id) || {};
+if(p.perUnitFields){
+msg += ` Detalle:%0A`;
+for(let i=0;i<q;i++){
+const u = (m.units && m.units[i]) ? m.units[i] : {};
+const parts = [];
+for(const f of p.perUnitFields){
+const v = String(u[f.key] ?? "").trim();
+if(v) parts.push(`${f.label}: ${v}`);
+}
+if(parts.length){
+msg += ` - Unidad ${i+1}: ${encodeURIComponent(parts.join(" | "))}%0A`;
+}
+}
+}
+msg += `%0A`;
+});
+
+msg += `Total: ${encodeURIComponent(data.totalText)}%0A`;
+msg += `Nombre: ${encodeURIComponent(data.customerName)}%0A`;
+msg += `Teléfono: ${encodeURIComponent(data.customerPhone)}%0A`;
+msg += `Email: ${encodeURIComponent(data.customerEmail)}%0A`;
+msg += `Provincia: ${encodeURIComponent(data.province)}%0A`;
+msg += `CP: ${encodeURIComponent(data.cp)}%0A`;
+msg += `Entrega: ${encodeURIComponent(data.delivery)}%0A%0A`;
+msg += `Pedido #${data.orderId}%0A`;
+msg += `¿Me confirmás stock y envío?`;
+
+setTimeout(()=>{
+window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+}, 400);
+
+} catch (e){
+console.log(e);
+setStatus("No se pudo enviar el pedido por mail. Revisá el template de EmailJS.", "bad");
+alert("No se pudo enviar el pedido por mail. Revisá EmailJS.");
+} finally {
+sendBtn.disabled = false;
+sendBtn.textContent = "Enviar pedido";
+}
+}
+
+document.getElementById("sendBtn").onclick = sendOrder;
+deliveryRules();
+render();
 </script>
 
 </body>
