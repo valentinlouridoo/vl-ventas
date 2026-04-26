@@ -446,8 +446,6 @@ Trabajo con productos tecnológicos y artículos de uso diario. Mi idea es vende
 <div class="grid" id="products"></div>
 </section>
 
-
-
 </div>
 </main>
 
@@ -583,7 +581,6 @@ logoTest.src = "logo.png?v=" + Date.now();
 })();
 
 const PRODUCTS = [
-
 {
 id:"airpods_pro2",
 code:"AIR-PRO2-ANC",
@@ -594,7 +591,6 @@ price:20000,
 bulkUnit:[{min:3, unit:20000},{min:5, unit:19500},{min:10, unit:19000},{min:20, unit:18500}],
 note:"✅ 1 $20.000 · 3 $20.000 · 5 $19.500 · 10 $19.000 · 20 $18.500"
 },
-
 {
 id:"tv",
 code:"TV-Q6",
@@ -605,7 +601,6 @@ price:33000,
 note:"✅ $33.000",
 minor:"Incluye apps instaladas, listo para usar + soporte."
 },
-
 {
 id:"parlante_go4",
 code:"SPK-GO4PRO-RGB",
@@ -614,11 +609,11 @@ name:"Parlante Go 4 Pro RGB",
 imgs:["go4-1.jpg","go4-2.jpg","go4-3.jpg","go4-4.jpg"],
 price:25000,
 note:"✅ $25.000",
-fields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Azul","Negro","Verde camuflado"] }]
+perUnitFields:[{ key:"color", label:"Color", type:"select", required:true, choices:["Rojo","Azul","Negro","Verde camuflado"] }]
 },
-
 {
 id:"camiseta_arg_titular",
+code:"CAM-ARG-TIT-JUG",
 category:"camisetas",
 best:true,
 name:"Camiseta Argentina titular versión jugador",
@@ -629,9 +624,9 @@ note:"✅ Mínimo 3 unidades · 3 $40.000 c/u · 5 $38.000 c/u · 10 $35.000 c/u
 minor:"Calidad tailandesa premium · Termosellada",
 perUnitFields:[{ key:"talle", label:"Talle", type:"text", required:true },{ key:"detalle", label:"Detalle / versión", type:"text", required:false }]
 },
-
 {
 id:"camiseta_arg_suplente",
+code:"CAM-ARG-SUP-HIN",
 category:"camisetas",
 best:true,
 name:"Camiseta Argentina suplente versión hincha",
@@ -642,52 +637,52 @@ note:"✅ Mínimo 3 unidades · 3 $40.000 c/u · 5 $38.000 c/u · 10 $35.000 c/u
 minor:"Calidad tailandesa premium · Termosellada",
 perUnitFields:[{ key:"talle", label:"Talle", type:"text", required:true },{ key:"detalle", label:"Detalle / versión", type:"text", required:false }]
 },
-
 {
 id:"patillera",
+code:"PAT-VINTAGE",
 best:true,
 name:"Patillera vintage",
 img:"patillera-vintage.jpg",
 price:12000,
 note:"✅ $12.000"
 },
-
 {
 id:"airpods_tws",
+code:"AIR-TWS",
 name:"AirPods TWS",
 img:"airpods-tws.jpg",
 price:15000,
 bulkUnit:[{min:3, unit:14000}],
 note:"✅ 1 $15.000 · 3 $14.000"
 },
-
 {
 id:"adaptador20",
+code:"CHG-20W",
 name:"Adaptador 20W + cable iPhone",
 img:"adaptador-20w.jpg",
 price:12000,
 note:"✅ $12.000"
 },
-
 {
 id:"adaptador45",
+code:"CHG-45W",
 name:"Adaptador 45W",
 img:"adaptador-45w.jpg",
 price:15000,
 note:"✅ $15.000"
 },
-
 {
 id:"cables",
+code:"CAB-IND",
 name:"Cables individuales",
 img:"cables-individuales.jpg",
 price:5000,
 note:"✅ $5.000",
 perUnitFields:[{ key:"tipo", label:"Tipo", type:"select", required:true, choices:["Tipo C a USB-C","Tipo C a Lightning","USB A a Lightning"] }]
 },
-
 {
 id:"funda_silicone_premium",
+code:"FUN-SIL-PREM",
 category:"fundas",
 name:"Fundas iPhone Silicone Case Premium",
 img:"funda-silicone-premium.jpg",
@@ -697,9 +692,9 @@ note:"✅ Mínimo 3 fundas · 3 $13.500 c/u · 5 $12.000 c/u · 10 $9.000 c/u",
 minor:"iPhone 11 al 17 Pro Max · Colores modernos, stock surtido o a elección.",
 perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
 },
-
 {
 id:"funda_magsafe_mate",
+code:"FUN-MAG-MATE",
 category:"fundas",
 name:"Funda MagSafe Mate",
 img:"funda-magsafe-mate.jpg",
@@ -709,9 +704,9 @@ note:"✅ Mínimo 3 fundas · 3 $12.000 c/u · 5 $10.000 c/u · 10 $8.000 c/u",
 minor:"Compatible MagSafe · iPhone 12 hasta 17 Pro Max · Colores varios.",
 perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
 },
-
 {
 id:"funda_texturada_magsafe",
+code:"FUN-TEXT-MAG",
 category:"fundas",
 name:"Funda texturada MagSafe",
 img:"funda-texturada-magsafe.jpg",
@@ -721,9 +716,9 @@ note:"✅ Mínimo 3 fundas · 3 $12.000 c/u · 5 $10.000 c/u · 10 $8.000 c/u",
 minor:"Agarre antideslizante · Blanco, negro, marrón y violeta · iPhone 12 al 17 Pro Max.",
 perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
 },
-
 {
 id:"funda_puffer",
+code:"FUN-PUFFER",
 category:"fundas",
 name:"Funda Puffer",
 img:"funda-puffer.jpg",
@@ -733,9 +728,9 @@ note:"✅ Mínimo 3 fundas · 3 $10.000 c/u · 5 $8.500 c/u · 10 $7.000 c/u",
 minor:"Diseño acolchado · Protección alta · iPhone 11 al 16 Pro Max.",
 perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
 },
-
 {
 id:"funda_magsafe_acrilica",
+code:"FUN-MAG-ACR",
 category:"fundas",
 name:"Funda MagSafe acrílica",
 img:"funda-magsafe-acrilica.jpg",
@@ -745,48 +740,48 @@ note:"✅ Mínimo 3 fundas · 3 $10.000 c/u · 5 $8.500 c/u · 10 $7.000 c/u",
 minor:"Transparente rígida · Compatible MagSafe · iPhone 11 al 17 Pro Max.",
 perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true },{ key:"color", label:"Color", type:"text", required:true }]
 },
-
 {
 id:"templados",
+code:"TEMP-9D",
 name:"Vidrio templado 9D",
 img:"templado-9d.jpg",
 price:5000,
 note:"✅ $5.000",
 perUnitFields:[{ key:"modelo", label:"Modelo", type:"text", required:true }]
 },
-
 {
 id:"pad80",
+code:"PAD-80X30",
 name:"Pad gamer 80x30 cm",
 img:"pad-80x30.jpg",
 price:12000,
 note:"✅ $12.000"
 },
-
 {
 id:"pad30",
+code:"PAD-30X25",
 name:"Pad gamer 30x25 cm",
 img:"pad-30x25.jpg",
 price:9000,
 note:"✅ $9.000"
 },
-
 {
 id:"led",
+code:"LED",
 name:"Luces LED",
 img:"luces-led.jpg",
 price:12000,
 note:"✅ $12.000"
 },
-
 {
 id:"quencher",
+code:"VASO-QUENCHER",
 name:"Vaso Quencher",
 imgs:["quencher-1.jpg","quencher-2.jpg","quencher-3.jpg","quencher-4.jpg","quencher-5.jpg","quencher-6.jpg"],
 price:20000,
 note:"✅ $20.000"
 }
-];>
+];
 
 const cart = new Map();
 const meta = new Map();
@@ -990,9 +985,6 @@ total += getUnit(p,q) * q;
 
 PRODUCTS.filter(p=>p.best).forEach(p => $best.appendChild(buildCard(p)));
 PRODUCTS.filter(p=>!p.best).forEach(p => $products.appendChild(buildCard(p)));
-PRODUCTS.filter(p=>p.pedido).forEach(p => {
-if($pedido) $pedido.appendChild(buildCard(p));
-});
 
 $items.textContent = items + " items";
 miniItems.textContent = items;
@@ -1254,14 +1246,15 @@ if(!q) return;
 const unit = getUnit(p,q);
 const sub = unit * q;
 total += sub;
+const code = p.code || p.id;
 
-textLines.push(`${p.code} | ${p.name} | x${q} | ${money(unit)} | ${money(sub)}`);
+textLines.push(`${code} | ${p.name} | x${q} | ${money(unit)} | ${money(sub)}`);
 
 htmlRows.push(`
 <tr>
 <td style="padding:9px 8px;border-bottom:1px solid #e5e7eb">
 <div style="font-weight:700">${esc(p.name)}</div>
-<div style="font-size:12px;color:#64748b">${esc(p.code)}</div>
+<div style="font-size:12px;color:#64748b">${esc(code)}</div>
 </td>
 <td style="padding:9px 8px;border-bottom:1px solid #e5e7eb;text-align:center">${q}</td>
 <td style="padding:9px 8px;border-bottom:1px solid #e5e7eb;text-align:right">${money(unit)}</td>
