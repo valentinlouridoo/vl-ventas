@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101817">
+<meta name="description" content="Visitá la tienda de Valentín Ventas, unite a la comunidad o consultanos por WhatsApp.">
+<title>Valentín Ventas</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: clamp(16px, 5vw, 40px);
+    font-family: Inter, system-ui, sans-serif;
+    color: #f5fff9;
+    background: radial-gradient(ellipse at top, #21453b, #101817 62%);
+  }
+  main {
+    width: min(100%, 480px);
+    padding: clamp(20px, 5vw, 36px);
+    border: 1px solid #3a544b;
+    border-radius: 28px;
+    background: #172520;
+  }
+  h1 { font-size: clamp(32px, 7vw, 48px); line-height: 1; letter-spacing: -.06em; margin: 0; }
+  header p { color: #bed2c8; margin: 12px 0 23px; }
+  nav { display: grid; gap: 10px; }
+  a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 15px 16px;
+    border-radius: 15px;
+    border: 1px solid #486458;
+    background: #20352d;
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover { border-color: #a4f5bd; }
+  a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  a.primary { color: #10271b; background: #a4f5bd; border-color: #a4f5bd; }
+  a.primary:hover { background: #c7fbd6; }
+  strong, small { display: block; }
+  small { margin-top: 4px; font-size: .85rem; color: #bed2c8; }
+  .primary small { color: #254b34; }
+  .arrow { font-size: 1.3rem; }
+  footer { color: #bed2c8; margin-top: 19px; font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Valentín Ventas</h1>
+    <p>Tecnología y accesorios en Hurlingham.</p>
+  </header>
+  <nav aria-label="Enlaces de Valentín Ventas">
+    <a class="primary" href="https://valentinventass.mitiendanube.com/">
+      <span><strong>Ver productos en Tiendanube</strong><small>Entrá al catálogo y mirá los precios.</small></span>
+      <span class="arrow" aria-hidden="true">↗</span>
+    </a>
+    <a href="https://wa.me/5491165292907">
+      <span><strong>Consultar por WhatsApp</strong><small>Preguntanos por stock, envíos o retiro.</small></span>
+      <span class="arrow" aria-hidden="true">↗</span>
+    </a>
+    <a href="https://chat.whatsapp.com/EFLSmI4IifTFEEkwK2l0X9">
+      <span><strong>Unirme a la comunidad</strong><small>Recibí novedades por WhatsApp.</small></span>
+      <span class="arrow" aria-hidden="true">↗</span>
+    </a>
+  </nav>
+  <footer>Retiro en Hurlingham · Envíos a todo el país</footer>
+</main>
+</body>
+</html>
